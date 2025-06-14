@@ -115,3 +115,103 @@ Per trovare il raggio:
     \item Il raggio di convergenza è $\rho = \sqrt[3]{3}$
 \end{enumerate}
 \end{esempio}
+
+\subsubsection{Esercizi Tipo Esame - Risolti Step by Step}
+
+\begin{esempio}
+\textbf{Esame 1 Luglio 2021 - Es. 1a:} $\displaystyle\sum_{n=1}^{+\infty} 2^{n} \sin\frac{1}{5^{n}}$
+
+\textbf{Soluzione strategica:}
+\begin{enumerate}
+    \item \textbf{Osservazione:} Serie a termini positivi (per $n \ge 1$)
+    \item \textbf{Confronto asintotico:} Per $n \to \infty$, $\frac{1}{5^n} \to 0$, quindi $\sin\frac{1}{5^n} \sim \frac{1}{5^n}$
+    \item \textbf{Serie equivalente:} $\sum 2^n \cdot \frac{1}{5^n} = \sum \left(\frac{2}{5}\right)^n$
+    \item \textbf{Conclusione:} Serie geometrica con $|q| = \frac{2}{5} < 1 \Rightarrow$ CONVERGE
+\end{enumerate}
+\end{esempio}
+
+\begin{esempio}
+\textbf{Esame 1 Luglio 2021 - Es. 1b:} $\displaystyle\sum_{n=1}^{+\infty} (-1)^{n} \frac{3}{\sqrt{n} + \log n}$
+
+\textbf{Soluzione strategica:}
+\begin{enumerate}
+    \item \textbf{Convergenza assoluta:} Studio $\sum \frac{3}{\sqrt{n} + \log n}$
+    \item \textbf{Comportamento asintotico:} $\sqrt{n} + \log n \sim \sqrt{n}$ per $n \to \infty$
+    \item \textbf{Confronto:} $\frac{3}{\sqrt{n} + \log n} \sim \frac{3}{\sqrt{n}} = \frac{3}{n^{1/2}}$
+    \item \textbf{Serie armonica generalizzata:} $\alpha = 1/2 < 1 \Rightarrow$ DIVERGE (no conv. assoluta)
+    \item \textbf{Leibniz:} Serie alternante con $b_n = \frac{3}{\sqrt{n} + \log n}$
+        \begin{itemize}
+            \item $b_n \to 0$ $\checkmark$
+            \item \(b_n\) decrescente? \(f(x) = \frac{3}{\sqrt{x} + \log x}\), \(f'(x) < 0\) per \(x > 1\) $\checkmark$
+        \end{itemize}
+    \item \textbf{Conclusione:} CONVERGE SEMPLICEMENTE (ma non assolutamente)
+\end{enumerate}
+\end{esempio}
+
+\subsection{$\triangleright$ Errori Comuni e Trabocchetti dell'Esame}
+
+\begin{errore}
+\textbf{Serie di Potenze -- Confusione sul Raggio di Convergenza:}
+\begin{itemize}
+    \item $\times$ \textit{Sbagliato:} Dire che $\sum_{n=1}^{\infty} \frac{(2x)^n}{n}$ ha raggio $R=1$
+    \item $\checkmark$ \textit{Giusto:} Prima riscrivere come $\sum_{n=1}^{\infty} \frac{2^n x^n}{n}$, poi $R = \frac{1}{2}$
+    \item \textbf{Regola:} Il raggio si calcola sui coefficienti di $x^n$, non sul termine completo!
+\end{itemize}
+\end{errore}
+
+\begin{errore}
+\textbf{Criterio di Leibniz -- Dimenticare la Monotonia:}
+\begin{itemize}
+    \item $\times$ \textit{Sbagliato:} Verificare solo $b_n \to 0$ e concludere che converge
+    \item $\checkmark$ \textit{Giusto:} Verificare ENTRAMBE: $b_n \to 0$ E $b_n$ decrescente
+    \item \textbf{Trucco:} Per la monotonia, studia $f'(x) < 0$ della funzione associata
+\end{itemize}
+\end{errore}
+
+\subsubsection{Tecniche per Serie ``Difficili'' degli Esami}
+
+\begin{info}
+\textbf{Serie con Prodotti Infiniti e Fattoriali Complessi:}
+Per serie del tipo \(\sum \frac{(n!)^a}{(kn)!} \cdot g(n)\):
+\begin{itemize}
+    \item Usa la formula di Stirling: \(n! \sim \sqrt{2\pi n}\left(\frac{n}{e}\right)^n\)
+    \item Per \(\frac{(n!)^2}{(2n)!}\): usa il fatto che \(\frac{(n!)^2}{(2n)!} \sim \frac{1}{\sqrt{\pi n}}\)
+    \item Per \(\frac{(2n)!}{(3n)!}\): comportamento asintotico \(\sim \frac{1}{n^n}\)
+\end{itemize}
+\end{info}
+
+\begin{esempio}
+\textbf{Serie ``Impossibile'':} \(\displaystyle\sum_{n=1}^{\infty} \frac{1}{\binom{4n}{3n}}\)
+
+\textbf{Trucco chiave:} \(\binom{4n}{3n} = \frac{(4n)!}{(3n)! \cdot n!}\)
+
+Usando Stirling per grandi \(n\):
+\begin{align}
+\binom{4n}{3n} &\sim \frac{(4n)!}{(3n)! \cdot n!} \\
+&\sim \frac{\sqrt{8\pi n}{(4n/e)}^{4n}}{\sqrt{6\pi n}{(3n/e)}^{3n} \cdot \sqrt{2\pi n}{(n/e)}^n} \\
+&\sim \frac{4^{4n}}{3^{3n}} \cdot \frac{1}{\sqrt{\pi n}} \\
+&= \left(\frac{256}{27}\right)^n \cdot \frac{1}{\sqrt{\pi n}}
+\end{align}
+
+Quindi \(\frac{1}{\binom{4n}{3n}} \sim \frac{\sqrt{\pi n}}{{(256/27)}^n}\), che converge rapidamente.
+\end{esempio}
+
+\begin{info}
+\textbf{Serie con Funzioni Inverse:}
+Per serie del tipo \(\sum f(\arctan(g(n)))\) o \(\sum \arcsin(h(n))\):
+\begin{itemize}
+    \item Se \(g(n) \to 0\): usa \(\arctan(x) \sim x\) per \(x \to 0\)
+    \item Se \(g(n) \to \infty\): usa \(\arctan(x) \to \pi/2\) per \(x \to +\infty\)
+    \item Per \(\arcsin\): attenzione al dominio \([-1,1]\)
+\end{itemize}
+\end{info}
+
+\begin{info}
+\textbf{Serie con Esponenziali ``Nascosti'':}
+Per serie come \(\sum (e^{f(n)} - 1)\) con \(f(n) \to 0\):
+\begin{itemize}
+    \item Usa sempre \(e^x - 1 \sim x\) per \(x \to 0\)
+    \item Per \(e^{1/n^2} - 1 \sim 1/n^2\): converge come serie armonica generalizzata
+    \item Per \(e^{1/n} - 1 \sim 1/n\): diverge come serie armonica
+\end{itemize}
+\end{info}

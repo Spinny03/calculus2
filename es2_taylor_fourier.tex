@@ -7,18 +7,49 @@ Non calcolare \textbf{mai} le derivate una per una, a meno che non sia esplicita
 
 \subsubsection{Tecniche Standard}
 \begin{itemize}
-    \item \textbf{Come operare:} Sostituisci, somma, moltiplica e componi gli sviluppi notevoli. Ricorda di fermarti all'ordine richiesto e di usare il simbolo di o-piccolo $o((x-x_0)^n)$. Gestisci con cura le potenze e gli ordini degli o-piccoli.
-    \item \textbf{Calcolo di $f^{(n)}(0)$:} Dalla teoria, il coefficiente $c_n$ del termine $x^n$ nello sviluppo di MacLaurin è $c_n = \frac{f^{(n)}(0)}{n!}$. La formula inversa è potentissima per calcolare derivate in zero senza fatica: 
+    \item \textbf{Come operare:} Sostituisci, somma, moltiplica e componi gli sviluppi notevoli. Ricorda di fermarti all'ordine richiesto e di usare il simbolo di o-piccolo \(o((x-x_0)^n)\). Gestisci con cura le potenze e gli ordini degli o-piccoli.
+    \item \textbf{Calcolo di \(f^{(n)}(0)\):} Dalla teoria, il coefficiente \(c_n\) del termine \(x^n\) nello sviluppo di MacLaurin è \(c_n = \frac{f^{(n)}(0)}{n!}\). La formula inversa è potentissima per calcolare derivate in zero senza fatica: 
     \[ f^{(n)}(0) = n! \cdot c_n \]
-    \item \textbf{Resto di Lagrange e Stima dell'Errore:} Il resto di Lagrange di ordine $n$ è:
+    \item \textbf{Resto di Lagrange e Stima dell'Errore:} Il resto di Lagrange di ordine \(n\) è:
     \[ R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1} \]
-    dove $\xi$ è un punto compreso tra $x_0$ e $x$. Per stimare l'errore:
+    dove \(\xi\) è un punto compreso tra \(x_0\) e \(x\). Per stimare l'errore:
     \begin{enumerate}
-        \item Calcola la derivata $(n+1)$-esima di $f$.
-        \item Trova il massimo di $|f^{(n+1)}(\xi)|$ nell'intervallo di interesse.
-        \item Applica la formula: $|R_n(x)| \le \frac{M}{(n+1)!}|x-x_0|^{n+1}$ dove $M = \max |f^{(n+1)}(\xi)|$.
+        \item Calcola la derivata \((n+1)\)-esima di \(f\).
+        \item Trova il massimo di \(|f^{(n+1)}(\xi)|\) nell'intervallo di interesse.
+        \item Applica la formula: \(|R_n(x)| \le \frac{M}{(n+1)!}|x-x_0|^{n+1}\) dove \(M = \max |f^{(n+1)}(\xi)|\).
     \end{enumerate}
 \end{itemize}
+
+\begin{esempio}[Esame 14 Gennaio 2021]
+Determinare il polinomio di Taylor centrato in 0 e di ordine 4 di \(f(x) = \log(\cos x)\).
+
+\textbf{Soluzione:} Usiamo gli sviluppi notevoli invece di calcolare le derivate:
+\begin{align}
+\cos x &= 1 - \frac{x^2}{2!} + \frac{x^4}{4!} + o(x^4) = 1 - \frac{x^2}{2} + \frac{x^4}{24} + o(x^4)
+\end{align}
+
+Per \(\log(1+t)\) con \(t = \cos x - 1 = -\frac{x^2}{2} + \frac{x^4}{24} + o(x^4)\):
+\begin{align}
+\log(1+t) &= t - \frac{t^2}{2} + \frac{t^3}{3} - \frac{t^4}{4} + o(t^4)
+\end{align}
+
+Sostituiamo \(t\):
+\begin{align}
+t &= -\frac{x^2}{2} + \frac{x^4}{24} + o(x^4) \\
+t^2 &= \left(-\frac{x^2}{2}\right)^2 + o(x^4) = \frac{x^4}{4} + o(x^4) \\
+t^3 &= o(x^4), \quad t^4 = o(x^4)
+\end{align}
+
+Quindi:
+\begin{align}
+\log(\cos x) &= \left(-\frac{x^2}{2} + \frac{x^4}{24}\right) - \frac{1}{2} \cdot \frac{x^4}{4} + o(x^4) \\
+&= -\frac{x^2}{2} + \frac{x^4}{24} - \frac{x^4}{8} + o(x^4) \\
+&= -\frac{x^2}{2} + \frac{x^4 - 3x^4}{24} + o(x^4) \\
+&= -\frac{x^2}{2} - \frac{x^4}{12} + o(x^4)
+\end{align}
+
+Il polinomio di Taylor di ordine 4 è: \(T_4(x) = -\frac{x^2}{2} - \frac{x^4}{12}\)
+\end{esempio}
 
 \subsubsection{Tecniche Avanzate dalle Esercitazioni}
 
@@ -113,16 +144,77 @@ Per estendere una funzione definita su $[0,L]$ a tutto l'asse:
 Questa tecnica può semplificare notevolmente i calcoli.
 \end{info}
 
-\begin{esempio}
-Funzione con parametro $\alpha$ dalle esercitazioni: 
-\[ g_{\alpha}(x)=\begin{cases}x^{2},&x\in[0,\pi]\\ \alpha x,&x\in(\pi,2\pi).\end{cases} \]
+\begin{esempio}[Funzione con parametro \(\alpha\) dalle esercitazioni]
+Data la funzione di periodo \(2\pi\):
+\[ g_\alpha(x) = \begin{cases} x^2 & x \in [0,\pi] \\ \alpha x & x \in (\pi,2\pi) \end{cases} \]
 
-Per studiare la convergenza al variare di $\alpha$:
-\begin{enumerate}
-    \item Calcola i coefficienti di Fourier in funzione di $\alpha$
-    \item Analizza la convergenza puntuale nei punti di discontinuità ($x = \pi$)
-    \item Nel punto $x = \pi$: la serie converge a $\frac{g(\pi^-) + g(\pi^+)}{2} = \frac{\pi^2 + \alpha\pi}{2}$
-\end{enumerate}
+\textbf{1. Calcolo dei coefficienti di Fourier in funzione di \(\alpha\):}
+
+\textbf{Coefficiente \(a_0\):}
+\begin{align}
+a_0 &= \frac{1}{\pi} \int_0^{2\pi} g_\alpha(x) \, dx \\
+&= \frac{1}{\pi} \left[ \int_0^\pi x^2 \, dx + \int_\pi^{2\pi} \alpha x \, dx \right] \\
+&= \frac{1}{\pi} \left[ \frac{x^3}{3} \Big|_0^\pi + \alpha \frac{x^2}{2} \Big|_\pi^{2\pi} \right] \\
+&= \frac{\pi^2}{3} + \frac{3\alpha\pi}{2}
+\end{align}
+
+\textbf{Coefficienti \(a_n\) per \(n \geq 1\):}
+\begin{align}
+a_n &= \frac{1}{\pi} \int_0^{2\pi} g_\alpha(x) \cos(nx) \, dx \\
+&= \frac{1}{\pi} \left[ \int_0^\pi x^2 \cos(nx) \, dx + \int_\pi^{2\pi} \alpha x \cos(nx) \, dx \right]
+\end{align}
+
+Per \(\int_0^\pi x^2 \cos(nx) \, dx\), usiamo integrazione per parti due volte:
+\begin{align}
+\int x^2 \cos(nx) \, dx &= \frac{x^2 \sin(nx)}{n} + \frac{2x \cos(nx)}{n^2} - \frac{2 \sin(nx)}{n^3}
+\end{align}
+
+Calcolando:
+\begin{align}
+\int_0^\pi x^2 \cos(nx) \, dx &= \frac{\pi^2 \sin(n\pi)}{n} + \frac{2\pi \cos(n\pi)}{n^2} - \frac{2 \sin(n\pi)}{n^3} \\
+&= \frac{2\pi \cos(n\pi)}{n^2} = \frac{2\pi (-1)^n}{n^2}
+\end{align}
+
+Calcolando:
+\begin{align}
+\int_\pi^{2\pi} x \cos(nx) \, dx &= \left[ \frac{x \sin(nx)}{n} + \frac{\cos(nx)}{n^2} \right]_\pi^{2\pi} \\
+&= \frac{2\pi \sin(2n\pi) - \pi \sin(n\pi)}{n} + \frac{\cos(2n\pi) - \cos(n\pi)}{n^2} \\
+&= \frac{1 - (-1)^n}{n^2}
+\end{align}
+\end{esempio}
+\begin{esempio}
+Quindi:
+\[ a_n = \frac{1}{\pi} \left[ \frac{2\pi (-1)^n}{n^2} + \alpha \frac{1 - (-1)^n}{n^2} \right] = \frac{2(-1)^n + \alpha(1 - (-1)^n)/\pi}{n^2} \]
+
+\textbf{Coefficienti \(b_n\):}
+Con calcoli analoghi per l'integrazione per parti:
+\[ b_n = \frac{-2(-1)^n + \alpha((-1)^n - 1)}{n} \]
+
+\textbf{2. Analisi della convergenza puntuale nei punti di discontinuità:}
+
+Nel punto \(x = \pi\):
+\begin{itemize}
+    \item Limite sinistro: \(g_\alpha(\pi^-) = \pi^2\)
+    \item Limite destro: \(g_\alpha(\pi^+) = \alpha\pi\)
+\end{itemize}
+
+La funzione ha una discontinuità a salto se \(\alpha \neq \pi\).
+
+\textbf{3. Valore di convergenza della serie:}
+
+Per il teorema di convergenza di Fourier, nel punto di discontinuità \(x = \pi\) la serie converge a:
+\[ \frac{g_\alpha(\pi^-) + g_\alpha(\pi^+)}{2} = \frac{\pi^2 + \alpha\pi}{2} \]
+
+\textbf{Casi particolari:}
+\begin{itemize}
+    \item Se \(\alpha = \pi\): la funzione è continua in \(x = \pi\) e la serie converge a \(g_\alpha(\pi) = \pi^2\)
+    \item Se \(\alpha = 0\): discontinuità massima, serie converge a \(\frac{\pi^2}{2}\)
+    \item Se \(\alpha < 0\): la funzione ha un salto verso il basso
+\end{itemize}
+
+\textbf{Studio della convergenza totale:}
+La serie converge totalmente se \(\sum_{n=1}^{\infty} (|a_n| + |b_n|) < \infty\).
+Dato che \(|a_n| \sim \frac{1}{n^2}\) e \(|b_n| \sim \frac{1}{n}\), la serie non converge totalmente per nessun valore di \(\alpha\) a causa dei termini \(b_n\).
 \end{esempio}
 
 \subsubsection{Convergenza Totale per Serie di Fourier}
@@ -169,3 +261,50 @@ La convergenza della serie di Fourier:
     \item Fai particolare attenzione ai punti agli estremi dell'intervallo di definizione
 \end{enumerate}
 \end{strategia}
+
+\subsection{Tecniche Avanzate per Serie di Fourier}
+
+\begin{info}
+\textbf{Convergenza della Serie di Fourier:}
+Per una funzione \(f\) periodica di periodo \(T\), la serie di Fourier converge:
+\begin{itemize}
+    \item \textbf{Puntualmente} in ogni punto dove \(f\) è continua
+    \item \textbf{Al valor medio} nei punti di discontinuità: \(\frac{f(x^+) + f(x^-)}{2}\)
+    \item \textbf{Totalmente} su intervalli dove \(f\) è continua
+\end{itemize}
+\end{info}
+
+\begin{strategia}
+\textbf{Calcolo Rapido dei Coefficienti:}
+\begin{enumerate}
+    \item Se \(f\) è \textbf{pari}: \(b_n = 0\) e \(a_n = \frac{4}{T}\int_0^{T/2} f(x)\cos\left(\frac{2\pi nx}{T}\right)dx\)
+    \item Se \(f\) è \textbf{dispari}: \(a_n = 0\) e \(b_n = \frac{4}{T}\int_0^{T/2} f(x)\sin\left(\frac{2\pi nx}{T}\right)dx\)
+    \item Per funzioni con \textbf{simmetrie speciali}, sfrutta le proprietà per ridurre i calcoli
+\end{enumerate}
+\end{strategia}
+
+\begin{esempio}
+\textbf{Funzione "Triangolare" dall'Esame 20 Giugno 2023:}
+\[ g(x) = \begin{cases} 2\pi+x & x \in [-\pi,0) \\ 2\pi-x & x \in [0,\pi) \end{cases} \]
+
+Osservazioni chiave:
+\begin{enumerate}
+    \item \(g\) è \textbf{pari}: \(g(-x) = g(x)\), quindi \(b_n = 0\)
+    \item \(\hat{f}_0 = \frac{1}{2\pi}\int_{-\pi}^{\pi} g(x)dx = \frac{1}{\pi}\int_0^{\pi} (2\pi-x)dx = 2\pi - \frac{\pi}{2} = \frac{3\pi}{2}\)
+    \item Per \(n \neq 0\): \(\hat{f}_n = \frac{1}{\pi}\int_0^{\pi} (2\pi-x)\cos(nx)dx\)
+\end{enumerate}
+
+Usando integrazione per parti:
+\[ \hat{f}_n = \frac{2}{n^2}(\cos(n\pi) - 1) = \begin{cases} 
+-\frac{4}{n^2} & n \text{ dispari} \\
+0 & n \text{ pari}
+\end{cases} \]
+\end{esempio}
+
+\begin{info}
+\textbf{Identità di Parseval per Serie di Fourier:}
+Se \(f\) ha periodo \(2\pi\):
+\[ \frac{1}{\pi}\int_{-\pi}^{\pi} |f(x)|^2 dx = 2|a_0|^2 + \sum_{n=1}^{\infty}(|a_n|^2 + |b_n|^2) \]
+
+Utile per verificare i calcoli e per calcolare somme di serie numeriche.
+\end{info}

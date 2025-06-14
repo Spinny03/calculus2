@@ -273,6 +273,59 @@ Dalle esercitazioni: $y + y^6 + x^2 = 0$ nell'intorno di $(0,0)$.
 \end{enumerate}
 \end{esempio}
 
+\subsection{Funzioni Implicite e Teorema di Dini - Tecniche Avanzate}
+
+\begin{info}
+\textbf{Teorema di Dini (Caso Standard):}
+Data \(F(x,y) = 0\), se:
+\begin{enumerate}
+    \item \(F(x_0,y_0) = 0\)
+    \item \(F\) è \(C^1\) in un intorno di \((x_0,y_0)\)
+    \item \(F_y(x_0,y_0) \neq 0\)
+\end{enumerate}
+Allora esiste una funzione \(y = g(x)\) definita implicitamente in un intorno di \(x_0\).
+\end{info}
+
+\begin{strategia}
+\textbf{Calcolo della Derivata della Funzione Implicita:}
+Se \(F(x,y) = 0\) definisce \(y = g(x)\), allora:
+\[ g'(x) = -\frac{F_x(x,y)}{F_y(x,y)} \]
+
+\textbf{Per derivate di ordine superiore:}
+\[ g''(x) = -\frac{d}{dx}\left(\frac{F_x}{F_y}\right) = -\frac{F_{xx}F_y^2 - 2F_{xy}F_xF_y + F_{yy}F_x^2}{F_y^3} \]
+\end{strategia}
+
+\begin{esempio}
+\textbf{Esame 1 Luglio 2021:} Sia \(f(x,y) = (x-1)\log(y+1) + y - 1\).
+
+\textbf{Step 1: Verifica delle ipotesi di Dini in \(P_0=(1,1)\)}
+\begin{enumerate}
+    \item \(f(1,1) = 0 \cdot \log(2) + 1 - 1 = 0\) $\checkmark$
+    \item \(f_x = \log(y+1)\), \(f_y = \frac{x-1}{y+1} + 1\)
+    \item \(f_y(1,1) = \frac{0}{2} + 1 = 1 \neq 0\) $\checkmark$
+\end{enumerate}
+
+\textbf{Step 2: Calcolo di \(g'(x)\)}
+\[ g'(x) = -\frac{f_x}{f_y} = -\frac{\log(y+1)}{\frac{x-1}{y+1} + 1} \]
+
+In \(P_0\): \(g'(1) = -\frac{\log(2)}{1} = -\log(2)\)
+
+\textbf{Step 3: Taylor di \(g(x)\) centrato in \(x=1\)}
+\[ g(x) = g(1) + g'(1)(x-1) + \frac{g''(1)}{2}(x-1)^2 + o((x-1)^2) \]
+\[ g(x) = 1 - \log(2)(x-1) + \frac{g''(1)}{2}(x-1)^2 + o((x-1)^2) \]
+
+Per \(g''(1)\), calcola la derivata seconda usando la formula sopra.
+\end{esempio}
+
+\begin{info}
+\textbf{Casi Speciali del Teorema di Dini:}
+\begin{itemize}
+    \item Se \(F_y(x_0,y_0) = 0\) ma \(F_x(x_0,y_0) \neq 0\): può esistere \(x = h(y)\)
+    \item Se entrambe le derivate parziali sono nulle: il punto è singolare, serve analisi più approfondita
+    \item Per sistemi: il determinante jacobiano deve essere non nullo
+\end{itemize}
+\end{info}
+
 \subsection{Curve Parametriche e Regolarità (dalle Esercitazioni)}
 
 \begin{info}

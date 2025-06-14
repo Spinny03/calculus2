@@ -1,0 +1,126 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\title{Raccolta di Formule Matematiche}
+\author{Estratto dal documento fornito}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\part{Approssimazione di funzioni}
+
+\section{Formula di Taylor}
+
+\subsection{Definizioni Principali}
+\textbf{Teorema di Lagrange:} 
+\begin{equation}
+f(b) = f(a) + f'(c)(b-a)
+\end{equation}
+
+\textbf{Formula di Taylor con il resto di Lagrange:} 
+\begin{equation}
+f(b) = f(a) + f'(a)(b-a) + \frac{f''(a)}{2!}(b-a)^2 + \dots + \frac{f^{(n)}(a)}{n!}(b-a)^n + \frac{f^{(n+1)}(c_n)}{(n+1)!}(b-a)^{n+1}
+\end{equation}
+
+\textbf{Polinomio di Taylor di ordine n ($T_n(x)$) centrato in $x_0$:} 
+\begin{equation}
+T_n(x) = f(x_0) + f'(x_0)(x-x_0) + \frac{f''(x_0)}{2!}(x-x_0)^2 + \dots + \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n
+\end{equation}
+
+\textbf{Resto di Lagrange ($R_n(x)$):} 
+\begin{equation}
+R_n(x) = f(x) - T_n(x) = \frac{f^{(n+1)}(c_{x,n})}{(n+1)!}(x-x_0)^{n+1}
+\end{equation}
+
+\textbf{Maggiorazione dell'errore (se $|f^{(n+1)}(x)| \leq M$):} 
+\begin{equation}
+|f(x) - T_n(x)| = |R_n(x)| \leq M\frac{|x-x_0|^{n+1}}{(n+1)!}
+\end{equation}
+
+\textbf{Resto di Peano:} 
+\begin{equation}
+R_n(x) = \epsilon(x-x_0)(x-x_0)^n, \quad \text{con} \quad \lim_{x \to x_0} \epsilon(x-x_0) = 0
+\end{equation}
+
+\subsection{Polinomi di Taylor di Funzioni Elementari (centro $x_0=0$)}
+\begin{align*}
+\frac{1}{1+x} &= \sum_{k=0}^{n} (-1)^k x^k + R_n(x) \\
+e^x &= \sum_{k=0}^{n} \frac{x^k}{k!} + R_n(x) \\
+\log(1+x) &= \sum_{k=1}^{n} \frac{(-1)^{k+1}}{k} x^k + R_n(x) \\
+\sin(x) &= \sum_{k=0}^{n} \frac{(-1)^k}{(2k+1)!} x^{2k+1} + R_{2n+1}(x) \\
+\cos(x) &= \sum_{k=0}^{n} \frac{(-1)^k}{(2k)!} x^{2k} + R_{2n}(x) \\
+\arctan(x) &= \sum_{k=0}^{n} \frac{(-1)^k}{2k+1} x^{2k+1} + R_{2n+1}(x) \\
+(1+x)^{\alpha} &= \sum_{k=0}^{n} \binom{\alpha}{k} x^k + R_n(x) \\
+(1-x)^{-k} &= \sum_{j=0}^{n}\binom{j+k-1}{k-1}x^{j}+R_{n}(x)
+\end{align*}
+Tutte le formule in questa sottosezione sono da fonte.
+
+\section{Serie Numeriche}
+
+\textbf{Definizione di Serie:} $\sum_{n=1}^{\infty} a_n = a_1 + a_2 + \dots + a_n + \dots$  \\
+\textbf{Somma Parziale n-esima ($s_n$):} $s_n = \sum_{k=1}^{n} a_k$  \\
+\textbf{Convergenza:} $\lim_{n \to \infty} s_n = s \in \mathbb{R}$  \\
+\textbf{Serie Geometrica:} $\sum_{n=1}^{\infty} q^n = \frac{q}{1-q}$ per $|q|<1$  \\
+\textbf{Serie Armonica Generalizzata:} $\sum_{n=1}^{\infty} \frac{1}{n^\alpha}$ converge se $\alpha > 1$, diverge se $\alpha \leq 1$.  \\
+\textbf{Condizione Necessaria di Cauchy:} Se $\sum a_n$ converge, allora $\lim_{n \to \infty} a_n = 0$. 
+
+\subsection{Criteri di Convergenza}
+\textbf{Criterio del Confronto Asintotico:} Date $\sum a_n, \sum b_n > 0$. Se $\lim_{n \to \infty} \frac{a_n}{b_n} = L \in (0, \infty)$, hanno lo stesso carattere.  \\
+\textbf{Criterio della Radice:} Data $\sum a_n \geq 0$, sia $l = \lim_{n \to \infty} \sqrt[n]{a_n}$. Se $l<1$ converge, se $l>1$ diverge.  \\
+\textbf{Criterio del Rapporto:} Data $\sum a_n > 0$, sia $l = \lim_{n \to \infty} \frac{a_{n+1}}{a_n}$. Se $l<1$ converge, se $l>1$ diverge.  \\
+\textbf{Criterio dell'Integrale:} Data $f:[1, \infty) \to \mathbb{R}$ positiva e decrescente, $\sum_{n=1}^{\infty} f(n) \iff \int_1^\infty f(x) dx$ convergono.  \\
+\textbf{Convergenza Assoluta:} $\sum |a_n|$ converge $\implies \sum a_n$ converge.  \\
+\textbf{Criterio di Leibnitz:} Data $\sum (-1)^{n+1} a_n$, se $a_n \geq 0$, $a_n \to 0$ e $(a_n)$ decrescente, la serie converge. 
+
+\section{Serie di Funzioni e Serie di Potenze}
+
+\textbf{Convergenza Totale (Weierstrass):} Se $\sum_{n=1}^{\infty} \sup_{x \in I} |f_n(x)| < \infty$, la serie $\sum f_n(x)$ converge totalmente.  \\
+\textbf{Serie di Potenze:} $\sum_{n=0}^{\infty} a_n (x-x_0)^n$  \\
+\textbf{Raggio di Convergenza ($\rho$):} $\rho = \frac{1}{\lim_{n \to \infty} \sqrt[n]{|a_n|}}$.  La serie converge assolutamente in $(x_0 - \rho, x_0 + \rho)$.  \\
+\textbf{Serie di Taylor:} $f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n$ 
+
+\section{Serie di Fourier}
+\textbf{Coefficienti Complessi:} $\hat{f}_k = \frac{1}{T}\int_{-T/2}^{T/2} f(x) e^{-i\frac{2\pi}{T}kx} dx$  \\
+\textbf{Serie Complessa:} $f(x) \sim \sum_{k=-\infty}^{\infty} \hat{f}_k e^{i\frac{2\pi}{T}kx}$  \\
+\textbf{Coefficienti Reali:}
+\begin{align*}
+a_k &= \frac{2}{T}\int_{-T/2}^{T/2} f(x) \cos\left(\frac{2\pi}{T}kx\right) dx \\
+b_k &= \frac{2}{T}\int_{-T/2}^{T/2} f(x) \sin\left(\frac{2\pi}{T}kx\right) dx
+\end{align*}
+\textbf{Serie Reale:} $f(x) \sim \frac{a_0}{2} + \sum_{k=1}^{\infty} \left( a_k \cos\left(\frac{2\pi}{T}kx\right) + b_k \sin\left(\frac{2\pi}{T}kx\right) \right)$  \\
+\textbf{Identità di Parseval:} $\frac{1}{T}\int_{-T/2}^{T/2} |f(x)|^2 dx = \sum_{k \in \mathbb{Z}} |\hat{f}_k|^2$ 
+
+\part{Calcolo Differenziale}
+
+\section{Funzioni di Più Variabili}
+\textbf{Derivate Parziali:} $\frac{\partial f}{\partial x}(x_0, y_0) = \lim_{h \to 0} \frac{f(x_0+h, y_0) - f(x_0, y_0)}{h}$  \\
+\textbf{Gradiente:} $\nabla f(x_0, y_0) = \left(\frac{\partial f}{\partial x}(x_0, y_0), \frac{\partial f}{\partial y}(x_0, y_0)\right)$  \\
+\textbf{Funzione Differenziabile:} $f(P) = f(P_0) + \nabla f(P_0) \cdot (P-P_0) + o(||P-P_0||)$  \\
+\textbf{Piano Tangente:} $z = f(x_0, y_0) + \frac{\partial f}{\partial x}(x_0, y_0)(x-x_0) + \frac{\partial f}{\partial y}(x_0, y_0)(y-y_0)$  \\
+\textbf{Matrice Hessiana:}
+\begin{equation}
+Hf(x,y) = \begin{pmatrix} \frac{\partial^2 f}{\partial x^2} & \frac{\partial^2 f}{\partial y \partial x} \\ \frac{\partial^2 f}{\partial x \partial y} & \frac{\partial^2 f}{\partial y^2} \end{pmatrix}
+\end{equation}
+\textbf{Teorema di Schwarz:} Se $f \in C^2$, allora $Hf$ è simmetrica.  \\
+\textbf{Formula di Taylor (2° ordine):} $f(P_0+v) = f(P_0) + \nabla f(P_0) \cdot v + \frac{1}{2}v^T Hf(P_0)v + o(||v||^2)$ 
+
+\subsection{Teoremi e Concetti Avanzati}
+\textbf{Teorema della Funzione Implicita (Dini):} Se $f(x_0, y_0)=0$ e $\frac{\partial f}{\partial y}(x_0, y_0) \neq 0$, allora $\exists y = \varphi(x)$ con $\varphi'(x) = - \frac{\partial f/\partial x}{\partial f/\partial y}$.  \\
+\textbf{Moltiplicatori di Lagrange:} Per trovare estremi di $f$ vincolati a $g=0$, si cercano i punti tali che $\nabla f = \lambda \nabla g$.  \\
+\textbf{Matrice Jacobiana:} Per $F: \mathbb{R}^n \to \mathbb{R}^m$, $JF(P)_{ij} = \frac{\partial f_i}{\partial x_j}(P)$.  \\
+\textbf{Regola della Catena:} $J(G \circ F)(P_0) = JG(F(P_0)) \cdot JF(P_0)$  \\
+\textbf{Lunghezza di una curva:} $l_\gamma = \int_a^b ||\gamma'(t)|| dt$ 
+
+\end{document}
