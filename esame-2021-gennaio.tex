@@ -1,0 +1,360 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage[italian]{babel}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+% Ambiente per le soluzioni
+\newenvironment{solution}
+{\par\noindent\rule{\textwidth}{0.4pt}\par\textbf{Soluzione:}\medskip\par}
+{\par\rule{\textwidth}{0.4pt}\par\bigskip}
+
+\begin{document}
+
+\begin{center}
+\Large\textbf{Calcolo differenziale ed integrale 2}\\
+\large\textbf{Prova scritta --- 14 Gennaio 2021}\\
+\large\textbf{SOLUZIONI }
+\end{center}
+
+\vspace{1cm}
+
+\section*{Esercizio 1}
+
+\textbf{Testo:} Per ciascuna delle seguenti serie dire se sono a valori positivi, convergono semplicemente, convergono assolutamente.
+\begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{+\infty} \frac{\cos(n^{4})}{n^{2}+1}$
+    \item $\displaystyle\sum_{n=1}^{+\infty} (-1)^{n} \frac{3^{n}}{4^{n}+n^{2}}$
+\end{enumerate}
+Stabilire inoltre se la ridotta $s_{9}$ della serie (2) approssima il valore della serie a meno di 0,1.
+\begin{enumerate}
+    \item[3.] Determinare il raggio e l'intervallo di convergenza della serie di potenze $\displaystyle\sum_{n=1}^{+\infty} \frac{1}{\sqrt{n}}x^{n}$.
+\end{enumerate}
+
+\begin{solution}
+\textbf{Parte 1)} Studiamo la serie $\displaystyle\sum_{n=1}^{+\infty} \frac{\cos(n^{4})}{n^{2}+1}$.
+
+La serie non è a valori positivi perché $\cos(n^4)$ può essere negativo.
+
+Per la convergenza assoluta, consideriamo $\left|\frac{\cos(n^{4})}{n^{2}+1}\right| \leq \frac{1}{n^{2}+1}$.
+
+La serie $\displaystyle\sum_{n=1}^{+\infty} \frac{1}{n^{2}+1}$ è convergente perché si comporta come $\displaystyle\sum_{n=1}^{+\infty} \frac{1}{n^2}$ (serie armonica generalizzata con $\alpha = 2 > 1$).
+
+Per il criterio del confronto, la serie data converge assolutamente (e quindi anche semplicemente).
+
+\textbf{Conclusione:} Non è a valori positivi, converge assolutamente.
+
+\vspace{0.5cm}
+
+\textbf{Parte 2)} Studiamo la serie $\displaystyle\sum_{n=1}^{+\infty} (-1)^{n} \frac{3^{n}}{4^{n}+n^{2}}$.
+
+La serie è a segni alterni. Sia $a_n = \frac{3^{n}}{4^{n}+n^{2}}$.
+
+Per $n$ grande: $4^n \gg n^2$, quindi $a_n \sim \frac{3^{n}}{4^{n}} = \left(\frac{3}{4}\right)^n$.
+
+Applichiamo il criterio di Leibniz:
+\begin{enumerate}
+    \item $a_n > 0$ per ogni $n \geq 1$ (vero)
+    \item $a_n \to 0$ per $n \to +\infty$ (vero perché $\left(\frac{3}{4}\right)^n \to 0$)
+    \item $\{a_n\}$ è decrescente (vero per $n$ sufficientemente grande)
+\end{enumerate}
+
+Quindi la serie converge semplicemente per Leibniz.
+
+Per la convergenza assoluta, studiamo $\displaystyle\sum_{n=1}^{+\infty} \frac{3^{n}}{4^{n}+n^{2}}$.
+
+Poiché $\frac{3^{n}}{4^{n}+n^{2}} \sim \left(\frac{3}{4}\right)^n$ e $\displaystyle\sum_{n=1}^{+\infty} \left(\frac{3}{4}\right)^n$ converge (serie geometrica con $q = 3/4 < 1$), la serie converge anche assolutamente.
+
+\textbf{Stima dell'errore per $s_9$:}
+
+Per una serie a segni alterni convergente, l'errore è limitato dal primo termine trascurato:
+\[
+|S - s_9| \leq a_{10} = \frac{3^{10}}{4^{10}+10^{2}} = \frac{59049}{1048576+100} = \frac{59049}{1048676} \approx 0.0563 < 0.1
+\]
+
+Quindi $s_9$ approssima la somma a meno di 0,1.
+
+\textbf{Conclusione:} Non è a valori positivi, converge assolutamente, $s_9$ è una buona approssimazione.
+
+\vspace{0.5cm}
+
+\textbf{Parte 3)} Studiamo la serie di potenze $\displaystyle\sum_{n=1}^{+\infty} \frac{1}{\sqrt{n}}x^{n}$.
+
+Il coefficiente è $a_n = \frac{1}{\sqrt{n}}$.
+
+Calcoliamo il raggio di convergenza usando il criterio della radice:
+\[
+\rho = \frac{1}{\limsup_{n \to +\infty} \sqrt[n]{|a_n|}} = \frac{1}{\limsup_{n \to +\infty} \sqrt[n]{\frac{1}{\sqrt{n}}}}
+\]
+
+Poiché $\sqrt[n]{\frac{1}{\sqrt{n}}} = \frac{1}{n^{1/(2n)}}$ e $\lim_{n \to +\infty} n^{1/(2n)} = 1$, abbiamo $\rho = 1$.
+
+Studio dei punti estremi:
+\begin{itemize}
+    \item Per $x = 1$: $\displaystyle\sum_{n=1}^{+\infty} \frac{1}{\sqrt{n}}$ diverge (serie armonica generalizzata con $\alpha = 1/2 < 1$)
+    \item Per $x = -1$: $\displaystyle\sum_{n=1}^{+\infty} \frac{(-1)^n}{\sqrt{n}}$ converge per Leibniz
+\end{itemize}
+
+\textbf{Conclusione:} Raggio di convergenza $\rho = 1$, intervallo di convergenza $[-1, 1)$.
+\end{solution}
+
+\newpage
+
+\section*{Esercizio 2}
+
+\textbf{Testo:} Determinare il polinomio di Taylor centrato in 0 e di ordine 4 di $f(x) = \log(\cos x)$.
+
+\begin{solution}
+Vogliamo calcolare il polinomio di Taylor di $f(x) = \log(\cos x)$ centrato in $x_0 = 0$.
+
+Utilizziamo gli sviluppi noti:
+\[
+\cos x = 1 - \frac{x^2}{2} + \frac{x^4}{24} - \frac{x^6}{720} + O(x^8)
+\]
+
+Quindi:
+\[
+\cos x = 1 + \left(-\frac{x^2}{2} + \frac{x^4}{24} + O(x^6)\right)
+\]
+
+Sia $u = -\frac{x^2}{2} + \frac{x^4}{24} + O(x^6)$. Allora:
+\[
+\log(\cos x) = \log(1 + u)
+\]
+
+Usando lo sviluppo $\log(1 + u) = u - \frac{u^2}{2} + \frac{u^3}{3} - \frac{u^4}{4} + O(u^5)$:
+
+\[
+u = -\frac{x^2}{2} + \frac{x^4}{24}
+\]
+\[
+u^2 = \left(-\frac{x^2}{2}\right)^2 + O(x^6) = \frac{x^4}{4} + O(x^6)
+\]
+\[
+u^3 = O(x^6), \quad u^4 = O(x^8)
+\]
+
+Quindi:
+\[
+\log(\cos x) = u - \frac{u^2}{2} + O(x^6)
+\]
+\[
+= \left(-\frac{x^2}{2} + \frac{x^4}{24}\right) - \frac{1}{2} \cdot \frac{x^4}{4} + O(x^6)
+\]
+\[
+= -\frac{x^2}{2} + \frac{x^4}{24} - \frac{x^4}{8} + O(x^6)
+\]
+\[
+= -\frac{x^2}{2} + x^4\left(\frac{1}{24} - \frac{1}{8}\right) + O(x^6)
+\]
+\[
+= -\frac{x^2}{2} + x^4\left(\frac{1 - 3}{24}\right) + O(x^6)
+\]
+\[
+= -\frac{x^2}{2} - \frac{x^4}{12} + O(x^6)
+\]
+
+\textbf{Polinomio di Taylor di ordine 4:}
+\[
+P_4(x) = -\frac{x^2}{2} - \frac{x^4}{12}
+\]
+
+\textbf{Verifica:} $f(0) = \log(\cos 0) = \log(1) = 0$, $f'(0) = \frac{-\sin(0)}{\cos(0)} = 0$, che è coerente con il nostro risultato.
+\end{solution}
+
+\newpage
+
+\section*{Esercizio 3}
+
+\textbf{Testo:} Data la funzione $f: \mathbb{R} \rightarrow \mathbb{R}$ periodica di periodo 4 definita da
+\[ f(x) = \begin{cases} 0 & -2 \le x < 1 \\ -1 & 1 \le x < 2 \end{cases} \]
+determinare i suoi coefficienti di Fourier $\hat{f}_{2n+1}$ per $n \in \mathbb{Z}$. Determinare poi il valore della serie di Fourier di f in $x=0$ e $x=1$.
+
+\begin{solution}
+La funzione ha periodo $T = 4$, quindi $\omega = \frac{2\pi}{T} = \frac{\pi}{2}$.
+
+I coefficienti di Fourier complessi sono:
+\[
+\hat{f}_k = \frac{1}{4} \int_{-2}^{2} f(x) e^{-i k \frac{\pi}{2} x} dx
+\]
+
+\[
+= \frac{1}{4} \left[\int_{-2}^{1} 0 \cdot e^{-i k \frac{\pi}{2} x} dx + \int_{1}^{2} (-1) e^{-i k \frac{\pi}{2} x} dx\right]
+\]
+\[
+= -\frac{1}{4} \int_{1}^{2} e^{-i k \frac{\pi}{2} x} dx
+\]
+
+Per $k \neq 0$:
+\[
+\int_{1}^{2} e^{-i k \frac{\pi}{2} x} dx = \left[\frac{e^{-i k \frac{\pi}{2} x}}{-i k \frac{\pi}{2}}\right]_{1}^{2} = \frac{2}{-i k \pi}\left[e^{-i k \pi} - e^{-i k \frac{\pi}{2}}\right]
+\]
+\[
+= \frac{2}{-i k \pi}\left[(-1)^k - e^{-i k \frac{\pi}{2}}\right]
+\]
+
+Per $k = 2n+1$ (dispari):
+\[
+e^{-i (2n+1) \frac{\pi}{2}} = e^{-i \pi n} e^{-i \frac{\pi}{2}} = (-1)^n (-i) = (-1)^{n+1} i
+\]
+
+Quindi:
+\[
+\hat{f}_{2n+1} = -\frac{1}{4} \cdot \frac{2}{-i (2n+1) \pi}\left[(-1)^{2n+1} - (-1)^{n+1} i\right]
+\]
+\[
+= \frac{1}{2i (2n+1) \pi}\left[-1 - (-1)^{n+1} i\right]
+\]
+\[
+= \frac{1}{2i (2n+1) \pi}\left[-1 + (-1)^{n} i\right]
+\]
+
+Per $k = 0$:
+\[
+\hat{f}_0 = -\frac{1}{4} \int_{1}^{2} 1 dx = -\frac{1}{4}
+\]
+
+\textbf{Convergenza della serie:}
+
+In $x = 0$: la funzione è continua e $f(0) = 0$, quindi la serie converge a 0.
+
+In $x = 1$: c'è una discontinuità di salto:
+\[
+\lim_{x \to 1^-} f(x) = 0, \quad \lim_{x \to 1^+} f(x) = -1
+\]
+
+La serie converge alla media: $\frac{0 + (-1)}{2} = -\frac{1}{2}$.
+
+\textbf{Conclusione:}
+\begin{itemize}
+    \item $\hat{f}_{2n+1} = \frac{1}{2i (2n+1) \pi}\left[-1 + (-1)^{n} i\right]$
+    \item In $x = 0$: serie converge a 0
+    \item In $x = 1$: serie converge a $-\frac{1}{2}$
+\end{itemize}
+\end{solution}
+
+\newpage
+
+\section*{Esercizio 4}
+
+\textbf{Testo:} Data la funzione $f: D \subset \mathbb{R}^{2} \rightarrow \mathbb{R}$, $f(x,y) = \frac{1}{3-xy}$.
+\begin{enumerate}
+    \item[a)] Trovare il dominio di f e specificarne le caratteristiche: dire se è aperto, limitato, connesso.
+    \item[b)] Stabilire se f è differenziabile su D e in tal caso calcolare il piano tangente al grafico di f nel punto $(0,0,f(0,0))$.
+    \item[c)] Determinare i punti critici di f.
+    \item[d)] Stabilire se f ammette massimo e minimo assoluti sull'insieme $C = \{(x,y) \in \mathbb{R}^{2} : x^{2}+y^{2}=2\}$ e in caso affermativo determinarli.
+\end{enumerate}
+
+\begin{solution}
+\textbf{Punto a)} Il dominio di $f(x,y) = \frac{1}{3-xy}$ è determinato dalla condizione $3 - xy \neq 0$, cioè $xy \neq 3$.
+
+Quindi: $D = \{(x,y) \in \mathbb{R}^2 : xy \neq 3\}$.
+
+L'insieme $\{(x,y) : xy = 3\}$ è l'iperbole $xy = 3$. Il dominio D è il complemento di questa iperbole.
+
+\textbf{Caratteristiche di D:}
+\begin{itemize}
+    \item \textbf{Aperto:} Sì, perché è il complemento di un insieme chiuso (l'iperbole)
+    \item \textbf{Limitato:} No, contiene punti arbitrariamente lontani dall'origine
+    \item \textbf{Connesso:} No, l'iperbole $xy = 3$ separa il piano in più componenti connesse
+\end{itemize}
+
+\vspace{0.5cm}
+
+\textbf{Punto b)} Calcoliamo le derivate parziali:
+\[
+\frac{\partial f}{\partial x} = \frac{y}{(3-xy)^2}
+\]
+\[
+\frac{\partial f}{\partial y} = \frac{x}{(3-xy)^2}
+\]
+
+Entrambe sono continue su D, quindi f è differenziabile su D.
+
+\textbf{Piano tangente in $(0,0,f(0,0))$:}
+
+$f(0,0) = \frac{1}{3-0} = \frac{1}{3}$.
+
+Le derivate parziali nel punto $(0,0)$:
+\[
+\frac{\partial f}{\partial x}(0,0) = \frac{0}{(3-0)^2} = 0
+\]
+\[
+\frac{\partial f}{\partial y}(0,0) = \frac{0}{(3-0)^2} = 0
+\]
+
+L'equazione del piano tangente in $(0,0,\frac{1}{3})$ è:
+\[
+z - \frac{1}{3} = 0(x - 0) + 0(y - 0)
+\]
+\[
+z = \frac{1}{3}
+\]
+
+\vspace{0.5cm}
+
+\textbf{Punto c)} Per trovare i punti critici, risolviamo il sistema:
+\[
+\begin{cases}
+\frac{\partial f}{\partial x} = \frac{y}{(3-xy)^2} = 0 \\
+\frac{\partial f}{\partial y} = \frac{x}{(3-xy)^2} = 0
+\end{cases}
+\]
+
+Dalla prima equazione: $y = 0$ (poiché $3 - xy \neq 0$ su D).
+Dalla seconda equazione: $x = 0$.
+
+L'unico punto critico è $(0, 0)$.
+
+\vspace{0.5cm}
+
+\textbf{Punto d)} Sull'insieme $C = \{(x,y) \in \mathbb{R}^2 : x^2 + y^2 = 2\}$, verifichiamo prima che C sia contenuto in D.
+
+Per punti su C: $x^2 + y^2 = 2$. Per il teorema delle medie aritmetiche e geometriche:
+\[
+|xy| \leq \frac{x^2 + y^2}{2} = \frac{2}{2} = 1 < 3
+\]
+
+Quindi $xy \neq 3$ per tutti i punti di C, e C è contenuto in D.
+
+Usiamo i moltiplicatori di Lagrange per ottimizzare $f(x,y) = \frac{1}{3-xy}$ sotto il vincolo $g(x,y) = x^2 + y^2 - 2 = 0$.
+
+Il sistema è:
+\[
+\begin{cases}
+\frac{y}{(3-xy)^2} = 2\lambda x \\
+\frac{x}{(3-xy)^2} = 2\lambda y \\
+x^2 + y^2 = 2
+\end{cases}
+\]
+
+Se $x, y \neq 0$, dividendo la prima equazione per la seconda:
+\[
+\frac{y}{x} = \frac{x}{y} \Rightarrow y^2 = x^2 \Rightarrow y = \pm x
+\]
+
+\textbf{Caso 1:} $y = x$, allora $2x^2 = 2$, quindi $x = \pm 1$.
+\begin{itemize}
+    \item $(1, 1)$: $f(1, 1) = \frac{1}{3-1} = \frac{1}{2}$
+    \item $(-1, -1)$: $f(-1, -1) = \frac{1}{3-1} = \frac{1}{2}$
+\end{itemize}
+
+\textbf{Caso 2:} $y = -x$, allora $2x^2 = 2$, quindi $x = \pm 1$.
+\begin{itemize}
+    \item $(1, -1)$: $f(1, -1) = \frac{1}{3+1} = \frac{1}{4}$
+    \item $(-1, 1)$: $f(-1, 1) = \frac{1}{3+1} = \frac{1}{4}$
+\end{itemize}
+
+\textbf{Casi $x = 0$ o $y = 0$:} Dal vincolo otteniamo $(0, \pm\sqrt{2})$ e $(\pm\sqrt{2}, 0)$.
+In tutti questi punti: $f = \frac{1}{3-0} = \frac{1}{3}$.
+
+\textbf{Conclusione:}
+\begin{itemize}
+    \item Massimo assoluto: $\frac{1}{2}$ nei punti $(1, 1)$ e $(-1, -1)$
+    \item Minimo assoluto: $\frac{1}{4}$ nei punti $(1, -1)$ e $(-1, 1)$
+\end{itemize}
+\end{solution}
+
+\end{document}

@@ -1,0 +1,421 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage[italian]{babel}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+% Ambiente per le soluzioni
+\newenvironment{solution}
+{\par\noindent\rule{\textwidth}{0.4pt}\par\textbf{Soluzione:}\medskip\par}
+{\par\rule{\textwidth}{0.4pt}\par\bigskip}
+
+\begin{document}
+
+\begin{center}
+\Large\textbf{Calcolo differenziale ed integrale 2}\\
+\large\textbf{Prova scritta --- 8 Giugno 2020}\\
+\large\textbf{SOLUZIONI COMPLETE}
+\end{center}
+
+\vspace{1cm}
+
+\section*{Esercizio 1}
+
+\textbf{Testo:} Studiare la convergenza semplice e assoluta delle seguenti serie.
+\begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{\infty} (-1)^{n} \sin\left(\frac{1}{n+2}\right)$
+    \item $\displaystyle\sum_{n=1}^{\infty} \frac{1}{\binom{4n}{3n}}$
+\end{enumerate}
+Calcolare inoltre un'approssimazione della somma della prima serie a meno di $10^{-2}$.
+
+\begin{solution}
+\textbf{Parte 1)} Studiamo la serie $\displaystyle\sum_{n=1}^{\infty} (-1)^{n} \sin\left(\frac{1}{n+2}\right)$.
+
+Questa è una serie a segni alterni. Sia $a_n = \sin\left(\frac{1}{n+2}\right)$.
+
+Per $n$ grande: $\frac{1}{n+2} \to 0$, quindi $\sin\left(\frac{1}{n+2}\right) \sim \frac{1}{n+2}$.
+
+Applichiamo il criterio di Leibniz:
+\begin{enumerate}
+    \item $a_n > 0$ per ogni $n \geq 1$ (vero)
+    \item $a_n \to 0$ per $n \to +\infty$ (vero perché $a_n \sim \frac{1}{n+2}$)
+    \item $\{a_n\}$ è decrescente (vero perché $\sin$ è crescente per piccoli argomenti positivi e $\frac{1}{n+2}$ è decrescente)
+\end{enumerate}
+
+Quindi la serie converge semplicemente per Leibniz.
+
+Per la convergenza assoluta, studiamo $\displaystyle\sum_{n=1}^{\infty} \sin\left(\frac{1}{n+2}\right)$.
+
+Poiché $\sin\left(\frac{1}{n+2}\right) \sim \frac{1}{n+2}$ e $\displaystyle\sum_{n=1}^{\infty} \frac{1}{n+2}$ diverge (serie armonica), la serie non converge assolutamente.
+
+\textbf{Conclusione parte 1:} La serie converge semplicemente ma non assolutamente.
+
+\textbf{Approssimazione:} Per stimare la somma a meno di $10^{-2}$, usiamo il resto di Leibniz:
+\[
+|R_n| \leq a_{n+1} = \sin\left(\frac{1}{n+3}\right) \leq \frac{1}{n+3}
+\]
+
+Vogliamo $\frac{1}{n+3} \leq 0.01$, quindi $n+3 \geq 100$, cioè $n \geq 97$.
+
+La somma parziale $S_{97} = \sum_{k=1}^{97} (-1)^k \sin\left(\frac{1}{k+2}\right)$ approssima la somma totale a meno di $10^{-2}$.
+
+\vspace{0.5cm}
+
+\textbf{Parte 2)} Studiamo la serie $\displaystyle\sum_{n=1}^{\infty} \frac{1}{\binom{4n}{3n}}$.
+
+Usiamo la formula di Stirling per stimare il coefficiente binomiale:
+\[
+\binom{4n}{3n} = \frac{(4n)!}{(3n)!(n)!}
+\]
+
+Per grandi valori di $n$, usando Stirling $k! \sim \sqrt{2\pi k} \left(\frac{k}{e}\right)^k$:
+\[
+\binom{4n}{3n} \sim \frac{\sqrt{8\pi n} \left(\frac{4n}{e}\right)^{4n}}{\sqrt{6\pi n} \left(\frac{3n}{e}\right)^{3n} \sqrt{2\pi n} \left(\frac{n}{e}\right)^n}
+\]
+
+Semplificando:
+\[
+\binom{4n}{3n} \sim \frac{\sqrt{8\pi n}}{\sqrt{12\pi^2 n^2}} \cdot \frac{4^{4n}}{3^{3n} \cdot 1^n} \cdot \frac{e^{4n}}{e^{3n} \cdot e^n} = \frac{1}{\sqrt{3\pi n/2}} \cdot \frac{4^{4n}}{3^{3n}}
+\]
+\[
+= \frac{1}{\sqrt{3\pi n/2}} \cdot \left(\frac{4^4}{3^3}\right)^n = \frac{1}{\sqrt{3\pi n/2}} \cdot \left(\frac{256}{27}\right)^n
+\]
+
+Quindi:
+\[
+\frac{1}{\binom{4n}{3n}} \sim \sqrt{\frac{3\pi n}{2}} \cdot \left(\frac{27}{256}\right)^n
+\]
+
+Poiché $\frac{27}{256} < 1$ e la serie geometrica $\sum \left(\frac{27}{256}\right)^n$ converge, e il fattore $\sqrt{\frac{3\pi n}{2}}$ cresce polinomialmente, la serie converge.
+
+\textbf{Conclusione parte 2:} La serie converge.
+\end{solution}
+
+\newpage
+
+\section*{Esercizio 2}
+
+\textbf{Testo:} Sia $f(x) = 3e^{2x} - \cos(x^{2})$.
+\begin{enumerate}
+    \item Calcolare il polinomio di MacLaurin di ordine 3.
+    \item Calcolare $f^{(3)}(0)$.
+    \item Calcolare il polinomio di MacLaurin di ordine 1 e stimare l'errore commesso in $x=1/2$: $|R_{1}(1/2)| = |T_{1}(1/2) - f(1/2)|$.
+\end{enumerate}
+
+\begin{solution}
+Scomponiamo $f(x) = g(x) - h(x)$ dove $g(x) = 3e^{2x}$ e $h(x) = \cos(x^2)$.
+
+\textbf{Punto 1)} Calcoliamo gli sviluppi separatamente.
+
+\textbf{Per $g(x) = 3e^{2x}$:}
+\[
+e^{2x} = 1 + 2x + \frac{(2x)^2}{2!} + \frac{(2x)^3}{3!} + O(x^4) = 1 + 2x + 2x^2 + \frac{4x^3}{3} + O(x^4)
+\]
+\[
+g(x) = 3e^{2x} = 3\left(1 + 2x + 2x^2 + \frac{4x^3}{3}\right) + O(x^4) = 3 + 6x + 6x^2 + 4x^3 + O(x^4)
+\]
+
+\textbf{Per $h(x) = \cos(x^2)$:}
+\[
+\cos(t) = 1 - \frac{t^2}{2!} + \frac{t^4}{4!} + O(t^6)
+\]
+Sostituendo $t = x^2$:
+\[
+\cos(x^2) = 1 - \frac{(x^2)^2}{2} + O(x^8) = 1 - \frac{x^4}{2} + O(x^8)
+\]
+
+Fino all'ordine 3: $\cos(x^2) = 1 + O(x^4)$.
+
+\textbf{Combinando:}
+\[
+f(x) = g(x) - h(x) = (3 + 6x + 6x^2 + 4x^3) - 1 + O(x^4) = 2 + 6x + 6x^2 + 4x^3 + O(x^4)
+\]
+
+\textbf{Polinomio di MacLaurin di ordine 3:}
+\[
+P_3(x) = 2 + 6x + 6x^2 + 4x^3
+\]
+
+\vspace{0.5cm}
+
+\textbf{Punto 2)} Dal polinomio di MacLaurin:
+\[
+f(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \frac{f'''(0)}{3!}x^3 + O(x^4)
+\]
+
+Confrontando con $P_3(x) = 2 + 6x + 6x^2 + 4x^3$:
+\[
+\frac{f'''(0)}{3!} = 4 \Rightarrow f'''(0) = 4 \cdot 6 = 24
+\]
+
+\vspace{0.5cm}
+
+\textbf{Punto 3)} Il polinomio di MacLaurin di ordine 1 è:
+\[
+T_1(x) = f(0) + f'(0)x = 2 + 6x
+\]
+
+Calcoliamo $f(1/2)$:
+\[
+f(1/2) = 3e^{2 \cdot 1/2} - \cos((1/2)^2) = 3e - \cos(1/4)
+\]
+
+E $T_1(1/2)$:
+\[
+T_1(1/2) = 2 + 6 \cdot \frac{1}{2} = 2 + 3 = 5
+\]
+
+Per stimare l'errore, usiamo il resto di Lagrange:
+\[
+|R_1(1/2)| = \left|\frac{f''(\xi)}{2!} \left(\frac{1}{2}\right)^2\right| = \frac{|f''(\xi)|}{8}
+\]
+
+dove $\xi \in (0, 1/2)$.
+
+Calcoliamo $f''(x)$:
+\[
+f'(x) = 6e^{2x} + 2x\sin(x^2)
+\]
+\[
+f''(x) = 12e^{2x} + 2\sin(x^2) + 4x^2\cos(x^2)
+\]
+
+Per $x \in [0, 1/2]$:
+\[
+|f''(x)| \leq 12e^1 + 2 + 4 \cdot \frac{1}{4} \cdot 1 = 12e + 3 \approx 32.6 + 3 = 35.6
+\]
+
+Quindi:
+\[
+|R_1(1/2)| \leq \frac{35.6}{8} \approx 4.45
+\]
+
+\textbf{Valore esatto dell'errore:}
+\[
+|R_1(1/2)| = |f(1/2) - T_1(1/2)| = |3e - \cos(1/4) - 5| \approx |8.15 - 0.97 - 5| = 2.18
+\]
+\end{solution}
+
+\newpage
+
+\section*{Esercizio 3}
+
+\textbf{Testo:} Sia f la funzione periodica di periodo $2\pi$ definita da
+\[ f(x) = \begin{cases} 2 & x \in (-\pi, -\pi/2] \\ 0 & x \in (-\pi/2, \pi/2] \\ 2 & x \in (\pi/2, \pi] \end{cases} \]
+\begin{enumerate}
+    \item Trovare i coefficienti $a_{5}$, $b_{5}$ e $\hat{f}_{5}$.
+    \item Determinare il valore della serie di Fourier di f sull'intervallo $[\pi/2, \pi]$.
+\end{enumerate}
+
+\begin{solution}
+\textbf{Punto 1)} Calcoliamo i coefficienti di Fourier.
+
+\textbf{Coefficienti reali di Fourier:}
+\[
+a_0 = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) dx = \frac{1}{\pi} \left[\int_{-\pi}^{-\pi/2} 2 dx + \int_{-\pi/2}^{\pi/2} 0 dx + \int_{\pi/2}^{\pi} 2 dx\right]
+\]
+\[
+= \frac{1}{\pi} \left[2 \cdot \frac{\pi}{2} + 0 + 2 \cdot \frac{\pi}{2}\right] = \frac{2\pi}{\pi} = 2
+\]
+
+\[
+a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos(nx) dx = \frac{2}{\pi} \left[\int_{-\pi}^{-\pi/2} \cos(nx) dx + \int_{\pi/2}^{\pi} \cos(nx) dx\right]
+\]
+
+Per $n = 5$:
+\[
+\int_{-\pi}^{-\pi/2} \cos(5x) dx = \left[\frac{\sin(5x)}{5}\right]_{-\pi}^{-\pi/2} = \frac{1}{5}[\sin(-5\pi/2) - \sin(-5\pi)] = \frac{1}{5}[1 - 0] = \frac{1}{5}
+\]
+\[
+\int_{\pi/2}^{\pi} \cos(5x) dx = \left[\frac{\sin(5x)}{5}\right]_{\pi/2}^{\pi} = \frac{1}{5}[\sin(5\pi) - \sin(5\pi/2)] = \frac{1}{5}[0 - (-1)] = \frac{1}{5}
+\]
+
+Quindi:
+\[
+a_5 = \frac{2}{\pi} \left[\frac{1}{5} + \frac{1}{5}\right] = \frac{4}{5\pi}
+\]
+
+\[
+b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin(nx) dx = \frac{2}{\pi} \left[\int_{-\pi}^{-\pi/2} \sin(nx) dx + \int_{\pi/2}^{\pi} \sin(nx) dx\right]
+\]
+
+Per $n = 5$:
+\[
+\int_{-\pi}^{-\pi/2} \sin(5x) dx = \left[-\frac{\cos(5x)}{5}\right]_{-\pi}^{-\pi/2} = -\frac{1}{5}[\cos(-5\pi/2) - \cos(-5\pi)] = -\frac{1}{5}[0 - (-1)] = -\frac{1}{5}
+\]
+\[
+\int_{\pi/2}^{\pi} \sin(5x) dx = \left[-\frac{\cos(5x)}{5}\right]_{\pi/2}^{\pi} = -\frac{1}{5}[\cos(5\pi) - \cos(5\pi/2)] = -\frac{1}{5}[-1 - 0] = \frac{1}{5}
+\]
+
+Quindi:
+\[
+b_5 = \frac{2}{\pi} \left[-\frac{1}{5} + \frac{1}{5}\right] = 0
+\]
+
+\textbf{Coefficiente complesso:}
+\[
+\hat{f}_5 = \frac{a_5 - ib_5}{2} = \frac{\frac{4}{5\pi} - i \cdot 0}{2} = \frac{2}{5\pi}
+\]
+
+\vspace{0.5cm}
+
+\textbf{Punto 2)} Sull'intervallo $[\pi/2, \pi]$, la funzione $f(x) = 2$.
+
+La serie di Fourier converge a:
+\begin{itemize}
+    \item $f(x) = 2$ nei punti di continuità
+    \item Alla media dei limiti destro e sinistro nei punti di discontinuità
+\end{itemize}
+
+Nel punto $x = \pi/2$:
+\[
+\lim_{x \to (\pi/2)^-} f(x) = 0, \quad \lim_{x \to (\pi/2)^+} f(x) = 2
+\]
+La serie converge a $\frac{0+2}{2} = 1$.
+
+Nel punto $x = \pi$:
+\[
+\lim_{x \to \pi^-} f(x) = 2, \quad \lim_{x \to \pi^+} f(x) = f(-\pi^+) = 2
+\]
+La serie converge a $2$.
+
+\textbf{Conclusione:}
+\begin{itemize}
+    \item $a_5 = \frac{4}{5\pi}$, $b_5 = 0$, $\hat{f}_5 = \frac{2}{5\pi}$
+    \item Su $[\pi/2, \pi]$: la serie converge a $1$ in $x = \pi/2$ e a $2$ su $(\pi/2, \pi]$
+\end{itemize}
+\end{solution}
+
+\newpage
+
+\section*{Esercizio 4}
+
+\textbf{Testo:} Sia $f(x,y) = \frac{1}{3}x^{3} + y^{3} + 4x^{2} - 2y^{2}$.
+\begin{enumerate}
+    \item Stabilire se f è differenziabile sul suo dominio e calcolarne la derivata nel punto $P_{0}=(1,2)$ lungo il vettore $v=(-1,1)$. Determinare poi l'equazione del piano tangente al grafico di f in $(1,2,f(1,2))$.
+    \item Determinare, se esistono, i punti di massimo e minimo relativo di f sul suo dominio.
+    \item Sia ora $h(x,y) = x^{2}-2y^{2}$ e sia $C = \{(x,y) \in \mathbb{R}^{2} : x^{2}+2y^{2}=1\}$. Determinare massimo e minimo assoluto di h in C.
+\end{enumerate}
+
+\begin{solution}
+\textbf{Punto 1)} La funzione $f(x,y) = \frac{1}{3}x^{3} + y^{3} + 4x^{2} - 2y^{2}$ ha dominio $\mathbb{R}^2$.
+
+Calcoliamo le derivate parziali:
+\[
+\frac{\partial f}{\partial x} = x^2 + 8x
+\]
+\[
+\frac{\partial f}{\partial y} = 3y^2 - 4y
+\]
+
+Entrambe sono continue su $\mathbb{R}^2$, quindi f è differenziabile su tutto il suo dominio.
+
+\textbf{Derivata direzionale:}
+
+Il gradiente in $P_0 = (1,2)$ è:
+\[
+\nabla f(1,2) = (1^2 + 8 \cdot 1, 3 \cdot 2^2 - 4 \cdot 2) = (9, 4)
+\]
+
+Il vettore unitario nella direzione di $v = (-1,1)$ è:
+\[
+\hat{v} = \frac{(-1,1)}{\sqrt{2}}
+\]
+
+La derivata direzionale è:
+\[
+\frac{\partial f}{\partial v}(1,2) = \nabla f(1,2) \cdot \hat{v} = (9,4) \cdot \frac{(-1,1)}{\sqrt{2}} = \frac{-9+4}{\sqrt{2}} = \frac{-5}{\sqrt{2}}
+\]
+
+\textbf{Piano tangente:}
+
+Calcoliamo $f(1,2) = \frac{1}{3} + 8 + 4 - 8 = \frac{1}{3} + 4 = \frac{13}{3}$.
+
+L'equazione del piano tangente in $(1,2,\frac{13}{3})$ è:
+\[
+z - \frac{13}{3} = 9(x-1) + 4(y-2)
+\]
+\[
+z = 9x + 4y - 9 - 8 + \frac{13}{3} = 9x + 4y - \frac{38}{3}
+\]
+
+\vspace{0.5cm}
+
+\textbf{Punto 2)} Per trovare i punti critici, risolviamo:
+\[
+\begin{cases}
+\frac{\partial f}{\partial x} = x^2 + 8x = x(x+8) = 0 \\
+\frac{\partial f}{\partial y} = 3y^2 - 4y = y(3y-4) = 0
+\end{cases}
+\]
+
+Dalla prima equazione: $x = 0$ o $x = -8$.
+Dalla seconda equazione: $y = 0$ o $y = \frac{4}{3}$.
+
+Punti critici: $(0,0)$, $(0,\frac{4}{3})$, $(-8,0)$, $(-8,\frac{4}{3})$.
+
+Per classificarli, calcoliamo la matrice Hessiana:
+\[
+H_f = \begin{pmatrix}
+\frac{\partial^2 f}{\partial x^2} & \frac{\partial^2 f}{\partial x \partial y} \\
+\frac{\partial^2 f}{\partial y \partial x} & \frac{\partial^2 f}{\partial y^2}
+\end{pmatrix} = \begin{pmatrix}
+2x + 8 & 0 \\
+0 & 6y - 4
+\end{pmatrix}
+\]
+
+Per ogni punto critico:
+\begin{itemize}
+    \item $(0,0)$: $H = \begin{pmatrix} 8 & 0 \\ 0 & -4 \end{pmatrix}$, $\det = -32 < 0$ → punto di sella
+    \item $(0,\frac{4}{3})$: $H = \begin{pmatrix} 8 & 0 \\ 0 & 4 \end{pmatrix}$, $\det = 32 > 0$, $\tr = 12 > 0$ → minimo locale
+    \item $(-8,0)$: $H = \begin{pmatrix} -8 & 0 \\ 0 & -4 \end{pmatrix}$, $\det = 32 > 0$, $\tr = -12 < 0$ → massimo locale
+    \item $(-8,\frac{4}{3})$: $H = \begin{pmatrix} -8 & 0 \\ 0 & 4 \end{pmatrix}$, $\det = -32 < 0$ → punto di sella
+\end{itemize}
+
+\vspace{0.5cm}
+
+\textbf{Punto 3)} Usiamo i moltiplicatori di Lagrange per ottimizzare $h(x,y) = x^2 - 2y^2$ sotto il vincolo $g(x,y) = x^2 + 2y^2 - 1 = 0$.
+
+Il sistema è:
+\[
+\begin{cases}
+\nabla h = \lambda \nabla g \\
+g(x,y) = 0
+\end{cases}
+\]
+
+Cioè:
+\[
+\begin{cases}
+2x = 2\lambda x \\
+-4y = 4\lambda y \\
+x^2 + 2y^2 = 1
+\end{cases}
+\]
+
+Dalla prima equazione: $x = 0$ o $\lambda = 1$.
+Dalla seconda equazione: $y = 0$ o $\lambda = -1$.
+
+\textbf{Caso 1:} $x = 0$, allora $2y^2 = 1$, quindi $y = \pm\frac{1}{\sqrt{2}}$.
+\begin{itemize}
+    \item $(0, \frac{1}{\sqrt{2}})$: $h = 0 - 2 \cdot \frac{1}{2} = -1$
+    \item $(0, -\frac{1}{\sqrt{2}})$: $h = 0 - 2 \cdot \frac{1}{2} = -1$
+\end{itemize}
+
+\textbf{Caso 2:} $y = 0$, allora $x^2 = 1$, quindi $x = \pm 1$.
+\begin{itemize}
+    \item $(1, 0)$: $h = 1 - 0 = 1$
+    \item $(-1, 0)$: $h = 1 - 0 = 1$
+\end{itemize}
+
+\textbf{Conclusione:}
+\begin{itemize}
+    \item Massimo assoluto: $1$ nei punti $(\pm 1, 0)$
+    \item Minimo assoluto: $-1$ nei punti $(0, \pm\frac{1}{\sqrt{2}})$
+\end{itemize}
+\end{solution}
+
+\end{document}

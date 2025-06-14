@@ -1,0 +1,348 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage[italian]{babel}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+% Ambiente per le soluzioni
+\newenvironment{solution}
+{\par\noindent\rule{\textwidth}{0.4pt}\par\textbf{Soluzione:}\medskip\par}
+{\par\rule{\textwidth}{0.4pt}\par\bigskip}
+
+\begin{document}
+
+\begin{center}
+\Large\textbf{Calcolo differenziale ed integrale 2}\\
+\large\textbf{Prova scritta --- 3 Febbraio 2022}\\
+\large\textbf{SOLUZIONI COMPLETE}
+\end{center}
+
+\vspace{1cm}
+
+\section*{Esercizio 1}
+
+\textbf{Testo:} Stabilire se le seguenti serie convergono, divergono o sono indeterminate e, nel caso convergano, se c'è anche convergenza assoluta.
+\begin{enumerate}
+    \item[a)] $\displaystyle\sum_{n=1}^{+\infty} (-1)^{n} n^{4} \sin^{2}(1/n^{3})$
+    \item[b)] $\displaystyle\sum_{n=1}^{+\infty} \frac{\cos n + 5 + ne^{n}}{n^{2}e^{n}+e^{n}}$
+\end{enumerate}
+Data la serie di potenze $\displaystyle\sum_{n=0}^{+\infty} \frac{x^{n}}{(n^{2}+1)2^{n}}$, determinarne il raggio di convergenza $\rho$, l'insieme I di convergenza puntuale e la serie derivata.
+
+\begin{solution}
+\textbf{Parte a)} Studiamo la serie $\displaystyle\sum_{n=1}^{+\infty} (-1)^{n} n^{4} \sin^{2}(1/n^{3})$.
+
+Per $n$ grande, $\frac{1}{n^3} \to 0$, quindi $\sin(1/n^3) \sim \frac{1}{n^3}$.
+
+Dunque: $\sin^2(1/n^3) \sim \frac{1}{n^6}$.
+
+Il termine generale diventa: $(-1)^n n^4 \sin^2(1/n^3) \sim (-1)^n n^4 \cdot \frac{1}{n^6} = \frac{(-1)^n}{n^2}$.
+
+La serie $\displaystyle\sum_{n=1}^{+\infty} \frac{(-1)^n}{n^2}$ converge assolutamente (serie armonica generalizzata con $\alpha = 2 > 1$).
+
+Per il criterio del confronto asintotico, la serie data converge assolutamente.
+
+\textbf{Conclusione:} La serie converge assolutamente.
+
+\vspace{0.5cm}
+
+\textbf{Parte b)} Studiamo la serie $\displaystyle\sum_{n=1}^{+\infty} \frac{\cos n + 5 + ne^{n}}{n^{2}e^{n}+e^{n}}$.
+
+Semplifichiamo il denominatore: $n^{2}e^{n}+e^{n} = e^n(n^2 + 1)$.
+
+Il termine generale diventa:
+\[
+\frac{\cos n + 5 + ne^{n}}{e^n(n^2 + 1)} = \frac{\cos n + 5}{e^n(n^2 + 1)} + \frac{ne^{n}}{e^n(n^2 + 1)} = \frac{\cos n + 5}{e^n(n^2 + 1)} + \frac{n}{n^2 + 1}
+\]
+
+Il primo termine: $\frac{\cos n + 5}{e^n(n^2 + 1)} \leq \frac{6}{e^n(n^2 + 1)}$, che converge perché $e^n$ cresce più velocemente di qualsiasi polinomio.
+
+Il secondo termine: $\frac{n}{n^2 + 1} \sim \frac{1}{n}$ per $n$ grande, quindi $\displaystyle\sum_{n=1}^{+\infty} \frac{n}{n^2 + 1}$ diverge.
+
+Quindi la serie data diverge.
+
+\textbf{Conclusione:} La serie diverge.
+
+\vspace{0.5cm}
+
+\textbf{Parte c)} Studiamo la serie di potenze $\displaystyle\sum_{n=0}^{+\infty} \frac{x^{n}}{(n^{2}+1)2^{n}}$.
+
+Il coefficiente è $a_n = \frac{1}{(n^{2}+1)2^{n}}$.
+
+Calcoliamo il raggio di convergenza usando il criterio del rapporto:
+\[
+\rho = \lim_{n \to +\infty} \left|\frac{a_n}{a_{n+1}}\right| = \lim_{n \to +\infty} \frac{\frac{1}{(n^{2}+1)2^{n}}}{\frac{1}{((n+1)^{2}+1)2^{n+1}}}
+\]
+\[
+= \lim_{n \to +\infty} \frac{((n+1)^{2}+1)2^{n+1}}{(n^{2}+1)2^{n}} = \lim_{n \to +\infty} \frac{2((n+1)^{2}+1)}{n^{2}+1} = 2
+\]
+
+Quindi $\rho = 2$.
+
+Studio dei punti estremi:
+\begin{itemize}
+    \item Per $x = 2$: $\displaystyle\sum_{n=0}^{+\infty} \frac{1}{n^{2}+1}$ converge
+    \item Per $x = -2$: $\displaystyle\sum_{n=0}^{+\infty} \frac{(-1)^n}{n^{2}+1}$ converge assolutamente
+\end{itemize}
+
+\textbf{Insieme di convergenza:} $[-2, 2]$.
+
+\textbf{Serie derivata:}
+\[
+\sum_{n=1}^{+\infty} \frac{nx^{n-1}}{(n^{2}+1)2^{n}}
+\]
+
+\textbf{Conclusione:} $\rho = 2$, $I = [-2, 2]$, serie derivata come sopra.
+\end{solution}
+
+\newpage
+
+\section*{Esercizio 2}
+
+\textbf{Testo:} Determinare il polinomio di McLaurin di quarto grado di $f(x) = xe^{-x} + x \log(1+x)$. Quanto vale la derivata decima di f in 0?
+
+\begin{solution}
+Scomponiamo $f(x) = g(x) + h(x)$ dove $g(x) = xe^{-x}$ e $h(x) = x\log(1+x)$.
+
+\textbf{Per $g(x) = xe^{-x}$:}
+
+Sappiamo che $e^{-x} = 1 - x + \frac{x^2}{2} - \frac{x^3}{6} + \frac{x^4}{24} - \frac{x^5}{120} + O(x^6)$.
+
+Quindi:
+\[
+xe^{-x} = x\left(1 - x + \frac{x^2}{2} - \frac{x^3}{6} + \frac{x^4}{24}\right) + O(x^6)
+\]
+\[
+= x - x^2 + \frac{x^3}{2} - \frac{x^4}{6} + \frac{x^5}{24} + O(x^6)
+\]
+
+\textbf{Per $h(x) = x\log(1+x)$:}
+
+Sappiamo che $\log(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \frac{x^5}{5} + O(x^6)$.
+
+Quindi:
+\[
+x\log(1+x) = x\left(x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \frac{x^5}{5}\right) + O(x^7)
+\]
+\[
+= x^2 - \frac{x^3}{2} + \frac{x^4}{3} - \frac{x^5}{4} + \frac{x^6}{5} + O(x^7)
+\]
+
+\textbf{Combinando:}
+\[
+f(x) = xe^{-x} + x\log(1+x)
+\]
+\[
+= \left(x - x^2 + \frac{x^3}{2} - \frac{x^4}{6}\right) + \left(x^2 - \frac{x^3}{2} + \frac{x^4}{3}\right) + O(x^5)
+\]
+\[
+= x + (-1 + 1)x^2 + \left(\frac{1}{2} - \frac{1}{2}\right)x^3 + \left(-\frac{1}{6} + \frac{1}{3}\right)x^4 + O(x^5)
+\]
+\[
+= x + 0 \cdot x^2 + 0 \cdot x^3 + \frac{1}{6}x^4 + O(x^5)
+\]
+
+\textbf{Polinomio di McLaurin di quarto grado:}
+\[
+P_4(x) = x + \frac{x^4}{6}
+\]
+
+\textbf{Per la derivata decima:}
+
+Il termine $x^{10}$ può venire solo da termini di ordine superiore negli sviluppi. 
+
+Da $xe^{-x}$: il coefficiente di $x^{10}$ è $\frac{(-1)^9}{9!} = -\frac{1}{9!}$.
+
+Da $x\log(1+x)$: il coefficiente di $x^{10}$ è $\frac{(-1)^8}{9} = \frac{1}{9}$.
+
+Il coefficiente totale di $x^{10}$ è: $-\frac{1}{9!} + \frac{1}{9}$.
+
+Quindi $f^{(10)}(0) = 10! \left(-\frac{1}{9!} + \frac{1}{9}\right) = -10 + \frac{10!}{9}$.
+
+Calcolando: $\frac{10!}{9} = \frac{3628800}{9} = 403200$.
+
+\textbf{Risposta:} $f^{(10)}(0) = 403200 - 10 = 403190$.
+\end{solution}
+
+\newpage
+
+\section*{Esercizio 3}
+
+\textbf{Testo:} Sia $f: \mathbb{R} \rightarrow \mathbb{R}$ la funzione periodica di periodo $2\pi$ data su $[-\pi, \pi)$ da
+\[ \begin{cases} 3 & x \in [-\pi,0) \\ 1 & x \in [0,\pi) \end{cases} \]
+\begin{enumerate}
+    \item[a)] Determinare l'espressione di f e disegnare il suo grafico sull'intervallo $[-3\pi, 3\pi]$.
+    \item[b)] Dire se la serie di Fourier converge puntualmente su $\mathbb{R}$ e determinarne il valore della somma su $[-3\pi, 3\pi]$.
+\end{enumerate}
+
+\begin{solution}
+\textbf{Punto a)} La funzione f è periodica di periodo $2\pi$ e definita su $[-\pi, \pi)$ da:
+\[
+f(x) = \begin{cases} 3 & x \in [-\pi,0) \\ 1 & x \in [0,\pi) \end{cases}
+\]
+
+Per periodicità, f si estende a tutto $\mathbb{R}$ ripetendo questo pattern ogni $2\pi$.
+
+Su $[-3\pi, 3\pi]$:
+\begin{itemize}
+    \item $[-3\pi, -2\pi)$: ripete il pattern, quindi $f(x) = 1$ su $[-3\pi, -2.5\pi)$ e $f(x) = 3$ su $[-2.5\pi, -2\pi)$
+    \item $[-2\pi, -\pi)$: $f(x) = 1$ su $[-2\pi, -1.5\pi)$ e $f(x) = 3$ su $[-1.5\pi, -\pi)$
+    \item $[-\pi, 0)$: $f(x) = 3$
+    \item $[0, \pi)$: $f(x) = 1$
+    \item $[\pi, 2\pi)$: $f(x) = 3$ su $[\pi, 1.5\pi)$ e $f(x) = 1$ su $[1.5\pi, 2\pi)$
+    \item $[2\pi, 3\pi]$: $f(x) = 3$ su $[2\pi, 2.5\pi)$ e $f(x) = 1$ su $[2.5\pi, 3\pi]$
+\end{itemize}
+
+Il grafico è una funzione a gradini che alterna tra i valori 1 e 3.
+
+\vspace{0.5cm}
+
+\textbf{Punto b)} La funzione f ha discontinuità di salto nei punti $x = n\pi$ per $n \in \mathbb{Z}$.
+
+Secondo il teorema di convergenza di Fourier:
+\begin{itemize}
+    \item Nei punti di continuità: la serie converge a $f(x)$
+    \item Nei punti di discontinuità di salto: la serie converge alla media dei limiti destro e sinistro
+\end{itemize}
+
+Per i punti di discontinuità $x = n\pi$:
+\begin{itemize}
+    \item Se $n$ è pari: $\lim_{x \to n\pi^-} f(x) = 1$, $\lim_{x \to n\pi^+} f(x) = 3$, media = 2
+    \item Se $n$ è dispari: $\lim_{x \to n\pi^-} f(x) = 3$, $\lim_{x \to n\pi^+} f(x) = 1$, media = 2
+\end{itemize}
+
+\textbf{Convergenza su $[-3\pi, 3\pi]$:}
+\begin{itemize}
+    \item Per $x \in (-3\pi, -2\pi) \cup (-2\pi, -\pi) \cup (-\pi, 0) \cup (0, \pi) \cup (\pi, 2\pi) \cup (2\pi, 3\pi)$: la serie converge a $f(x)$
+    \item Per $x \in \{-3\pi, -2\pi, -\pi, 0, \pi, 2\pi, 3\pi\}$: la serie converge a 2
+\end{itemize}
+
+\textbf{Conclusione:} La serie di Fourier converge puntualmente su tutto $\mathbb{R}$.
+\end{solution}
+
+\newpage
+
+\section*{Esercizio 4}
+
+\textbf{Testo:} Sia $f(x,y) = e^{2x^{2}+2y^{2}-4y+2}$.
+\begin{enumerate}
+    \item[a)] Stabilire se f è differenziabile sul suo dominio e determinarne la derivata direzionale in $P=(0,3)$ lungo $v=(1,1)$.
+    \item[b)] Dire se l'insieme $D = \{(x,y) \in \mathbb{R}^{2} | x^{2}+y^{2} \le 4\}$ è aperto o chiuso, limitato e connesso, e determinarne l'interno e la frontiera C.
+    \item[c)] Determinare, se esistono, i punti di massimo e minimo relativo di f sull'interno di D.
+    \item[d)] Determinare, se esistono, punti di massimo e minimo assoluto di f su C.
+\end{enumerate}
+
+\begin{solution}
+\textbf{Punto a)} La funzione $f(x,y) = e^{2x^{2}+2y^{2}-4y+2}$ ha dominio $\mathbb{R}^2$.
+
+Calcoliamo le derivate parziali:
+\[
+\frac{\partial f}{\partial x} = e^{2x^{2}+2y^{2}-4y+2} \cdot 4x = 4xe^{2x^{2}+2y^{2}-4y+2}
+\]
+\[
+\frac{\partial f}{\partial y} = e^{2x^{2}+2y^{2}-4y+2} \cdot (4y - 4) = 4(y-1)e^{2x^{2}+2y^{2}-4y+2}
+\]
+
+Entrambe sono continue su $\mathbb{R}^2$, quindi f è differenziabile.
+
+Il gradiente in $P = (0,3)$ è:
+\[
+\nabla f(0,3) = (4 \cdot 0 \cdot e^{2 \cdot 0 + 2 \cdot 9 - 4 \cdot 3 + 2}, 4(3-1)e^{2 \cdot 0 + 2 \cdot 9 - 4 \cdot 3 + 2})
+\]
+\[
+= (0, 8e^{18 - 12 + 2}) = (0, 8e^8)
+\]
+
+Il vettore unitario nella direzione di $v = (1,1)$ è $\hat{v} = \frac{(1,1)}{\sqrt{2}}$.
+
+La derivata direzionale è:
+\[
+\frac{\partial f}{\partial v}(0,3) = \nabla f(0,3) \cdot \hat{v} = (0, 8e^8) \cdot \frac{(1,1)}{\sqrt{2}} = \frac{8e^8}{\sqrt{2}} = 4\sqrt{2}e^8
+\]
+
+\vspace{0.5cm}
+
+\textbf{Punto b)} L'insieme $D = \{(x,y) \in \mathbb{R}^{2} | x^{2}+y^{2} \le 4\}$ è:
+\begin{itemize}
+    \item Chiuso (contiene la frontiera)
+    \item Non aperto (contiene punti di frontiera)
+    \item Limitato (contenuto nel cerchio di raggio 2)
+    \item Connesso (ogni due punti possono essere collegati da un cammino)
+\end{itemize}
+
+\textbf{Interno:} $\text{int}(D) = \{(x,y) \in \mathbb{R}^{2} | x^{2}+y^{2} < 4\}$
+
+\textbf{Frontiera:} $C = \partial D = \{(x,y) \in \mathbb{R}^{2} | x^{2}+y^{2} = 4\}$
+
+\vspace{0.5cm}
+
+\textbf{Punto c)} Sull'interno di D, cerchiamo i punti critici di f:
+\[
+\begin{cases}
+\frac{\partial f}{\partial x} = 4xe^{2x^{2}+2y^{2}-4y+2} = 0 \\
+\frac{\partial f}{\partial y} = 4(y-1)e^{2x^{2}+2y^{2}-4y+2} = 0
+\end{cases}
+\]
+
+Dalla prima equazione: $x = 0$ (poiché $e^{2x^{2}+2y^{2}-4y+2} > 0$).
+Dalla seconda equazione: $y = 1$.
+
+Il punto critico è $(0, 1)$. Verifichiamo che sia nell'interno: $0^2 + 1^2 = 1 < 4$ (vero).
+
+Per classificarlo, calcoliamo la matrice Hessiana:
+\[
+H_f = \begin{pmatrix}
+\frac{\partial^2 f}{\partial x^2} & \frac{\partial^2 f}{\partial x \partial y} \\
+\frac{\partial^2 f}{\partial y \partial x} & \frac{\partial^2 f}{\partial y^2}
+\end{pmatrix}
+\]
+
+In $(0,1)$: $f(0,1) = e^{0 + 2 - 4 + 2} = e^0 = 1$.
+
+Calcolando: $H_f(0,1) = \begin{pmatrix} 4e^0 & 0 \\ 0 & 4e^0 \end{pmatrix} = \begin{pmatrix} 4 & 0 \\ 0 & 4 \end{pmatrix}$.
+
+Gli autovalori sono entrambi 4 > 0, quindi $(0,1)$ è un minimo relativo.
+
+\vspace{0.5cm}
+
+\textbf{Punto d)} Sulla frontiera $C$, usiamo i moltiplicatori di Lagrange per ottimizzare $f(x,y) = e^{2x^{2}+2y^{2}-4y+2}$ sotto il vincolo $g(x,y) = x^2 + y^2 - 4 = 0$.
+
+Il sistema è:
+\[
+\begin{cases}
+4xe^{2x^{2}+2y^{2}-4y+2} = 2\lambda x \\
+4(y-1)e^{2x^{2}+2y^{2}-4y+2} = 2\lambda y \\
+x^2 + y^2 = 4
+\end{cases}
+\]
+
+Se $x \neq 0$: $2e^{2x^{2}+2y^{2}-4y+2} = \lambda$.
+Se $y \neq 0$: $\frac{2(y-1)e^{2x^{2}+2y^{2}-4y+2}}{y} = \lambda$.
+
+Uguagliando: $2e^{2x^{2}+2y^{2}-4y+2} = \frac{2(y-1)e^{2x^{2}+2y^{2}-4y+2}}{y}$.
+
+Semplificando: $y = y - 1$, che è impossibile.
+
+Consideriamo i casi $x = 0$ o $y = 0$:
+
+\textbf{Caso $x = 0$:} $y^2 = 4$, quindi $y = \pm 2$.
+\begin{itemize}
+    \item $(0, 2)$: $f(0, 2) = e^{0 + 8 - 8 + 2} = e^2$
+    \item $(0, -2)$: $f(0, -2) = e^{0 + 8 + 8 + 2} = e^{18}$
+\end{itemize}
+
+\textbf{Caso $y = 0$:} $x^2 = 4$, quindi $x = \pm 2$.
+\begin{itemize}
+    \item $(2, 0)$: $f(2, 0) = e^{8 + 0 + 0 + 2} = e^{10}$
+    \item $(-2, 0)$: $f(-2, 0) = e^{8 + 0 + 0 + 2} = e^{10}$
+\end{itemize}
+
+\textbf{Conclusione:}
+\begin{itemize}
+    \item Massimo assoluto su C: $e^{18}$ nel punto $(0, -2)$
+    \item Minimo assoluto su C: $e^2$ nel punto $(0, 2)$
+\end{itemize}
+\end{solution}
+
+\end{document}

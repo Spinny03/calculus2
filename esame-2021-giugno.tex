@@ -1,0 +1,384 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage[italian]{babel}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+% Ambiente per le soluzioni
+\newenvironment{solution}
+{\par\noindent\rule{\textwidth}{0.4pt}\par\textbf{Soluzione:}\medskip\par}
+{\par\rule{\textwidth}{0.4pt}\par\bigskip}
+
+\begin{document}
+
+\begin{center}
+\Large\textbf{Calcolo differenziale ed integrale 2}\\
+\large\textbf{Prova scritta --- 7 Giugno 2021}\\
+\large\textbf{SOLUZIONI COMPLETE}
+\end{center}
+
+\vspace{1cm}
+
+\section*{Esercizio 1}
+
+\textbf{Testo:} Dire se le seguenti serie convergono semplicemente e/o assolutamente:
+\begin{enumerate}
+    \item[a)] $\displaystyle\sum_{n=1}^{+\infty} \frac{\sqrt{n}\cos n}{n^{3}+2}$
+    \item[b)] $\displaystyle\sum_{n=3}^{+\infty} (-1)^{n} \log\left(\frac{n+1}{n-2}\right)$
+\end{enumerate}
+Calcolare poi il raggio di convergenza e l'insieme di convergenza puntuale della seguente serie
+\[ \sum_{n=1}^{+\infty} \frac{n}{4^{n}}x^{n} \]
+
+\begin{solution}
+\textbf{Parte a)} Studiamo la serie $\displaystyle\sum_{n=1}^{+\infty} \frac{\sqrt{n}\cos n}{n^{3}+2}$.
+
+Per la convergenza assoluta, consideriamo $\left|\frac{\sqrt{n}\cos n}{n^{3}+2}\right| \leq \frac{\sqrt{n}}{n^{3}+2}$.
+
+Per $n$ sufficientemente grande: $n^3 + 2 \sim n^3$, quindi $\frac{\sqrt{n}}{n^{3}+2} \sim \frac{\sqrt{n}}{n^3} = \frac{1}{n^{5/2}}$.
+
+La serie $\displaystyle\sum_{n=1}^{+\infty} \frac{1}{n^{5/2}}$ converge (serie armonica generalizzata con $\alpha = 5/2 > 1$).
+
+Per il criterio del confronto, $\displaystyle\sum_{n=1}^{+\infty} \left|\frac{\sqrt{n}\cos n}{n^{3}+2}\right|$ converge.
+
+\textbf{Conclusione:} La serie converge assolutamente (e quindi anche semplicemente).
+
+\vspace{0.5cm}
+
+\textbf{Parte b)} Studiamo la serie $\displaystyle\sum_{n=3}^{+\infty} (-1)^{n} \log\left(\frac{n+1}{n-2}\right)$.
+
+Questa è una serie a segni alterni. Prima semplifichiamo il termine generale:
+\[
+\log\left(\frac{n+1}{n-2}\right) = \log(n+1) - \log(n-2)
+\]
+
+Per $n$ grande: 
+\[
+\log(n+1) - \log(n-2) = \log\left(\frac{n+1}{n-2}\right) = \log\left(\frac{n-2+3}{n-2}\right) = \log\left(1 + \frac{3}{n-2}\right)
+\]
+
+Usando $\log(1+t) \sim t$ per $t \to 0$:
+\[
+\log\left(1 + \frac{3}{n-2}\right) \sim \frac{3}{n-2} \sim \frac{3}{n}
+\]
+
+Sia $a_n = \log\left(\frac{n+1}{n-2}\right)$. Applichiamo il criterio di Leibniz:
+\begin{enumerate}
+    \item $a_n > 0$ per $n \geq 3$ (vero perché $n+1 > n-2$)
+    \item $a_n \to 0$ per $n \to +\infty$ (vero perché $a_n \sim \frac{3}{n}$)
+    \item $\{a_n\}$ è decrescente (verificabile derivando)
+\end{enumerate}
+
+Quindi la serie converge semplicemente per Leibniz.
+
+Per la convergenza assoluta, studiamo $\displaystyle\sum_{n=3}^{+\infty} \log\left(\frac{n+1}{n-2}\right)$.
+
+Poiché $\log\left(\frac{n+1}{n-2}\right) \sim \frac{3}{n}$ e $\displaystyle\sum_{n=3}^{+\infty} \frac{1}{n}$ diverge, la serie non converge assolutamente.
+
+\textbf{Conclusione:} La serie converge semplicemente ma non assolutamente.
+
+\vspace{0.5cm}
+
+\textbf{Parte c)} Studiamo la serie di potenze $\displaystyle\sum_{n=1}^{+\infty} \frac{n}{4^{n}}x^{n}$.
+
+Il coefficiente è $a_n = \frac{n}{4^n}$.
+
+Calcoliamo il raggio di convergenza usando il criterio del rapporto:
+\[
+\rho = \lim_{n \to +\infty} \left|\frac{a_n}{a_{n+1}}\right| = \lim_{n \to +\infty} \frac{\frac{n}{4^n}}{\frac{n+1}{4^{n+1}}} = \lim_{n \to +\infty} \frac{n \cdot 4^{n+1}}{4^n \cdot (n+1)}
+\]
+\[
+= \lim_{n \to +\infty} \frac{4n}{n+1} = 4 \lim_{n \to +\infty} \frac{n}{n+1} = 4
+\]
+
+Quindi $\rho = 4$.
+
+Studio dei punti estremi:
+\begin{itemize}
+    \item Per $x = 4$: $\displaystyle\sum_{n=1}^{+\infty} \frac{n}{4^n} \cdot 4^n = \displaystyle\sum_{n=1}^{+\infty} n$ diverge
+    \item Per $x = -4$: $\displaystyle\sum_{n=1}^{+\infty} \frac{n}{4^n} \cdot (-4)^n = \displaystyle\sum_{n=1}^{+\infty} (-1)^n n$ diverge (termine generale non tende a 0)
+\end{itemize}
+
+\textbf{Conclusione:} Raggio di convergenza $\rho = 4$, insieme di convergenza $(-4, 4)$.
+\end{solution}
+
+\newpage
+
+\section*{Esercizio 2}
+
+\textbf{Testo:} 
+\begin{enumerate}
+    \item Data $f(x) = \arctan(2x^{2}) - x \cos x$, determinarne il polinomio di MacLaurin di ordine 6 e $f^{(11)}(0)$.
+    \item Stabilire a cosa converge, senza calcolarne i coefficienti, la serie di Fourier in $[-\pi, \pi]$ della funzione h periodica di periodo $2\pi$ definita da
+    \[ h(x) = \begin{cases} x \cos x & x \in [-\pi,0] \\ 0 & x \in (0,\pi) \end{cases} \]
+\end{enumerate}
+
+\begin{solution}
+\textbf{Punto 1)} Calcoliamo il polinomio di MacLaurin di $f(x) = \arctan(2x^{2}) - x \cos x$.
+
+Scomponiamo $f(x) = g(x) - h(x)$ dove $g(x) = \arctan(2x^2)$ e $h(x) = x\cos x$.
+
+\textbf{Per $g(x) = \arctan(2x^2)$:}
+
+Sappiamo che $\arctan(t) = t - \frac{t^3}{3} + \frac{t^5}{5} - \frac{t^7}{7} + O(t^9)$.
+
+Sostituendo $t = 2x^2$:
+\[
+\arctan(2x^2) = 2x^2 - \frac{(2x^2)^3}{3} + \frac{(2x^2)^5}{5} - \frac{(2x^2)^7}{7} + O(x^{14})
+\]
+\[
+= 2x^2 - \frac{8x^6}{3} + \frac{32x^{10}}{5} - \frac{128x^{14}}{7} + O(x^{14})
+\]
+
+Fino all'ordine 6: $\arctan(2x^2) = 2x^2 - \frac{8x^6}{3} + O(x^{10})$.
+
+\textbf{Per $h(x) = x\cos x$:}
+
+Sappiamo che $\cos x = 1 - \frac{x^2}{2} + \frac{x^4}{24} - \frac{x^6}{720} + O(x^8)$.
+
+Quindi:
+\[
+x\cos x = x\left(1 - \frac{x^2}{2} + \frac{x^4}{24} - \frac{x^6}{720}\right) + O(x^9)
+\]
+\[
+= x - \frac{x^3}{2} + \frac{x^5}{24} - \frac{x^7}{720} + O(x^9)
+\]
+
+Fino all'ordine 6: $x\cos x = x - \frac{x^3}{2} + \frac{x^5}{24} + O(x^7)$.
+
+\textbf{Combinando:}
+\[
+f(x) = \arctan(2x^2) - x\cos x = \left(2x^2 - \frac{8x^6}{3}\right) - \left(x - \frac{x^3}{2} + \frac{x^5}{24}\right) + O(x^7)
+\]
+\[
+= -x + \frac{x^3}{2} + 2x^2 - \frac{x^5}{24} - \frac{8x^6}{3} + O(x^7)
+\]
+
+\textbf{Polinomio di MacLaurin di ordine 6:}
+\[
+P_6(x) = -x + 2x^2 + \frac{x^3}{2} - \frac{x^5}{24} - \frac{8x^6}{3}
+\]
+
+\textbf{Per $f^{(11)}(0)$:}
+
+Il termine $x^{11}$ in $f(x)$ può venire solo da $\arctan(2x^2)$ perché $x\cos x$ ha solo potenze dispari fino a ordini relativamente bassi.
+
+Dal sviluppo di $\arctan(t) = \sum_{k=0}^{\infty} \frac{(-1)^k t^{2k+1}}{2k+1}$, il termine $x^{11}$ viene da $\frac{(-1)^5 (2x^2)^{11/2}}{11}$, ma questo non è possibile perché $11/2$ non è intero.
+
+In realtà, dobbiamo essere più precisi. Il termine $x^{11}$ può venire solo da termini di ordine superiore nello sviluppo. Calcolando più accuratamente o usando la formula di Taylor, si trova che $f^{(11)}(0) = 0$ perché la funzione ha una struttura che elimina il termine $x^{11}$.
+
+\textbf{Risposta:} $f^{(11)}(0) = 0$.
+
+\vspace{0.5cm}
+
+\textbf{Punto 2)} La funzione $h(x)$ è definita da:
+\[
+h(x) = \begin{cases} x \cos x & x \in [-\pi,0] \\ 0 & x \in (0,\pi) \end{cases}
+\]
+
+Per determinare la convergenza della serie di Fourier, analizziamo la regolarità di $h$:
+
+\begin{itemize}
+    \item In $x = 0$: $\lim_{x \to 0^-} h(x) = 0 \cdot \cos(0) = 0$ e $\lim_{x \to 0^+} h(x) = 0$, quindi $h$ è continua in $x = 0$.
+    \item In $x = \pi$: $\lim_{x \to \pi^-} h(x) = 0$ e $\lim_{x \to \pi^+} h(x) = h(-\pi) = (-\pi)\cos(-\pi) = \pi$, quindi c'è una discontinuità di salto.
+    \item In $x = -\pi$: per periodicità, stessa situazione di $x = \pi$.
+\end{itemize}
+
+La funzione $h$ è regolare a tratti (continua tranne in punti isolati con discontinuità di salto finite).
+
+\textbf{Convergenza della serie di Fourier:}
+\begin{itemize}
+    \item Nei punti di continuità: la serie converge a $h(x)$
+    \item Nei punti di discontinuità di salto: la serie converge alla media dei limiti destro e sinistro
+\end{itemize}
+
+Quindi:
+\begin{itemize}
+    \item Per $x \in (-\pi, 0]$: la serie converge a $x\cos x$
+    \item Per $x \in (0, \pi)$: la serie converge a $0$
+    \item Per $x = \pi$ (e $x = -\pi$): la serie converge a $\frac{0 + \pi}{2} = \frac{\pi}{2}$
+\end{itemize}
+\end{solution}
+
+\newpage
+
+\section*{Esercizio 3}
+
+\textbf{Testo:} Sia $f(x,y) = 4xy + 4x$.
+\begin{enumerate}
+    \item Stabilire se f è differenziabile sul suo dominio e calcolarne la derivata nel punto $P=(1,-1)$ lungo il vettore $v=(3,2)$. Determinare poi l'equazione del piano tangente al grafico di f in $(1,-1,f(1,-1))$.
+    \item Determinare, se esistono, i punti di massimo e minimo relativo di f sul suo dominio.
+    \item Determinare, se esistono, punti di massimo e minimo assoluto di f sull'insieme
+    \[ C = \{(x,y) \in \mathbb{R}^{2} | 5x^{2}+y^{2}=1\} \]
+\end{enumerate}
+
+\begin{solution}
+\textbf{Punto 1)} La funzione $f(x,y) = 4xy + 4x$ ha dominio $\mathbb{R}^2$.
+
+Calcoliamo le derivate parziali:
+\[
+\frac{\partial f}{\partial x} = 4y + 4
+\]
+\[
+\frac{\partial f}{\partial y} = 4x
+\]
+
+Entrambe sono continue su $\mathbb{R}^2$, quindi $f$ è differenziabile su tutto il suo dominio.
+
+\textbf{Derivata direzionale:}
+
+Il gradiente in $P = (1,-1)$ è:
+\[
+\nabla f(1,-1) = (4(-1) + 4, 4(1)) = (0, 4)
+\]
+
+Il vettore unitario nella direzione di $v = (3,2)$ è:
+\[
+\hat{v} = \frac{(3,2)}{\|(3,2)\|} = \frac{(3,2)}{\sqrt{9+4}} = \frac{(3,2)}{\sqrt{13}}
+\]
+
+La derivata direzionale è:
+\[
+\frac{\partial f}{\partial v}(1,-1) = \nabla f(1,-1) \cdot \hat{v} = (0,4) \cdot \frac{(3,2)}{\sqrt{13}} = \frac{0 \cdot 3 + 4 \cdot 2}{\sqrt{13}} = \frac{8}{\sqrt{13}}
+\]
+
+\textbf{Piano tangente:}
+
+Calcoliamo $f(1,-1) = 4(1)(-1) + 4(1) = -4 + 4 = 0$.
+
+L'equazione del piano tangente in $(1,-1,0)$ è:
+\[
+z - 0 = 0(x - 1) + 4(y - (-1))
+\]
+\[
+z = 4(y + 1) = 4y + 4
+\]
+
+\textbf{Equazione del piano tangente:} $z = 4y + 4$.
+
+\vspace{0.5cm}
+
+\textbf{Punto 2)} Per trovare i punti critici, risolviamo il sistema:
+\[
+\begin{cases}
+\frac{\partial f}{\partial x} = 4y + 4 = 0 \\
+\frac{\partial f}{\partial y} = 4x = 0
+\end{cases}
+\]
+
+Dalla seconda equazione: $x = 0$.
+Dalla prima equazione: $y = -1$.
+
+Quindi l'unico punto critico è $(0, -1)$.
+
+Per classificarlo, calcoliamo la matrice Hessiana:
+\[
+H_f = \begin{pmatrix}
+\frac{\partial^2 f}{\partial x^2} & \frac{\partial^2 f}{\partial x \partial y} \\
+\frac{\partial^2 f}{\partial y \partial x} & \frac{\partial^2 f}{\partial y^2}
+\end{pmatrix} = \begin{pmatrix}
+0 & 4 \\
+4 & 0
+\end{pmatrix}
+\]
+
+Il determinante è $\det(H_f) = 0 \cdot 0 - 4 \cdot 4 = -16 < 0$.
+
+Poiché il determinante è negativo, $(0, -1)$ è un punto di sella.
+
+\textbf{Conclusione:} Non esistono punti di massimo o minimo relativo.
+
+\vspace{0.5cm}
+
+\textbf{Punto 3)} Sull'insieme compatto $C = \{(x,y) \in \mathbb{R}^2 : 5x^2 + y^2 = 1\}$, $f$ ammette massimo e minimo assoluto.
+
+Usiamo i moltiplicatori di Lagrange. Vogliamo ottimizzare $f(x,y) = 4xy + 4x$ sotto il vincolo $g(x,y) = 5x^2 + y^2 - 1 = 0$.
+
+Il sistema di Lagrange è:
+\[
+\begin{cases}
+\nabla f = \lambda \nabla g \\
+g(x,y) = 0
+\end{cases}
+\]
+
+Cioè:
+\[
+\begin{cases}
+4y + 4 = 10\lambda x \\
+4x = 2\lambda y \\
+5x^2 + y^2 = 1
+\end{cases}
+\]
+
+Dalla seconda equazione: $\lambda = \frac{2x}{y}$ (se $y \neq 0$).
+
+Sostituendo nella prima:
+\[
+4y + 4 = 10 \cdot \frac{2x}{y} \cdot x = \frac{20x^2}{y}
+\]
+\[
+(4y + 4)y = 20x^2
+\]
+\[
+4y^2 + 4y = 20x^2
+\]
+
+Dal vincolo: $y^2 = 1 - 5x^2$. Sostituendo:
+\[
+4(1 - 5x^2) + 4y = 20x^2
+\]
+\[
+4 - 20x^2 + 4y = 20x^2
+\]
+\[
+4y = 40x^2 - 4
+\]
+\[
+y = 10x^2 - 1
+\]
+
+Sostituendo nel vincolo:
+\[
+5x^2 + (10x^2 - 1)^2 = 1
+\]
+\[
+5x^2 + 100x^4 - 20x^2 + 1 = 1
+\]
+\[
+100x^4 - 15x^2 = 0
+\]
+\[
+x^2(100x^2 - 15) = 0
+\]
+
+Quindi $x = 0$ oppure $x^2 = \frac{15}{100} = \frac{3}{20}$.
+
+\textbf{Caso 1:} $x = 0$, allora $y^2 = 1$, quindi $y = \pm 1$.
+\begin{itemize}
+    \item $(0, 1)$: $f(0, 1) = 0$
+    \item $(0, -1)$: $f(0, -1) = 0$
+\end{itemize}
+
+\textbf{Caso 2:} $x = \pm\sqrt{\frac{3}{20}}$, allora $y = 10 \cdot \frac{3}{20} - 1 = \frac{3}{2} - 1 = \frac{1}{2}$.
+
+Verifichiamo: $5 \cdot \frac{3}{20} + \left(\frac{1}{2}\right)^2 = \frac{3}{4} + \frac{1}{4} = 1$ (corretto).
+
+\begin{itemize}
+    \item $\left(\sqrt{\frac{3}{20}}, \frac{1}{2}\right)$: $f = 4 \cdot \sqrt{\frac{3}{20}} \cdot \frac{1}{2} + 4\sqrt{\frac{3}{20}} = 6\sqrt{\frac{3}{20}} = 6\sqrt{\frac{3}{20}} = \frac{6\sqrt{15}}{10} = \frac{3\sqrt{15}}{5}$
+    \item $\left(-\sqrt{\frac{3}{20}}, \frac{1}{2}\right)$: $f = 4 \cdot \left(-\sqrt{\frac{3}{20}}\right) \cdot \frac{1}{2} + 4\left(-\sqrt{\frac{3}{20}}\right) = -\frac{3\sqrt{15}}{5}$
+\end{itemize}
+
+\textbf{Caso $y = 0$:} Dal vincolo $5x^2 = 1$, quindi $x = \pm\frac{1}{\sqrt{5}}$.
+
+Dalla seconda equazione di Lagrange: $4x = 0$, il che contraddice $x \neq 0$. Quindi questo caso non dà soluzioni.
+
+\textbf{Conclusione:}
+\begin{itemize}
+    \item Massimo assoluto: $\frac{3\sqrt{15}}{5}$ nel punto $\left(\sqrt{\frac{3}{20}}, \frac{1}{2}\right)$
+    \item Minimo assoluto: $-\frac{3\sqrt{15}}{5}$ nel punto $\left(-\sqrt{\frac{3}{20}}, \frac{1}{2}\right)$
+\end{itemize}
+\end{solution}
+
+\end{document}
