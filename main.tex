@@ -167,19 +167,39 @@ Questo è spesso il primo scoglio. L'obiettivo è capire il "carattere" di una s
     \begin{errore}
     Dimenticarsi di studiare il comportamento agli estremi è uno degli errori più frequenti e costa punti preziosi. L'insieme di convergenza non è completo senza questa analisi. 
     \end{errore}
-    \item \textbf{Insieme di Convergenza:} È l'unione dell'intervallo aperto e degli eventuali estremi in cui la serie converge. Può essere $(a,b)$, $[a,b)$, $(a,b]$ o $[a,b]$. 
+    \item \textbf{Insieme di Convergenza:} È l'unione dell'intervallo aperto e degli eventuali estremi in cui la serie converge. Può essere \((a,b)\), \([a,b)\), \((a,b]\) o \([a,b]\). 
+    \item \textbf{Serie Derivata:} Se \(\sum_{n=0}^{\infty} c_n x^n\) ha raggio di convergenza \(\rho\), allora la serie derivata \(\sum_{n=1}^{\infty} n c_n x^{n-1}\) ha lo stesso raggio di convergenza \(\rho\). La funzione somma della serie derivata è la derivata della funzione somma originale nell'intervallo di convergenza.
+    \item \textbf{Funzione Somma:} Se riconosci una serie di potenze come sviluppo di una funzione nota (es.\ geometrica, esponenziale), puoi calcolare direttamente la somma. Esempi:
+    \begin{itemize}
+        \item \(\sum_{n=0}^{\infty} x^n = \frac{1}{1-x}\) per \(|x| < 1\)
+        \item \(\sum_{n=0}^{\infty} \frac{x^n}{n!} = e^x\) per ogni \(x \in \mathbb{R}\)
+    \end{itemize}
 \end{enumerate}
 
-\section{Esercizio 2: Taylor, Fourier e Dini}
+\subsubsection{Tecniche Speciali per Serie}
+\begin{itemize}
+    \item \textbf{Serie con Coefficienti Binomiali:} Per serie del tipo \(\sum \frac{1}{\binom{an}{bn}}\), usa la formula di Stirling o le proprietà asintotiche dei coefficienti binomiali:
+    \[ \binom{n}{k} \sim \frac{n^k}{k!} \text{ per } k \text{ fisso e } n \to \infty \]
+    \item \textbf{Ridotte e Stima dell'Errore:} Per una serie convergente \(\sum a_n = S\), la ridotta \(s_N = \sum_{n=1}^N a_n\) approssima \(S\). Per serie a termini alterni che soddisfano Leibniz, l'errore è \(|S - s_N| \leq |a_{N+1}|\).
+    \item \textbf{Convergenza Totale (Serie di Fourier):} Una serie di Fourier converge totalmente su \(\mathbb{R}\) se \(\sum_{n=1}^{\infty} (|a_n| + |b_n|) < \infty\).
+\end{itemize}
 
 \subsection{Polinomi di Taylor / MacLaurin}
 \begin{strategia}
 Non calcolare \textbf{mai} le derivate una per una, a meno che non sia esplicitamente richiesto o la funzione sia banalissima. La strada maestra è usare gli \textbf{sviluppi notevoli} (vedi formulario) e combinarli algebricamente (somma, prodotto, composizione).
 \end{strategia}
 \begin{itemize}
-    \item \textbf{Come operare:} Sostituisci, somma, moltiplica e componi gli sviluppi notevoli. Ricorda di fermarti all'ordine richiesto e di usare il simbolo di o-piccolo $o((x-x_0)^n)$. Gestisci con cura le potenze e gli ordini degli o-piccoli.
-    \item \textbf{Calcolo di \texorpdfstring{$f^{(n)}(0)$}{f\^(n)(0)}:} Dalla teoria, il coefficiente $c_n$ del termine $x^n$ nello sviluppo di MacLaurin è $c_n = \frac{f^{(n)}(0)}{n!}$. La formula inversa è potentissima per calcolare derivate in zero senza fatica: 
+    \item \textbf{Come operare:} Sostituisci, somma, moltiplica e componi gli sviluppi notevoli. Ricorda di fermarti all'ordine richiesto e di usare il simbolo di o-piccolo \(o((x-x_0)^n)\). Gestisci con cura le potenze e gli ordini degli o-piccoli.
+    \item \textbf{Calcolo di \texorpdfstring{\(f^{(n)}(0)\)}{f\^(n)(0)}:} Dalla teoria, il coefficiente \(c_n\) del termine \(x^n\) nello sviluppo di MacLaurin è \(c_n = \frac{f^{(n)}(0)}{n!}\). La formula inversa è potentissima per calcolare derivate in zero senza fatica: 
     \[ f^{(n)}(0) = n! \cdot c_n \]
+    \item \textbf{Resto di Lagrange e Stima dell'Errore:} Il resto di Lagrange di ordine \(n\) è:
+    \[ R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1} \]
+    dove \(\xi\) è un punto compreso tra \(x_0\) e \(x\). Per stimare l'errore:
+    \begin{enumerate}
+        \item Calcola la derivata \((n+1)\)-esima di \(f\).
+        \item Trova il massimo di \(|f^{(n+1)}(\xi)|\) nell'intervallo di interesse.
+        \item Applica la formula: \(|R_n(x)| \le \frac{M}{(n+1)!}|x-x_0|^{n+1}\) dove \(M = \max |f^{(n+1)}(\xi)|\).
+    \end{enumerate}
 \end{itemize}
 
 \subsection{Serie di Fourier}
@@ -339,7 +359,7 @@ Questa è una delle tipologie di esercizio più complete e richiede una procedur
     \textbf{Caso B: La frontiera è un poligono (es. quadrato, triangolo)}
     \begin{itemize}
         \item \textbf{Analisi dei Lati:} La frontiera è composta da più segmenti. Devi analizzare ogni lato separatamente, parametrizzandolo. Ad esempio, il lato di un quadrato da $(0,0)$ a $(1,0)$ si parametrizza come $x=t, y=0$ con $t \in [0,1]$. Riduci $f$ a una funzione della sola variabile $t$ e cerchi i suoi massimi e minimi su quel segmento.
-        \item \textbf{I Vertici:} I vertici del poligono sono \textbf{sempre} punti candidati. Spesso i massimi o minimi assoluti si nascondono proprio lì.
+        \item \textbf{I Vertici:} I vertici del poligono sono \textbf{sempre} punti candidati. A volte i massimi o minimi assoluti si nascondono proprio lì.
         \begin{errore}
         Dimenticare di includere i vertici di un dominio poligonale nella lista dei candidati è un errore gravissimo e molto comune. Aggiungili sempre alla lista! 
         \end{errore}
@@ -388,8 +408,37 @@ Trovare max/min assoluti di $f(x,y) = x^2e^y+e^y$ su $C=\{(x,y) \in \R^2 | x^2+y
 \end{enumerate}
 \end{esempio}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% FINE MODIFICHE
+% NUOVA SEZIONE AGGIUNTA - INSIEMI DI LIVELLO
+\subsubsection{Insiemi di Livello}
+Gli insiemi di livello di una funzione \(f(x,y)\) sono molto frequenti negli esami e richiedono tecnica specifica.
+
+\begin{itemize}
+    \item \textbf{Definizione:} L'insieme di livello di quota \(k\) è \(\{(x,y) \in D : f(x,y) = k\}\).
+    \item \textbf{Metodo di Studio:}
+    \begin{enumerate}
+        \item Risolvi l'equazione \(f(x,y) = k\) per una delle due variabili (di solito la più semplice).
+        \item Se ottieni \(y = g(x)\) o \(x = h(y)\), studia l'insieme dei valori ammissibili per la variabile libera.
+        \item Disegna la curva risultante specificandone le caratteristiche geometriche (retta, parabola, circonferenza, iperbole, ecc.).
+    \end{enumerate}
+    \item \textbf{Casi Speciali:}
+    \begin{itemize}
+        \item Se \(k\) non appartiene all'immagine di \(f\), l'insieme di livello è vuoto.
+        \item Per funzioni del tipo \(f(x,y) = e^{g(x,y)}\), l'insieme di livello \(f(x,y) = k\) diventa \(g(x,y) = \ln(k)\) (se \(k > 0\)).
+        \item Per funzioni del tipo \(f(x,y) = g(x,y)^2\), l'insieme di livello \(f(x,y) = k\) richiede \(k \geq 0\) e diventa \(g(x,y) = \pm\sqrt{k}\).
+    \end{itemize}
+\end{itemize}
+
+\begin{esempio}
+Determinare l'insieme di livello di quota 1 per \(f(x,y) = e^{-(x^2+y)}\).
+\begin{enumerate}
+    \item L'equazione è \(e^{-(x^2+y)} = 1\).
+    \item Applicando il logaritmo: \(-(x^2+y) = \ln(1) = 0\).
+    \item Quindi \(x^2 + y = 0\), ossia \(y = -x^2\).
+    \item L'insieme di livello è una parabola con vertice nell'origine, rivolta verso il basso.
+\end{enumerate}
+\end{esempio}
+
+% FINE NUOVA SEZIONE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 

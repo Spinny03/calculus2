@@ -1,0 +1,526 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage[italian]{babel}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\newcounter{examcounter}
+\newcommand{\examtitle}[2]{%
+    \stepcounter{examcounter}%
+    \clearpage
+    \begin{center}
+        \large\bfseries
+        Calcolo differenziale ed integrale 2 / Calculus 2 --- Prova scritta \\
+        #1
+    \end{center}
+    \vspace{1em}
+    \setcounter{exercisecounter}{0}
+}
+
+\newcounter{exercisecounter}[examcounter]
+\newenvironment{exercise}{%
+    \stepcounter{exercisecounter}%
+    \par\noindent\textbf{Esercizio \theexercisecounter.}\medskip\par
+    \normalfont
+}{\par\bigskip}
+
+\begin{document}
+
+\examtitle{1 Luglio 2021}
+
+\begin{exercise}
+Dire se le seguenti serie convergono semplicemente e/o assolutamente:
+\begin{enumerate}
+    \item[a)] $\displaystyle\sum_{n=1}^{+\infty} 2^{n} \sin\frac{1}{5^{n}}$
+    \item[b)] $\displaystyle\sum_{n=1}^{+\infty} (-1)^{n} \frac{3}{\sqrt{n} + \log n}$
+\end{enumerate}
+Calcolare poi il raggio di convergenza e l'insieme di convergenza puntuale della seguente serie
+\[ \sum_{n=1}^{+\infty} \frac{3!}{\sqrt{n}}(2x)^{n} \]
+\end{exercise}
+
+\begin{exercise}
+Sia $f(x,y) = (x-1)\log(y+1) + y - 1$.
+\begin{enumerate}
+    \item Determinare il dominio di f e stabilire se è aperto.
+    \item Verificare che sono soddisfatte le ipotesi del teorema del Dini e che quindi è possibile scrivere y come funzione di $x$, ossia $y=g(x)$, in un intorno di $P_{0}=(1,1)$.
+    \item Calcolare $g^{\prime}(x)$ in un intorno di $P_{0}$.
+    \item Determinare lo sviluppo di Taylor centrato in 1 e di ordine 2 di g in un intorno di $P_{0}$.
+    \item Calcolare il terzo coefficiente di Fourier $\hat{h}_{3}$ della funzione h periodica di periodo 2 data da
+    \[ h(x) = \begin{cases} -2 & x \in [-1,0) \\ 0 & x \in [0,1) \end{cases} \]
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Sia $f(x,y) = x^{2}e^{y} + e^{y}$.
+\begin{enumerate}
+    \item Stabilire se è differenziabile sul suo dominio e determinare l'equazione del piano tangente al suo grafico in $(-1,0,f(-1,0))$.
+    \item Determinare, se esistono, i punti di massimo e minimo relativo di f sul suo dominio.
+    \item Determinare, se esistono, punti di massimo e minimo assoluto di f sull'insieme
+    \[ C = \{(x,y) \in \mathbb{R}^{2} | x^{2}+y^{2}=2\} \]
+\end{enumerate}
+\end{exercise}
+
+\examtitle{4 Febbraio 2021}
+
+\begin{exercise}
+Per ciascuna delle seguenti serie dire se è a valori positivi, converge semplicemente, converge assolutamente.
+\begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{+\infty} (-1)^{n} \frac{\arctan(n)}{n}$
+    \item $\displaystyle\sum_{n=1}^{+\infty} \frac{\log(n+1) - \log n}{n}$
+    \item Determinare il raggio e l'intervallo di convergenza della serie di potenze $\displaystyle\sum_{n=1}^{+\infty} \frac{2^{n}}{n^{2}}x^{n}$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Determinare il polinomio di Taylor centrato in 0 e di ordine 4 di $f(x) = \frac{x^{2}}{1+e^{x}}$, ricordando che $\frac{1}{1+x} = 1 - x + x^{2} + R_{2}(x)$. Calcolare inoltre $f^{(4)}(0)$.
+\end{exercise}
+
+\begin{exercise}
+Data la funzione f di periodo $2\pi$ definita da $f(x) = |x|$, $x \in [-\pi, \pi]$, determinare il valore della sua serie di Fourier sull'intervallo $[-\pi, \pi]$.
+\end{exercise}
+
+\begin{exercise}
+Sia $f(x,y) = \log(x^{2}+y^{2}+1)$.
+\begin{enumerate}
+    \item[a)] Trovare il dominio di f e specificarne le caratteristiche: dire se è aperto, limitato, connesso.
+    \item[b)] Stabilire se f è differenziabile, calcolarne la derivata in $P=(-1/2, 1/2)$ lungo il vettore $v=(5,-1)$. Determinare infine l'equazione del piano tangente al grafico di f nel punto $(-1/2, 1/2, f(-1/2, 1/2))$.
+    \item[c)] Determinare i punti critici di f e stabilire se sono massimi (relativi o assoluti), minimi (relativi o assoluti), o punti di sella.
+    \item[d)] Stabilire se f ammette massimo e minimo assoluti sull'insieme $C = \{(x,y) \in \mathbb{R}^{2} : x^{2}+\frac{y^{2}}{9}=1\}$ e in caso affermativo determinarli.
+\end{enumerate}
+\end{exercise}
+
+\examtitle{6 Giugno 2022}
+
+\begin{exercise}
+% Esercizio 1 from this exam is missing in the source
+\end{exercise}
+
+\begin{exercise}
+% Esercizio 2 from this exam is missing in the source
+\end{exercise}
+
+\begin{exercise}
+Sia f la funzione ottenuta estendendo per periodicità a tutto $\mathbb{R}$ la funzione
+\[ g(x) = \begin{cases} 0 & x \in [-2,1) \\ x & x \in [-1,1] \\ 0 & x \in (1,2) \end{cases} \]
+\begin{enumerate}
+    \item Scrivere l'espressione di f e disegnarne il grafico.
+    \item Determinare l'insieme di convergenza della serie di Fourier di f, i coefficienti $a_{10}$ e $b_{10}$ e la somma della serie sul suo insieme di convergenza.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Sia $f(x,y) = e^{(x+y)}(x+y)$.
+\begin{enumerate}
+    \item Stabilire se f è differenziabile sul suo dominio e determinare l'equazione del piano tangente al suo grafico in $(0,1,f(0,1))$.
+    \item Determinare, se esistono, i punti di massimo e minimo assoluto di f sull'insieme $C = \{(x,y) \in \mathbb{R}^{2} | x^{2}+y^{2}=1\}$.
+    \item Stabilire quali sono i punti critici di f sul suo dominio.
+    \item Determinare l'insieme di livello di f di quota 0 e disegnarlo.
+\end{enumerate}
+\end{exercise}
+
+\examtitle{7 Giugno 2021}
+
+\begin{exercise}
+Dire se le seguenti serie convergono semplicemente e/o assolutamente:
+\begin{enumerate}
+    \item[a)] $\displaystyle\sum_{n=1}^{+\infty} \frac{\sqrt{n}\cos n}{n^{3}+2}$
+    \item[b)] $\displaystyle\sum_{n=3}^{+\infty} (-1)^{n} \log\left(\frac{n+1}{n-2}\right)$
+\end{enumerate}
+Calcolare poi il raggio di convergenza e l'insieme di convergenza puntuale della seguente serie
+\[ \sum_{n=1}^{+\infty} \frac{n}{4^{n}}x^{n} \]
+\end{exercise}
+
+\begin{exercise}
+\begin{enumerate}
+    \item Data $f(x) = \arctan(2x^{2}) - x \cos x$, determinarne il polinomio di MacLaurin di ordine 6 e $f^{(11)}(0)$.
+    \item Stabilire a cosa converge, senza calcolarne i coefficienti, la serie di Fourier in $[-\pi, \pi]$ della funzione h periodica di periodo $2\pi$ definita da
+    \[ h(x) = \begin{cases} x \cos x & x \in [-\pi,0] \\ 0 & x \in (0,\pi) \end{cases} \]
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Sia $f(x,y) = 4xy + 4x$.
+\begin{enumerate}
+    \item Stabilire se f è differenziabile sul suo dominio e calcolarne la derivata nel punto $P=(1,-1)$ lungo il vettore $v=(3,2)$. Determinare poi l'equazione del piano tangente al grafico di f in $(1,-1,f(1,-1))$.
+    \item Determinare, se esistono, i punti di massimo e minimo relativo di f sul suo dominio.
+    \item Determinare, se esistono, punti di massimo e minimo assoluto di f sull'insieme
+    \[ C = \{(x,y) \in \mathbb{R}^{2} | 5x^{2}+y^{2}=1\} \]
+\end{enumerate}
+\end{exercise}
+
+\examtitle{7 Settembre 2020}
+
+\begin{exercise}
+Per ciascuna delle seguenti serie dire se sono a termini positivi, convergono, divergono, o sono indeterminate e nel caso convergano, se c'è convergenza assoluta.
+\begin{enumerate}
+    \item[a)] $\displaystyle\sum_{n=1}^{+\infty} \frac{\sqrt{n+1}}{e^{1/n}-1}$
+    \item[b)] $\displaystyle\sum_{n=1}^{+\infty} (-1)^{n} \ln\left(1+\frac{10}{n}\right)$
+    \item[c)] $\displaystyle\sum_{n=1}^{+\infty} \frac{1}{n^{2}}(1-\cos(n^{2}+2))$
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Data la funzione f di periodo $2\pi$ definita da $f(x) = e^{x}$ se $x \in [-\pi, \pi)$, calcolare i coefficienti della serie di Fourier e dire se la serie converge totalmente su $\mathbb{R}$.
+\end{exercise}
+
+\begin{exercise}
+Data la funzione $f(x) = 1 - \arctan(x^{2})$, determinare il suo polinomio di Taylor di ordine 6 centrato nel punto $x_{0}=0$.
+\end{exercise}
+
+\begin{exercise}
+Data la funzione $f: \mathbb{R}^{2} \rightarrow \mathbb{R}$, $f(x,y) = e^{-(x^{2}+y)}$.
+\begin{enumerate}
+    \item[a)] Stabilire se f è differenziabile su $\mathbb{R}^{2}$ e in tal caso calcolare la derivata nel punto $P=(1, \ln 2)$ lungo il vettore $v=(-1,1)$.
+    \item[b)] Determinare e disegnare l'insieme di livello di f di quota 1.
+    \item[c)] Determinare i punti critici di f e stabilire se sono massimi relativi, minimi relativi o punti sella.
+    \item[d)] Stabilire se f ammette massimo e minimo assoluti sull'insieme $C = \{(x,y) \in \mathbb{R}^{2} : 3x^{2}+y^{2}=1\}$ e in caso affermativo determinarli.
+\end{enumerate}
+\end{exercise}
+
+\examtitle{8 Giugno 2020}
+
+\begin{exercise}
+Studiare la convergenza semplice e assoluta delle seguenti serie.
+\begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{\infty} (-1)^{n} \sin\left(\frac{1}{n+2}\right)$
+    \item $\displaystyle\sum_{n=1}^{\infty} \frac{1}{\binom{4n}{3n}}$
+\end{enumerate}
+Calcolare inoltre un'approssimazione della somma della prima serie a meno di $10^{-2}$.
+\end{exercise}
+
+\begin{exercise}
+Sia $f(x) = 3e^{2x} - \cos(x^{2})$.
+\begin{enumerate}
+    \item Calcolare il polinomio di MacLaurin di ordine 3.
+    \item Calcolare $f^{(3)}(0)$.
+    \item Calcolare il polinomio di MacLaurin di ordine 1 e stimare l'errore commesso in $x=1/2$: $|R_{1}(1/2)| = |T_{1}(1/2) - f(1/2)|$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Sia f la funzione periodica di periodo $2\pi$ definita da
+\[ f(x) = \begin{cases} 2 & x \in (-\pi, -\pi/2] \\ 0 & x \in (-\pi/2, \pi/2] \\ 2 & x \in (\pi/2, \pi] \end{cases} \]
+\begin{enumerate}
+    \item Trovare i coefficienti $a_{5}$, $b_{5}$ e $\hat{f}_{5}$.
+    \item Determinare il valore della serie di Fourier di f sull'intervallo $[\pi/2, \pi]$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Sia $f(x,y) = \frac{1}{3}x^{3} + y^{3} + 4x^{2} - 2y^{2}$.
+\begin{enumerate}
+    \item Stabilire se f è differenziabile sul suo dominio e calcolarne la derivata nel punto $P_{0}=(1,2)$ lungo il vettore $v=(-1,1)$. Determinare poi l'equazione del piano tangente al grafico di f in $(1,2,f(1,2))$.
+    \item Determinare, se esistono, i punti di massimo e minimo relativo di f sul suo dominio.
+    \item Sia ora $h(x,y) = x^{2}-2y^{2}$ e sia $C = \{(x,y) \in \mathbb{R}^{2} : x^{2}+2y^{2}=1\}$. Determinare massimo e minimo assoluto di h in C.
+\end{enumerate}
+\end{exercise}
+
+\examtitle{9 Dicembre 2020}
+
+\begin{exercise}
+Stabilire se le seguenti serie convergono semplicemente e/o assolutamente.
+\begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{+\infty} \cos(n\pi) \frac{\sqrt{n+1}}{2n+3}$
+    \item $\displaystyle\sum_{n=1}^{+\infty} \frac{\log(n^{2}+1)}{n}$
+    \item $\displaystyle\sum_{n=1}^{+\infty} \left(e^{\frac{1}{2n^{2}+3}} - 1\right)$
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Data la funzione $f: \mathbb{R} \rightarrow \mathbb{R}$, $f(x) = x^{3} - 1 - \log(1+x^{3})$, calcolare il polinomio di Taylor $T_{9}$ di centro $x_{0}=0$ e ordine 9. Determinare inoltre $f^{(9)}(0)$.
+\end{exercise}
+
+\begin{exercise}
+Trovare la serie di Fourier della funzione periodica di periodo $2\pi$ definita da
+\[ \begin{cases} 1 & -\pi \le x < 0 \\ 4 & 0 \le x < \pi \end{cases} \]
+Dire a che valore converge la serie per $x=0$.
+\end{exercise}
+
+\begin{exercise}
+Sia $f(x,y) = 3x^{2} + 4y^{2} + 6x - 12$.
+\begin{enumerate}
+    \item[a)] Determinare il dominio D di f e stabilire se è aperto, connesso e/o limitato.
+    \item[b)] Stabilire se f è differenziabile sul suo dominio e calcolarne la derivata nel punto $P_{0}=(-1,1)$ lungo il vettore $v=(1,2)$. Determinare poi l'equazione del piano tangente al grafico di f in $(-1,1,f(-1,1))$.
+    \item[c)] Determinare i punti critici di f nell'interno del suo dominio e classificarli.
+    \item[d)] Determinare, se esistono, punti di massimo e minimo assoluto di f sull'insieme
+    \[ C = \{(x,y) \in \mathbb{R}^{2} | x^{2}+y^{2}/2=1\} \]
+\end{enumerate}
+\end{exercise}
+
+\examtitle{14 Gennaio 2021}
+
+\begin{exercise}
+Per ciascuna delle seguenti serie dire se sono a valori positivi, convergono semplicemente, convergono assolutamente.
+\begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{+\infty} \frac{\cos(n^{4})}{n^{2}+1}$
+    \item $\displaystyle\sum_{n=1}^{+\infty} (-1)^{n} \frac{3^{n}}{4^{n}+n^{2}}$
+\end{enumerate}
+Stabilire inoltre se la ridotta $s_{9}$ della serie (2) approssima il valore della serie a meno di 0,1.
+\begin{enumerate}
+    \item[3.] Determinare il raggio e l'intervallo di convergenza della serie di potenze $\displaystyle\sum_{n=1}^{+\infty} \frac{1}{\sqrt{n}}x^{n}$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Determinare il polinomio di Taylor centrato in 0 e di ordine 4 di $f(x) = \log(\cos x)$.
+\end{exercise}
+
+\begin{exercise}
+Data la funzione $f: \mathbb{R} \rightarrow \mathbb{R}$ periodica di periodo 4 definita da
+\[ f(x) = \begin{cases} 0 & -2 \le x < 1 \\ -1 & 1 \le x < 2 \end{cases} \]
+determinare i suoi coefficienti di Fourier $\hat{f}_{2n+1}$ per $n \in \mathbb{Z}$. Determinare poi il valore della serie di Fourier di f in $x=0$ e $x=1$.
+\end{exercise}
+
+\begin{exercise}
+Data la funzione $f: D \subset \mathbb{R}^{2} \rightarrow \mathbb{R}$, $f(x,y) = \frac{1}{3-xy}$.
+\begin{enumerate}
+    \item[a)] Trovare il dominio di f e specificarne le caratteristiche: dire se è aperto, limitato, connesso.
+    \item[b)] Stabilire se f è differenziabile su D e in tal caso calcolare il piano tangente al grafico di f nel punto $(0,0,f(0,0))$.
+    \item[c)] Determinare i punti critici di f.
+    \item[d)] Stabilire se f ammette massimo e minimo assoluti sull'insieme $C = \{(x,y) \in \mathbb{R}^{2} : x^{2}+y^{2}=2\}$ e in caso affermativo determinarli.
+\end{enumerate}
+\end{exercise}
+
+\examtitle{14 Settembre 2022}
+
+\begin{exercise}
+Dire se le seguenti serie convergono semplicemente e/o assolutamente:
+\begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{\infty} \frac{2n+(-1)^{n}}{n^{2}+\cos(n)}$
+    \item $\displaystyle\sum_{n=1}^{\infty} (-1)^{n} \sin\left(\frac{1}{\log(2n)}\right)$
+\end{enumerate}
+Calcolare poi il raggio di convergenza e l'insieme di convergenza puntuale della seguente serie
+\[ \sum_{n=1}^{\infty} \frac{(2^{n}+3^{n})x^{n}}{n} \]
+\end{exercise}
+
+\begin{exercise}
+Data $f(x) = \sin(x) - \log(1+x)\cos(x)$, determinare il polinomio di McLaurin di ordine 5 di f e calcolare $f^{(5)}(0)$.
+\end{exercise}
+
+\begin{exercise}
+Sia f la funzione ottenuta estendendo per periodicità a tutto $\mathbb{R}$ la funzione
+\[ g(x) = \begin{cases} x+1 & x \in [-2,1) \\ 5-3x & x \in [1,2] \end{cases} \]
+\begin{enumerate}
+    \item Disegnare il grafico di f.
+    \item Calcolare i coefficienti di Fourier $b_{k}$ per $k \in \mathbb{Z}$.
+    \item Calcolare il valore della serie di Fourier di f sull'intervallo [-2, 2].
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Sia $f(x,y) = xy(x+y-1)$.
+\begin{enumerate}
+    \item Stabilire se f è differenziabile sul suo dominio, determinare l'equazione del piano tangente al suo grafico in $(-1,-1,f(-1,-1))$ e calcolare la derivata direzionale di f in $(-1,-1)$ lungo la direzione $(\frac{3}{5}, \frac{4}{5})$.
+    \item Stabilire quali sono i punti critici di f sul suo dominio e classificarli.
+    \item Determinare, se esistono, i punti di massimo e minimo assoluto di f sull'insieme
+    \[ T = \{(x,y) \in \mathbb{R}^{2} | x,y \ge 0, x+y \le 1\} \]
+\end{enumerate}
+\end{exercise}
+
+\examtitle{20 Giugno 2023}
+
+\begin{exercise}
+Stabilire se le seguenti serie sono a termini positivi e convergono semplicemente e/o assolutamente.
+\begin{enumerate}
+    \item[a)] $\displaystyle\sum_{n=1}^{+\infty} (-1)^{n+1} \sin\left(\frac{1001}{\sqrt{n}}\right)$
+    \item[b)] $\displaystyle\sum_{n=1}^{+\infty} \frac{n(3-(\cos n)^{2})}{n^{3}+2n+1}$
+    \item[c)] Data la serie di potenze $\displaystyle\sum_{n=1}^{+\infty} \frac{2^{n}+3^{-n}}{n^{2}}x^{n}$, determinarne il raggio di convergenza $\rho$ e l'insieme di convergenza puntuale I.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+\begin{enumerate}
+    \item[a)] Data la funzione $f(x) = x(e^{x}-1) + \ln(1+x^{2}) + \sin(2x)$, calcolarne il polinomio di Me Laurin di ordine 4.
+    \item[b)] Scrivere il resto di Lagrange $R_{1}(x)$ di ordine 1 (con centro in 0) della funzione $g(x) = \cos(x^{2}) + \sin(3x)$ e determinarne una stima per $x \in (0, 1/4]$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Sia f la funzione ottenuta estendendo per periodicità a tutto $\mathbb{R}$ la funzione
+\[ g(x) = \begin{cases} 2\pi+x & x \in [-\pi,0) \\ 2\pi-x & x \in [0,\pi) \end{cases} \]
+\begin{enumerate}
+    \item Disegnare il grafico di f.
+    \item Calcolare il coefficiente di Fourier $\hat{f}_{0}$.
+    \item Calcolare il coefficiente di Fourier $\hat{f}_{k}$ per $k \ne 0$.
+    \item Calcolare il valore della serie di Fourier di f sull'intervallo $[-\pi, \pi)$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Sia $f(x,y) = \frac{3}{2}x^{2} - 8x - 4xy + 4y^{2} + 12 \ln x$.
+\begin{enumerate}
+    \item Determinare il dominio di f e dire dove è differenziabile.
+    \item Calcolare il gradiente nel punto $(1,0)$, la derivata direzionale $\frac{\partial f(1,0)}{\partial v}$ per $v=(-\frac{4}{5},\frac{3}{5})$ e scrivere l'equazione del piano tangente al grafico di f in $(1,0,f(1,0))$.
+    \item Stabilire quali sono i punti critici di f sul suo dominio e classificarli.
+\end{enumerate}
+\end{exercise}
+
+\examtitle{20 Luglio 2021}
+
+\begin{exercise}
+Stabilire se le seguenti serie convergono semplicemente e/o assolutamente.
+\begin{enumerate}
+    \item[a)] $\displaystyle\sum_{n=1}^{+\infty} (-1)^{n} \left(1-\cos\frac{1}{\sqrt{n}}\right)^{3/4}$
+    \item[b)] $\displaystyle\sum_{n=2}^{+\infty} \frac{n+1}{n^{4}\log n - 2n}$
+\end{enumerate}
+Data la serie di potenze $\displaystyle\sum_{n=1}^{+\infty} (2^{n}+5^{n})x^{n}$, determinarne il raggio di convergenza $\rho$ e l'insieme I di convergenza puntuale.
+\end{exercise}
+
+\begin{exercise}
+Data la funzione $f(x) = e^{2x} - \frac{x^{2}}{1+x}$ per $x \ne -1$, calcolare:
+\begin{enumerate}
+    \item[a)] il polinomio di Taylor $T_{4}$ di centro $x_{0}=0$ ed ordine 4;
+    \item[b)] $f^{(15)}(0)$
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Sia g la funzione periodica di periodo $\pi$ definita su $[-\pi/2, \pi/2)$ da $g(x) = \sin x$.
+\begin{enumerate}
+    \item[a)] Calcolare $g(3\pi/4)$.
+    \item[b)] Determinare l'insieme di convergenza puntuale della serie di Fourier di g e la somma di tale serie sull'intervallo $[-\pi/2, \pi/2]$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Sia $f(x,y) = (x+2y)^{2} + x^{2}$.
+\begin{enumerate}
+    \item[a)] Stabilire se f è differenziabile sul suo dominio e calcolarne la derivata nel punto $P_{0}=(0, 1)$ lungo il vettore $v=(-1,3)$.
+    \item[b)] Determinare, se esistono, i punti di massimo e minimo relativo di f sul suo dominio.
+    \item[c)] Determinare, se esistono, punti di massimo e minimo assoluto di f sull'insieme
+    \[ C = \{(x,y) \in \mathbb{R}^{2} | x^{2}+y^{2}=1\} \]
+\end{enumerate}
+\end{exercise}
+
+\examtitle{22 Febbraio 2021}
+
+\begin{exercise}
+Studiare la convergenza semplice e assoluta delle seguenti serie:
+\begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{+\infty} \sqrt{n}\sin(1/n^{3})$
+    \item $\displaystyle\sum_{n=1}^{+\infty} (-1)^{n} \log(1+100/n)$
+\end{enumerate}
+Determinare il raggio e l'intervallo di convergenza della serie di potenze $\displaystyle\sum_{n=1}^{+\infty} 2^{n}x^{n}$.
+\end{exercise}
+
+\begin{exercise}
+Sia f la funzione di periodo $2\pi$ definita su $[-\pi, \pi)$ nel seguente modo:
+\[ f(x) = \begin{cases} 0 & -\pi \le x < -1 \\ 3 & -1 \le x < 1 \\ 0 & 1 \le x < \pi \end{cases} \]
+\begin{enumerate}
+    \item[a)] Disegnare il grafico di f e calcolare i suoi coefficienti di Fourier.
+    \item[b)] Determinare gli intervalli su cui f è regolare a tratti.
+    \item[c)] Calcolare il valore della serie di Fourier di f sull'intervallo $[-\pi, \pi]$.
+    \item[d)] Determinare il polinomio di Mac Laurin di grado 7 della funzione $g(x) = x \arctan(f(x)x^{2}) - 2$ definita su $(-1,1)$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Data la funzione $f: D \subset \mathbb{R}^{2} \rightarrow \mathbb{R}$, $f(x,y) = \ln(x^{2}+2y^{2}-1)$.
+\begin{enumerate}
+    \item[a)] Trovare il dominio di f e specificarne le caratteristiche: dire se è aperto, limitato, connesso.
+    \item[b)] Stabilire se f è differenziabile su D e in tal caso calcolare il piano tangente al grafico di f nel punto $(0,1,f(0,1))$.
+    \item[c)] Determinare i punti critici di f.
+    \item[d)] Stabilire se f ammette massimo e minimo assoluti sull'insieme $C = \{(x,y) \in \mathbb{R}^{2} : x^{2}+y^{2}=9\}$ e in caso affermativo determinarli.
+\end{enumerate}
+\end{exercise}
+
+\examtitle{23 Luglio 2020}
+
+\begin{exercise}
+Stabilire se le seguenti serie convergono semplicemente e/o assolutamente:
+\begin{enumerate}
+    \item[a)] $\displaystyle\sum_{n=0}^{+\infty} \left(e^{\frac{n^{2}}{n^{2}+1}} - e\right)$
+    \item[b)] $\displaystyle\sum_{n=1}^{+\infty} (-1)^{n} \frac{n^{5}3^{2n}}{10^{n}}$
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Data la funzione f di periodo $2\pi$ definita da
+\[ f(x) = \begin{cases} 1 & x \in [-\pi, 0) \\ 0 & x \in [0, \pi) \end{cases} \]
+Determinare il valore della sua serie di Fourier sull'intervallo $[-\pi, \pi]$.
+\end{exercise}
+
+\begin{exercise}
+Data la funzione $f(x) = x^{2}\ln(2-\cos x)$, determinare il polinomio di Taylor di ordine 5 centrato nel punto $x_{0}=0$.
+\end{exercise}
+
+\begin{exercise}
+Data la funzione $f: \mathbb{R}^{2} \rightarrow \mathbb{R}$, $f(x,y) = e^{x-y}(x^{2}-2y^{2})$.
+\begin{enumerate}
+    \item[a)] Stabilire se f è differenziabile su $\mathbb{R}^{2}$ e in tal caso calcolare il piano tangente al grafico di f nel punto $(1,0,f(1,0))$.
+    \item[b)] Determinare i punti critici di f e stabilire se sono massimi relativi, minimi relativi o punti sella.
+    \item[c)] Stabilire se f ammette massimo e minimo assoluti sull'insieme $C = \{(x,y) \in \mathbb{R}^{2} : x^{2}-2y^{2}=1\}$ e in caso affermativo determinarli.
+\end{enumerate}
+\end{exercise}
+
+\examtitle{3 Febbraio 2022}
+
+\begin{exercise}
+Stabilire se le seguenti serie convergono, divergono o sono indeterminate e, nel caso convergano, se c'è anche convergenza assoluta.
+\begin{enumerate}
+    \item[a)] $\displaystyle\sum_{n=1}^{+\infty} (-1)^{n} n^{4} \sin^{2}(1/n^{3})$
+    \item[b)] $\displaystyle\sum_{n=1}^{+\infty} \frac{\cos n + 5 + ne^{n}}{n^{2}e^{n}+e^{n}}$
+\end{enumerate}
+Data la serie di potenze $\displaystyle\sum_{n=0}^{+\infty} \frac{x^{n}}{(n^{2}+1)2^{n}}$, determinarne il raggio di convergenza $\rho$, l'insieme I di convergenza puntuale e la serie derivata.
+\end{exercise}
+
+\begin{exercise}
+Determinare il polinomio di McLaurin di quarto grado di $f(x) = xe^{-x} + x \log(1+x)$. Quanto vale la derivata decima di f in 0?
+\end{exercise}
+
+\begin{exercise}
+Sia $f: \mathbb{R} \rightarrow \mathbb{R}$ la funzione periodica di periodo $2\pi$ data su $[-\pi, \pi)$ da
+\[ \begin{cases} 3 & x \in [-\pi,0) \\ 1 & x \in [0,\pi) \end{cases} \]
+\begin{enumerate}
+    \item[a)] Determinare l'espressione di f e disegnare il suo grafico sull'intervallo $[-3\pi, 3\pi]$.
+    \item[b)] Dire se la serie di Fourier converge puntualmente su $\mathbb{R}$ e determinarne il valore della somma su $[-3\pi, 3\pi]$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Sia $f(x,y) = e^{2x^{2}+2y^{2}-4y+2}$.
+\begin{enumerate}
+    \item[a)] Stabilire se f è differenziabile sul suo dominio e determinarne la derivata direzionale in $P=(0,3)$ lungo $v=(1,1)$.
+    \item[b)] Dire se l'insieme $D = \{(x,y) \in \mathbb{R}^{2} | x^{2}+y^{2} \le 4\}$ è aperto o chiuso, limitato e connesso, e determinarne l'interno e la frontiera C.
+    \item[c)] Determinare, se esistono, i punti di massimo e minimo relativo di f sull'interno di D.
+    \item[d)] Determinare, se esistono, punti di massimo e minimo assoluto di f su C.
+\end{enumerate}
+\end{exercise}
+
+\examtitle{15 Settembre 2021}
+
+\begin{exercise}
+Stabilire se le seguenti serie sono a termini positivi e convergono semplicemente e/o assolutamente.
+\begin{enumerate}
+    \item[a)] $\displaystyle\sum_{n=2}^{+\infty} (-1)^{n} \frac{(\log 2)^{n}}{(n-1)!}$
+    \item[b)] $\displaystyle\sum_{n=1}^{+\infty} \frac{n(2+\sin n)}{\sqrt{n^{5}}}$
+\end{enumerate}
+Data la serie di potenze $\displaystyle\sum_{n=1}^{+\infty} \left(\frac{x}{5}\right)^{n}$, determinarne il raggio di convergenza $\rho$, l'insieme I di convergenza puntuale e calcolare il valore della funzione somma della serie.
+\end{exercise}
+
+\begin{exercise}
+Data la funzione $f(x) = \log(2-\cos(2x))$, calcolare la formula di McLaurin con resto di Peano di f di ordine 4.
+\end{exercise}
+
+\begin{exercise}
+Sia $f: \mathbb{R} \rightarrow \mathbb{R}$ la funzione periodica di periodo $2\pi$ data su $[-\pi, \pi)$ da
+\[ \begin{cases} 0 & x \in [-\pi,-1) \\ 2x & x \in [-1,1) \\ 0 & x \in [1,\pi) \end{cases} \]
+\begin{enumerate}
+    \item[a)] Rappresentare il grafico di f sull'intervallo $[-3\pi, 3\pi]$.
+    \item[b)] Dire se la serie di Fourier converge puntualmente su $\mathbb{R}$ e determinarne il valore della somma su $[-\pi, \pi]$.
+    \item[c)] Calcolare la ridotta $s_{1}$ di ordine 1 della serie di Fourier di f.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Sia $f(x,y) = e^{-x^{2}-y^{2}}$.
+\begin{enumerate}
+    \item[a)] Stabilire se f è differenziabile sul suo dominio e determinare l'equazione del piano tangente al suo grafico nel punto $P_{0}=(1,-1,f(1,-1))$.
+    \item[b)] Determinare, se esistono, i punti di massimo e minimo relativo di f sul suo dominio.
+    \item[c)] Dire se l'insieme $C = \{(x,y) \in \mathbb{R}^{2} | x^{2}+2y^{2}=1\}$ è chiuso e/o limitato, e determinare, se esistono, punti di massimo e minimo assoluto di f su tale insieme.
+\end{enumerate}
+\end{exercise}
+
+\end{document}

@@ -1,0 +1,223 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\geometry{a4paper, top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+\newcommand{\sectiontitle}[1]{\begin{center}\large\bfseries #1\end{center}}
+\newcommand{\exercisecenter}[1]{\begin{center}\bfseries #1\end{center}}
+
+\begin{document}
+
+\sectiontitle{Calcolo differenziale ed integrale 2 --- Esercitazione guidata}
+\exercisecenter{29 MAGGIO 2019}
+
+\paragraph{Esercizio 1.} Stabilire se le seguenti serie convergono, divergono o sono indeterminate e, nel caso convergano, se c'è anche convergenza assoluta.
+\begin{enumerate}
+    \item[a)] $\displaystyle \sum_{n=1}^{+\infty}(-1)^{n}n^{4}\sin^2(1/n^{3});$
+    \item[b)] $\displaystyle \sum_{n=1}^{+\infty}\frac{\sin(n)+\cos n+5+ne^{n}}{n^{2}e^{n}+e^{n}};$
+    \item[c)] $\displaystyle \sum_{n=1}^{+\infty}\frac{(-1)^{n}}{\sqrt{3n^{2}-n-1}}.$
+\end{enumerate}
+
+\paragraph{Esercizio 2.} Data la funzione $f:\mathbb{R}\rightarrow\mathbb{R}$
+\[ f(x)=x^{2}+2x+e^{x}-x \sin(3x), \]
+\begin{enumerate}
+    \item[a)] calcolare il polinomio di Taylor $T_{4}$ di centro $x_{0}=0$ ed ordine 4;
+    \item[b)] calcolate $f^{(4)}(0)$;
+    \item[c)] calcolate il polinomio di Taylor $T_{1}$ di centro $x_{0}=0$ ed ordine 1 e stimate l'errore $|R(x)|=|T_{1}(1/10)-f(1/10)|.$
+    \item[d)] Calcolare $f^{(99)}(0).$
+\end{enumerate}
+
+\paragraph{Esercizio 3.} Sia $f(x,y)=(x+y)^{2}.$
+\begin{enumerate}
+    \item[a)] Stabilire se f è differenziabile sul suo dominio e calcolarne la derivata nel punto $P_{0}=(0,1)$ lungo il vettore $v=(-1,3)$. Determinare poi l'equazione del piano tangente al grafico di f in $(0, 1, f(0,1))$.
+    \item[b)] Determinare, se esistono, i punti di massimo e minimo relativo di f sul suo dominio. Disegnare poi l'insieme di livello $c=2$ di f.
+    \item[c)] Determinare, se esistono, punti di massimo e minimo assoluto di f sull'insieme $C=\{(x,y)\in\mathbb{R}^{2}|x^{2}+3y^{2}=1\}$.
+    \item[d)] Dire se la curva definita da $\gamma(t)=(t,f(t,t)+1)$ è regolare su $\mathbb{R}$ e, nel caso, determinarne la velocità scalare e l'equazione della retta tangente nel punto $\gamma(-2)$.
+\end{enumerate}
+
+\newpage
+
+\sectiontitle{Calcolo differenziale ed integrale 2 --- Esercitazione guidata}
+\exercisecenter{26 MAGGIO 2020}
+
+\paragraph{Esercizio 1.} Stabilire se le seguenti serie convergono, divergono o sono indeterminate e, nel caso convergano, se c'è anche convergenza assoluta.
+\begin{enumerate}
+    \item[a)] $\displaystyle \sum_{n=1}^{+\infty}\frac{\sin(n)+\cos n+5+ne^{n}}{n^{2}e^{n}+e^{n}};$
+    \item[b)] $\displaystyle \sum_{n=1}^{+\infty}\frac{(-1)^{n}}{\sqrt{3n^{2}-n-1}}.$
+\end{enumerate}
+
+\paragraph{Esercizio 2.} Determinare il raggio e l'insieme di convergenza della serie
+\[ \sum_{n=0}^{\infty}\frac{x^{n}}{(n^{2}+1)3^{n}}. \]
+
+\paragraph{Esercizio 3.} Data la funzione $f:\mathbb{R}\rightarrow\mathbb{R}$
+\[ f(x)=x^{2}+2x+e^{x}-x\sin(3x) \]
+\begin{enumerate}
+    \item[a)] calcolare il polinomio di Maclaurin $T_{4}$ di ordine 4;
+    \item[b)] calcolate il polinomio di Maclaurin $T_{1}$ di ordine 1 e stimate l'errore $|R_{1}(1/10)|=|T_{1}(1/10)-f(1/10)|$.
+\end{enumerate}
+
+\newpage
+
+\sectiontitle{Calcolo differenziale ed integrale 2 --- Esercitazione guidata}
+\exercisecenter{26 MAGGIO 2020}
+
+\paragraph{Esercizio 1.} Sia $f:\mathbb{R}\rightarrow\mathbb{R}$ la funzione periodica di periodo $2\pi$ definita da
+\[ f(x)=\begin{cases}-1 & x\in(-\pi,-\pi/2]\\ \frac{2}{\pi}x & x\in(-\pi/2,\pi/2]\\ 1 & x\in(\pi/2,\pi]\end{cases} \]
+\begin{enumerate}
+    \item[(1)] Trovare i coefficienti $f_{k}$ della serie di Fourier di f e discutere la convergenza di tale serie.
+    \item[(2)] Trovare i coefficienti $a_{k}$ e $b_{k}$ e scrivere la serie di Fourier come serie di seni e coseni.
+\end{enumerate}
+
+\paragraph{Esercizio 2.} Sia $f(x,y)=(x+y)^{2}$.
+\begin{enumerate}
+    \item[(1)] Stabilire se f è differenziabile sul suo dominio e calcolarne la derivata nel punto $P_{0}=(0,1)$ lungo il vettore $v=(-1,3).$ Determinare poi l'equazione del piano tangente al grafico di f in $(0,1,f(0,1))$.
+    \item[(2)] Determinare, se esistono, i punti di massimo e minimo relativo di f sul suo dominio. Disegnare poi l'insieme di livello $c=2$ di f.
+    \item[(3)] Determinare, se esistono, punti di massimo e minimo assoluto di f sull'insieme $C=\{(x,y)\in\mathbb{R}^{2}|x^{2}+3y^{2}=1\}$.
+\end{enumerate}
+
+\newpage
+
+\sectiontitle{Calculus 2 --- Esercitazione guidata}
+\exercisecenter{18 MAGGIO 2021}
+
+\paragraph{Esercizio 1.} Per ogni $\alpha\in\mathbb{R}$, si consideri la funzione
+\[ g_{\alpha}(x)=\begin{cases}x^{2},&x\in[0,\pi]\\ \alpha x,&x\in(\pi,2\pi).\end{cases} \]
+\begin{enumerate}
+    \item[(a)] Studiare, al variare di $\alpha>0$, la convergenza puntuale della serie di Fourier di periodo $2\pi$ di $g_{\alpha}$.
+    \item[(b)] Determinare i coefficienti di Fourier $\hat{g_{\alpha}}(n)$ per $n\in\mathbb{Z}$ della serie di Fourier di periodo $2\pi$ di $g_{\alpha}$.
+    \item[(c)*] Sia $\alpha=\pi.$ Provare che esiste una successione $(c_{n})_{n\in\mathbb{Z}}$ tale che la serie
+    \[ \sum_{n=-\infty}^{+\infty}c_{n}e^{-i\frac{nx}{2}} \]
+    converge totalmente a $g_{\pi}$ sull'intervallo $[0,2\pi]$. [Suggerimento: estendere $g_{\pi}$ a una funzione pari in $[-2\pi,2\pi]$].
+\end{enumerate}
+
+\paragraph{Esercizio 2.} Verificare che l'equazione $y^{3}=2xy-x^{2}$ definisce implicitamente, in un intorno del punto (1, 1), una funzione $y=g(x).$ Determinare poi il polinomio di Taylor di ordine 2 e centrato in $x_{0}=1$ di tale funzione.
+
+\paragraph{Esercizio 3.} Sia $f(x,y)=e^{xy}$.
+\begin{enumerate}
+    \item[(1)] Stabilire se f è differenziabile sul suo dominio e calcolarne la derivata nel punto $P_{0}=(2,2)$ lungo il vettore $v=(-1,5).$ Determinare poi l'equazione del piano tangente al grafico di f in $(2,2,f(2,2))$.
+    \item[(2)] Determinare l'insieme di livello di f di quota $c=0$.
+    \item[(3)] Calcolare, se esistono, i punti di massimo e minimo relativo di f sul suo dominio.
+    \item[(4)] Dato $D=\{(x,y)\in\mathbb{R}^{2}|\frac{x^{2}}{2}+y^{2}\le1\},$ dire se D è chiuso e limitato, e determinarne interno e frontiera.
+    \item[(5)] Determinare, se esistono, punti di massimo e minimo assoluto di f vincolati a $C:=\partial D$.
+    \item[(6)] Trovare, se esistono, i punti di massimo e minimo assoluti di f su D.
+\end{enumerate}
+
+\newpage
+
+\sectiontitle{Calculus 2 --- Esercitazione guidata}
+\exercisecenter{12 APRILE 2022}
+
+\paragraph{Esercizio 1.} Si consideri la funzione $f(x)=\log(\cos x)$ con $x\in\mathbb{R}.$
+\begin{enumerate}
+    \item[(a)] Utilizzando gli sviluppi fondamentali, calcolare lo sviluppo di Maclaurin con resto di Peano di f fino all'ordine 4.
+    \item[(b)] Determinare $f^{(4)}(0)$.
+    \item[(c)] Stimare il valore di $\log(4/3)$ a meno di un errore di $10^{-5}$.
+\end{enumerate}
+
+\paragraph{Esercizio 2.} Per ciascuna delle seguenti serie
+\begin{enumerate}
+    \item[(1)] $\displaystyle \sum_{n=1}^{+\infty}(-1)^{n}\ln\left(1+\frac{1}{\sqrt{n}}\right)$
+    \item[(2)] $\displaystyle \sum_{n=1}^{+\infty}\frac{\sin(n^{3}+2n)}{n^{2}+n}$
+    \item[(3)] $\displaystyle \sum_{n=1}^{+\infty}\frac{(n!)^{2}}{(2n)!}$
+\end{enumerate}
+stabilire se convergono assolutamente e/o semplicemente.
+
+\paragraph{Esercizio 3.}
+\begin{enumerate}
+    \item[(a)] Determinare raggio e insieme di convergenza della serie
+    \[ \sum_{n=1}^{+\infty}\frac{n+1}{n+2}\frac{x^{3n}}{3^{n}}. \]
+    \item[(b)] Sviluppare in serie di Taylor centrata in $x_{0}=1$ la funzione
+    \[ f(x)=\frac{2}{(2-x)(4-3x)} \]
+    e dire dove converge.
+\end{enumerate}
+
+\newpage
+
+\sectiontitle{Calculus 2 --- Esercitazione guidata}
+\exercisecenter{31 MAGGIO 2022}
+
+\paragraph{Esercizio 1.} Si consideri la funzione f ottenuta prolungando per periodicità la funzione
+\[ g(x)=\begin{cases}x^{2},&x\in[-\pi,0]\\ \pi x,&x\in(0,\pi).\end{cases} \]
+\begin{enumerate}
+    \item[(a)] Scrivere l'espressione di f e calcolare $f(3\pi/2)$.
+    \item[(b)] Determinare i coefficienti di Fourier $f_{k},$ $k\in\mathbb{Z}$, di f.
+    \item[(c)] Determinare il valore della somma della serie sul suo insieme di definizione.
+\end{enumerate}
+
+\paragraph{Esercizio 2.} Verificare che l'equazione $y+y^{6}+x^{2}=0$ definisce implicitamente, in un intorno del punto (0,0), una e una sola funzione $y=g(x)$. Determinare il polinomio di Taylor di ordine 2 e centrato in $x_{0}=0$ di g.
+
+\paragraph{Esercizio 3.} Sia $f(x,y)=x^{3}+4xy^{2}-4x.$
+\begin{enumerate}
+    \item[(1)] Stabilire se f è differenziabile sul suo dominio e calcolarne la derivata nel punto $P_{0}=(1,-2)$ lungo il vettore $v=(1,1/2)$. Determinare poi l'equazione del piano tangente al grafico di f in $(1,-2,f(1,-2))$.
+    \item[(2)] Determinare la direzione e il verso di massima crescita di f in $P_{0}$.
+    \item[(3)] Dato $D=\{(x,y)\in\mathbb{R}^{2}|x^{2}+y^{2}\le1\}$, dire se D è chiuso e limitato, e determinarne interno e frontiera.
+    \item[(4)] Determinare, se esistono, punti di massimo e minimo assoluto di f vincolati a $C:=\partial D$.
+    \item[(5)] Trovare, se esistono, i punti di massimo e minimo assoluti di f su D.
+\end{enumerate}
+
+\newpage
+
+\sectiontitle{Calculus 2 --- Esercitazione guidata}
+\exercisecenter{11 APRILE 2025}
+
+\paragraph{Esercizio 1.} Stabilire se le seguenti serie convergono, divergono o sono indeterminate e, nel caso convergano, se c'è anche convergenza assoluta.
+\begin{enumerate}
+    \item[a)] $\displaystyle \sum_{n=2}^{+\infty}\frac{n^{2}\sin(1/n^{3})}{n^{4}+\ln n};$
+    \item[b)] $\displaystyle \sum_{n=1}^{+\infty}\frac{(2n)!}{(3n)!}\frac{n^{n}}{e^{n}};$
+    \item[c)] $\displaystyle \sum_{n=1}^{+\infty}(-1)^{n}\frac{1}{\ln(5^{n}+1)}.$
+\end{enumerate}
+
+\paragraph{Esercizio 2.} Determinare l'insieme di convergenza per le seguenti serie di funzioni e stabilire se la convergenza è assoluta e/o totale in tali insiemi. Dire poi se i teoremi visti consentano di dire se la serie $f(x)$ è:
+\begin{enumerate}
+    \item[(1)] continua,
+    \item[(2)] integrabile e, nel caso, determinare $\int_{0}^{1}f(x)dx$,
+    \item[(3)] derivabile, e in tal caso scrivere la serie derivata.
+\end{enumerate}
+\begin{enumerate}
+    \item[a)] $\displaystyle \sum_{n=1}^{+\infty}\frac{\sin(nx)}{n^{3/2}};$
+    \item[b)] $\displaystyle \sum_{n=1}^{+\infty}n(e^{1/n}-1)x^{n};$
+\end{enumerate}
+
+\paragraph{Esercizio 3.} Data la funzione $f:\mathbb{R}\rightarrow\mathbb{R}$
+\[ f(x)=(e^{3x}-1)\cos(2x)-x, \]
+\begin{enumerate}
+    \item[a)] calcolare il polinomio di Taylor $T_{4}$ di centro $x_{0}=0$ ed ordine 4;
+    \item[b)] scrivere la serie di Taylor centrata in 0 di f;
+    \item[c)] calcolare $f^{(7)}(0)$;
+    \item[d)] stimate l'errore ottenuto sostituendo a $f(1/10)$ il suo polinomio di Taylor $T_{1}$ centrato in 0 di ordine 1 calcolato in $1/10$.
+\end{enumerate}
+
+\newpage
+
+\sectiontitle{Calculus 2 --- Esercitazione guidata}
+\exercisecenter{3 GIUGNO 2025}
+
+\paragraph{Esercizio 1.} Consideriamo la funzione ottenuta prolungando per periodicità di periodo $2\pi$
+\[ f(x)=\begin{cases}-1 & x\in[-\pi,-\pi/2)\cup(\pi/2,\pi)\\ 1 & x\in(-\pi/2,\pi/2)\\ 0 & x=\pm\pi/2\end{cases} \]
+\begin{enumerate}
+    \item[a)] Calcolare $a_{k}$ per ogni $k\ge0$.
+    \item[b)] Determinare i coefficienti di Fourier $f_{k}$ per ogni $k\in\mathbb{Z}_{+}$.
+    \item[c)] Calcolare la serie di Fourier di f e discuterne la convergenza puntuale.
+    \item[d)] Data $g(x)=f(x-1)$ per ogni $x\in\mathbb{R}$, determinare il coefficiente $\hat{g}_{2}$ di g.
+\end{enumerate}
+
+\paragraph{Esercizio 2.} Sia
+\[ f(x,y)=\begin{cases}\frac{xy(x+y)}{x^{2}+y^{2}} & (x,y)\ne(0,0)\\ 0 & (x,y)=(0,0)\end{cases} \]
+\begin{enumerate}
+    \item[a)] Calcolare le derivate parziali di f in (0,0).
+    \item[b)] Calcolare la derivata direzionale di f lungo il vettore non nullo $v=(v_{1},v_{2})$ in (0,0), e stabilire se f è differenziabile in (0,0).
+    \item[c)] Determinare l'equazione del piano tangente al grafico di f nel punto $(P_{0},f(P_{0}))$ e $\frac{\partial f}{\partial v}(P_{0})$ con $P_{0}=(2,-1)$ e $v=(1,1)$.
+\end{enumerate}
+
+\paragraph{Esercizio 3.} Sia $f(x,y)=4x^{2}y-y^{3}-x^{4}y$ per ogni $(x,y)\in\mathbb{R}^{2}.$
+\begin{enumerate}
+    \item[a)] Stabilire se f è di classe $\mathcal{C}^{2}$ e determinare l'equazione della retta tangente in Q alla curva di livello di quota $f(Q)$ di f, dove $Q=(-3,-2)$.
+    \item[b)] Dato $C=\{(x,y)\in\mathbb{R}^{2}:x^{2}+y^{2}=4\},$ stabilire se C è chiuso e limitato, e calcolare i punti di massimo e minimo relativi ed assoluti di f su C.
+\end{enumerate}
+
+\end{document}
