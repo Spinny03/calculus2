@@ -1,0 +1,131 @@
+name: Build and Release PDF
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Necessario per ottenere tutti i tag
+    
+    - name: Setup TeX Live
+      uses: xu-cheng/texlive-action@v2
+      with:
+        scheme: full
+    
+    - name: Compile LaTeX document
+      run: |
+        # Compila il documento principale
+        pdflatex -synctex=1 -interaction=nonstopmode -file-line-error main.tex
+        pdflatex -synctex=1 -interaction=nonstopmode -file-line-error main.tex  # Seconda passata per TOC
+        
+        # Verifica che il PDF sia stato generato
+        if [ ! -f main.pdf ]; then
+          echo "Errore: main.pdf non è stato generato"
+          exit 1
+        fi
+        
+        # Rinomina il PDF con un nome più descrittivo
+        cp main.pdf "Guida-Strategica-Calcolo2.pdf"
+    
+    - name: Get current date and calculate version
+      id: version
+      run: |
+        # Ottiene la data corrente nel formato YYYY.MM.DD
+        DATE=$(date +"%Y.%m.%d")
+        echo "Current date: $DATE"
+        
+        # Ottiene l'ultimo tag che inizia con la data di oggi
+        LATEST_TAG=$(git tag -l "${DATE}.*" | sort -V | tail -n1)
+        echo "Latest tag for today: $LATEST_TAG"
+        
+        # Calcola il numero di versione incrementale
+        if [ -z "$LATEST_TAG" ]; then
+          # Nessun tag per oggi, inizia con .1
+          VERSION="${DATE}.1"
+        else
+          # Estrae il numero incrementale e lo incrementa
+          INCREMENT=$(echo $LATEST_TAG | cut -d'.' -f4)
+          NEW_INCREMENT=$((INCREMENT + 1))
+          VERSION="${DATE}.${NEW_INCREMENT}"
+        fi
+        
+        echo "New version: $VERSION"
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "date=$DATE" >> $GITHUB_OUTPUT
+    
+    - name: Create Release
+      if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{ steps.version.outputs.version }}
+        name: "Guida Strategica Calcolo 2 - v${{ steps.version.outputs.version }}"
+        body: |
+          ## 📚 Guida Strategica per l'Esame di Calcolo 2
+          
+          **Versione**: ${{ steps.version.outputs.version }}  
+          **Data di rilascio**: ${{ steps.version.outputs.date }}
+          
+          ### 📖 Cosa include questa versione:
+          - ✅ Serie numeriche e di potenze (Esercizio 1)
+          - ✅ Polinomi di Taylor/MacLaurin e Serie di Fourier (Esercizio 2) 
+          - ✅ Funzioni di due variabili - Ottimizzazione libera e vincolata (Esercizi 3-4)
+          - ✅ Formulario completo con sviluppi notevoli
+          - ✅ Strategie vincenti ed errori comuni da evitare
+          - ✅ Esempi pratici dagli esami precedenti
+          
+          ### 🚀 Come usare la guida:
+          1. Scarica il file `Guida-Strategica-Calcolo2.pdf`
+          2. Studia seguendo l'ordine degli esercizi tipici d'esame
+          3. Usa le strategie e i flowchart per ogni tipologia di problema
+          4. Evita gli errori comuni evidenziati nei box rossi
+          
+          ### 📊 Commit di questa release:
+          ${{ github.sha }}
+          
+          ---
+          
+          *Generato automaticamente da GitHub Actions*
+        files: |
+          Guida-Strategica-Calcolo2.pdf
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Upload PDF as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: guida-calcolo2-${{ steps.version.outputs.version }}
+        path: Guida-Strategica-Calcolo2.pdf
+        retention-days: 90
+    
+    - name: Comment on PR with download link
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const { data: runs } = await github.rest.actions.listWorkflowRunsForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            workflow_id: 'release-pdf.yml',
+            head_sha: context.payload.pull_request.head.sha
+          });
+          
+          const run = runs.workflow_runs[0];
+          const artifactUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${run.id}`;
+          
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `📚 **PDF generato con successo!**\n\nIl PDF aggiornato della Guida Strategica è disponibile negli [artifacts del workflow](${artifactUrl}).\n\n*Questo è un build di anteprima per la PR. Il rilascio ufficiale avverrà solo dopo il merge su main.*`
+          });
