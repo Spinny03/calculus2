@@ -1,5 +1,9 @@
 # 📚 Guida Strategica per l'Esame di Calcolo 2
 
+![Build Status](https://github.com/Spinny03/calculus2/workflows/Build%20and%20Release%20PDF/badge.svg)
+![Latest Release](https://img.shields.io/github/v/release/Spinny03/calculus2?label=Latest%20PDF)
+![GitHub repo size](https://img.shields.io/github/repo-size/Spinny03/calculus2)
+
 Una guida completa e strategica per superare l'esame di Calcolo 2, con tecniche avanzate, esempi pratici e formulario essenziale.
 
 ## 🎯 Contenuti
@@ -105,6 +109,41 @@ Le proposte di miglioramento sono benvenute! Per contribuire:
 
 Questo progetto è rilasciato sotto licenza [MIT](LICENSE).
 
+## 🛠️ Comandi Utili
+
+### Compilazione e Build
+```bash
+# Compilazione rapida con script
+./build.sh
+
+# Verifica status GitHub Actions
+./check-status.sh
+
+# Compilazione manuale (2 passaggi per TOC)
+pdflatex -synctex=1 -interaction=nonstopmode main.tex
+pdflatex -synctex=1 -interaction=nonstopmode main.tex
+```
+
+### Gestione Versioni
+```bash
+# Nuovo rilascio automatico
+git add .
+git commit -m "✨ Descrizione modifiche"
+git push origin main
+# → Rilascio automatico con versioning YYYY.MM.DD.N
+
+# Visualizza tag delle versioni
+git tag -l | sort -V
+
+# Verifica ultimo commit
+git log -1 --oneline
+```
+
+### Link Rapidi
+- 🔗 [GitHub Actions](https://github.com/Spinny03/calculus2/actions)
+- 📦 [Releases](https://github.com/Spinny03/calculus2/releases)
+- 📄 [Latest PDF](https://github.com/Spinny03/calculus2/releases/latest)
+
 ## 👨‍🎓 Autore
 
 **Filippo Spinella**  
@@ -112,4 +151,4 @@ _Versione ampliata con strategie avanzate e formulario completo_
 
 ---
 
-_Ultima versione generata automaticamente: ![Latest Release](https://img.shields.io/github/v/release/username/calculus2?label=PDF%20Version)_
+_Ultima versione generata automaticamente con GitHub Actions 🚀_
