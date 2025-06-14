@@ -112,12 +112,8 @@ Questo progetto è rilasciato sotto licenza [MIT](LICENSE).
 ## 🛠️ Comandi Utili
 
 ### Compilazione e Build
-```bash
-# Compilazione rapida con script
-./build.sh
 
-# Verifica status GitHub Actions
-./check-status.sh
+```bash
 
 # Compilazione manuale (2 passaggi per TOC)
 pdflatex -synctex=1 -interaction=nonstopmode main.tex
@@ -125,6 +121,7 @@ pdflatex -synctex=1 -interaction=nonstopmode main.tex
 ```
 
 ### Gestione Versioni
+
 ```bash
 # Nuovo rilascio automatico
 git add .
@@ -140,6 +137,7 @@ git log -1 --oneline
 ```
 
 ### Link Rapidi
+
 - 🔗 [GitHub Actions](https://github.com/Spinny03/calculus2/actions)
 - 📦 [Releases](https://github.com/Spinny03/calculus2/releases)
 - 📄 [Latest PDF](https://github.com/Spinny03/calculus2/releases/latest)

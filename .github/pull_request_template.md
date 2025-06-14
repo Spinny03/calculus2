@@ -25,7 +25,6 @@
 
 - [ ] Compilazione con `pdflatex`
 - [ ] Verifica PDF generato
-- [ ] Test script `build.sh`
 - [ ] Controllo ortografia/grammatica
 
 ## 📖 Impatto
@@ -37,7 +36,7 @@
 - [ ] Esercizi 3-4 (Funzioni 2 variabili)
 - [ ] Formulario
 - [ ] Configurazione progetto
-- [ ] Altro: ********\_********
+- [ ] Altro: **\*\*\*\***\_**\*\*\*\***
 
 ## 🔗 Issue Correlate
 
