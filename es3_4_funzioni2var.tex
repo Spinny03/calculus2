@@ -1,0 +1,301 @@
+\section{Esercizi 3 e 4: Funzioni di Due Variabili - Tecniche Avanzate}
+Questi esercizi testano la capacità di analizzare una funzione $f(x,y)$ in un'area del piano. La procedura è standardizzata, ma richiede attenzione ai dettagli.
+
+\subsection{Analisi di Base: Dominio e Derivate}
+
+\subsubsection{Dominio e Proprietà Topologiche}
+\begin{itemize}
+    \item \textbf{Determinazione del Dominio:} 
+    \begin{itemize}
+        \item Argomenti di logaritmi: $> 0$. 
+        \item Radici con indice pari: argomento $\ge 0$. 
+        \item Denominatori: $\neq 0$.
+    \end{itemize}
+    \textbf{Disegnalo sempre!} Un disegno aiuta a capire la geometria del problema.
+    \item \textbf{Proprietà del Dominio:} Specifica sempre se è \textbf{aperto} (non contiene la sua frontiera, es. $x^2+y^2 < 1$), \textbf{chiuso} (contiene la sua frontiera, es. $x^2+y^2 \le 1$), \textbf{limitato} (può essere racchiuso in un cerchio di raggio finito), \textbf{connesso} (è un pezzo unico). 
+\end{itemize}
+
+\subsubsection{Calcolo delle Derivate Parziali e del Gradiente}
+\begin{itemize}
+    \item \textbf{Derivata Parziale rispetto a $x$:} Si calcola trattando $y$ come costante.
+    \item \textbf{Derivata Parziale rispetto a $y$:} Si calcola trattando $x$ come costante.
+    \item \textbf{Gradiente:} $\nabla f(x,y) = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y} \right)$
+\end{itemize}
+
+\subsubsection{Differenziabilità e Teoremi Fondamentali}
+
+\begin{info}
+\textbf{Condizioni per la Differenziabilità:}
+Una funzione $f(x,y)$ è differenziabile in $(x_0, y_0)$ se:
+\begin{enumerate}
+    \item Le derivate parziali $f_x$ e $f_y$ esistono in un intorno del punto
+    \item Sono continue nel punto $(x_0, y_0)$
+\end{enumerate}
+Se $f \in C^1$ (derivate parziali continue), allora $f$ è differenziabile.
+\end{info}
+
+\subsubsection{Calcolo delle Derivate Direzionali}
+
+\begin{strategia}
+\textbf{Derivata Direzionale:} Lungo il vettore unitario $\mathbf{u} = \frac{\mathbf{v}}{|\mathbf{v}|}$:
+\[ D_{\mathbf{u}}f(x_0,y_0) = \nabla f(x_0,y_0) \cdot \mathbf{u} = f_x(x_0,y_0) u_1 + f_y(x_0,y_0) u_2 \]
+
+\textbf{Attenzione:} Il vettore deve essere \textbf{unitario}! Se ti danno $\mathbf{v} = (a,b)$, normalizza: $\mathbf{u} = \frac{(a,b)}{\sqrt{a^2+b^2}}$.
+\end{strategia}
+
+\subsubsection{Equazione del Piano Tangente}
+
+Per una superficie $z = f(x,y)$ nel punto $(x_0, y_0, f(x_0,y_0))$:
+\[ z - f(x_0,y_0) = f_x(x_0,y_0)(x-x_0) + f_y(x_0,y_0)(y-y_0) \]
+
+\begin{esempio}
+Per $f(x,y) = (x+y)^2$ nel punto $(0,1)$:
+\begin{enumerate}
+    \item $f_x = 2(x+y)$, $f_y = 2(x+y)$
+    \item Nel punto: $f_x(0,1) = 2$, $f_y(0,1) = 2$, $f(0,1) = 1$
+    \item Piano tangente: $z - 1 = 2(x-0) + 2(y-1) = 2x + 2y - 2$
+    \item Quindi: $z = 2x + 2y - 1$
+\end{enumerate}
+\end{esempio}
+
+\subsection{Funzioni Speciali e Casi Critici dalle Esercitazioni}
+
+\subsubsection{Funzioni con Singolarità}
+
+\begin{info}
+\textbf{Funzioni del Tipo $\frac{g(x,y)}{h(x,y)}$ con $h(0,0) = 0$:}
+Per funzioni come $f(x,y) = \begin{cases}\frac{xy(x+y)}{x^{2}+y^{2}} & (x,y)\ne(0,0)\\ 0 & (x,y)=(0,0)\end{cases}$
+
+Per studiare la differenziabilità in $(0,0)$:
+\begin{enumerate}
+    \item Calcola le derivate parziali in $(0,0)$ usando la definizione
+    \item Verifica se esistono le derivate direzionali lungo tutte le direzioni
+    \item Controlla la continuità delle derivate parziali
+\end{enumerate}
+\end{info}
+
+\begin{esempio}
+Per $f(x,y) = \begin{cases}\frac{xy(x+y)}{x^{2}+y^{2}} & (x,y)\ne(0,0)\\ 0 & (x,y)=(0,0)\end{cases}$
+
+\textbf{Derivate parziali in $(0,0)$:}
+\[ f_x(0,0) = \lim_{h \to 0} \frac{f(h,0) - f(0,0)}{h} = \lim_{h \to 0} \frac{0 - 0}{h} = 0 \]
+\[ f_y(0,0) = \lim_{h \to 0} \frac{f(0,h) - f(0,0)}{h} = \lim_{h \to 0} \frac{0 - 0}{h} = 0 \]
+
+\textbf{Derivata direzionale lungo $\mathbf{v} = (a,b)$ con $|\mathbf{v}| = 1$:}
+\[ D_{\mathbf{v}}f(0,0) = \lim_{t \to 0} \frac{f(ta,tb) - f(0,0)}{t} = \lim_{t \to 0} \frac{ab(a+b)}{a^2+b^2} \]
+
+Questa dipende dalla direzione, quindi $f$ non è differenziabile in $(0,0)$.
+\end{esempio}
+
+\subsection{Ottimizzazione Libera: Punti Critici e Classificazione}
+
+\subsubsection{Procedura Sistematica}
+\begin{enumerate}
+    \item \textbf{Trova i Punti Critici:} Risolvi il sistema $\nabla f = \mathbf{0}$:
+    \[ \begin{cases} f_x(x,y) = 0 \\ f_y(x,y) = 0 \end{cases} \]
+    
+    \item \textbf{Calcola la Matrice Hessiana:}
+    \[ H_f = \begin{pmatrix} f_{xx} & f_{xy} \\ f_{yx} & f_{yy} \end{pmatrix} \]
+    
+    \item \textbf{Test della Derivata Seconda:} Per ogni punto critico $(x_0,y_0)$:
+    \begin{itemize}
+        \item Calcola $D = \det(H_f(x_0,y_0)) = f_{xx}f_{yy} - (f_{xy})^2$
+        \item Se $D > 0$ e $f_{xx} > 0 \Rightarrow$ \textbf{minimo locale}
+        \item Se $D > 0$ e $f_{xx} < 0 \Rightarrow$ \textbf{massimo locale}
+        \item Se $D < 0 \Rightarrow$ \textbf{punto di sella}
+        \item Se $D = 0 \Rightarrow$ \textbf{test inconclusivo}
+    \end{itemize}
+\end{enumerate}
+
+\begin{esempio}
+Dalle esercitazioni: $f(x,y) = 4x^2 y - y^3 - x^4 y$.
+
+\textbf{Punti critici:}
+\[ \nabla f = (8xy - 4x^3 y, 4x^2 - 3y^2 - x^4) = (0,0) \]
+
+Dal primo: $y(8x - 4x^3) = 0$, quindi $y = 0$ o $x = 0$ o $x = \pm\sqrt{2}$.
+
+\textbf{Caso $y = 0$:} Dal secondo: $4x^2 - x^4 = 0 \Rightarrow x^2(4-x^2) = 0$
+Quindi $x = 0$ o $x = \pm 2$.
+Punti: $(0,0)$, $(2,0)$, $(-2,0)$.
+
+\textbf{Caso $x = 0$:} Dal secondo: $-3y^2 = 0 \Rightarrow y = 0$.
+Punto già trovato: $(0,0)$.
+
+\textbf{Caso $x = \pm\sqrt{2}$:} Dal secondo: $4 \cdot 2 - 3y^2 - 4 = 0 \Rightarrow y^2 = \frac{4}{3}$.
+Punti: $(\pm\sqrt{2}, \pm\frac{2}{\sqrt{3}})$.
+\end{esempio}
+
+\subsection{Insiemi di Livello e Visualizzazione}
+
+\subsubsection{Curve di Livello}
+L'insieme di livello di quota $c$ è $\{(x,y) : f(x,y) = c\}$.
+
+\begin{esempio}
+Per $f(x,y) = (x+y)^2$, l'insieme di livello $c = 2$:
+\[ (x+y)^2 = 2 \Rightarrow x+y = \pm\sqrt{2} \]
+Queste sono due rette parallele: $x+y = \sqrt{2}$ e $x+y = -\sqrt{2}$.
+\end{esempio}
+
+\subsubsection{Equazione della Tangente a una Curva di Livello}
+
+\begin{info}
+La retta tangente alla curva di livello $f(x,y) = c$ nel punto $(x_0,y_0)$ ha equazione:
+\[ f_x(x_0,y_0)(x-x_0) + f_y(x_0,y_0)(y-y_0) = 0 \]
+Il gradiente $\nabla f$ è sempre perpendicolare alle curve di livello.
+\end{info}
+
+\begin{esempio}
+Dalle esercitazioni: per $f(x,y) = 4x^2 y - y^3 - x^4 y$ nel punto $Q=(-3,-2)$:
+
+\begin{enumerate}
+    \item $f_x = 8xy - 4x^3 y$, $f_y = 4x^2 - 3y^2 - x^4$
+    \item In $Q$: $f_x(-3,-2) = 8(-3)(-2) - 4(-3)^3(-2) = 48 - 216 = -168$
+    \item $f_y(-3,-2) = 4(9) - 3(4) - 81 = 36 - 12 - 81 = -57$
+    \item Equazione tangente: $-168(x+3) - 57(y+2) = 0$
+    \item Semplificando: $168x + 57y + 618 = 0$
+\end{enumerate}
+\end{esempio}
+
+\subsection{Ottimizzazione Vincolata: Metodo dei Moltiplicatori di Lagrange}
+
+\subsubsection{Problema Standard}
+Ottimizzare $f(x,y)$ soggetta al vincolo $g(x,y) = 0$.
+
+\begin{strategia}
+\textbf{Procedura dei Moltiplicatori di Lagrange:}
+\begin{enumerate}
+    \item Forma la Lagrangiana: $L(x,y,\lambda) = f(x,y) - \lambda g(x,y)$
+    \item Risolvi il sistema:
+    \[ \begin{cases} 
+    \frac{\partial L}{\partial x} = f_x - \lambda g_x = 0 \\
+    \frac{\partial L}{\partial y} = f_y - \lambda g_y = 0 \\
+    \frac{\partial L}{\partial \lambda} = -g(x,y) = 0
+    \end{cases} \]
+    \item Valuta $f$ nei punti candidati trovati
+    \item Confronta i valori per determinare massimo e minimo globali
+\end{enumerate}
+\end{strategia}
+
+\subsubsection{Caso di Insieme Compatto}
+
+\begin{info}
+\textbf{Teorema di Weierstrass:} Se $f$ è continua e $K$ è compatto (chiuso e limitato), allora $f$ ammette massimo e minimo assoluti su $K$.
+
+\textbf{Strategia per insiemi del tipo $D = \{(x,y) : g(x,y) \leq 0\}$:}
+\begin{enumerate}
+    \item Cerca punti critici nell'interno: $\nabla f = 0$ e $g(x,y) < 0$
+    \item Ottimizza sulla frontiera: usa Lagrange per $f$ vincolata a $g(x,y) = 0$
+    \item Confronta tutti i valori per trovare il massimo e minimo globali
+\end{enumerate}
+\end{info}
+
+\begin{esempio}
+Dalle esercitazioni: ottimizzare $f(x,y) = (x+y)^2$ su $C = \{(x,y) : x^2 + 3y^2 = 1\}$.
+
+\textbf{Lagrangiana:} $L = (x+y)^2 - \lambda(x^2 + 3y^2 - 1)$
+
+\textbf{Sistema:}
+\[ \begin{cases}
+2(x+y) - 2\lambda x = 0 \\
+2(x+y) - 6\lambda y = 0 \\
+x^2 + 3y^2 = 1
+\end{cases} \]
+
+Dalle prime due: $x+y = \lambda x$ e $x+y = 3\lambda y$.
+Quindi $\lambda x = 3\lambda y$. Se $\lambda \neq 0$: $x = 3y$.
+
+Sostituendo nel vincolo: $(3y)^2 + 3y^2 = 1 \Rightarrow 12y^2 = 1 \Rightarrow y = \pm\frac{1}{2\sqrt{3}}$.
+
+Punti critici: $\left(\pm\frac{3}{2\sqrt{3}}, \pm\frac{1}{2\sqrt{3}}\right)$.
+
+Se $\lambda = 0$: $x+y = 0$, quindi $y = -x$. Dal vincolo: $x^2 + 3x^2 = 1 \Rightarrow x = \pm\frac{1}{2}$.
+Punti: $\left(\frac{1}{2}, -\frac{1}{2}\right)$ e $\left(-\frac{1}{2}, \frac{1}{2}\right)$.
+
+Valutando $f$:
+\begin{itemize}
+    \item $f\left(\frac{3}{2\sqrt{3}}, \frac{1}{2\sqrt{3}}\right) = \left(\frac{4}{2\sqrt{3}}\right)^2 = \frac{4}{3}$ (massimo)
+    \item $f\left(-\frac{3}{2\sqrt{3}}, -\frac{1}{2\sqrt{3}}\right) = \left(-\frac{4}{2\sqrt{3}}\right)^2 = \frac{4}{3}$ (massimo)
+    \item $f\left(\frac{1}{2}, -\frac{1}{2}\right) = 0$ (minimo)
+    \item $f\left(-\frac{1}{2}, \frac{1}{2}\right) = 0$ (minimo)
+\end{itemize}
+\end{esempio}
+
+\subsection{Direzione di Massima Crescita}
+
+\begin{info}
+\textbf{Gradiente e Direzione di Crescita:}
+\begin{itemize}
+    \item La direzione di \textbf{massima crescita} di $f$ in $(x_0,y_0)$ è $\nabla f(x_0,y_0)$
+    \item La direzione di \textbf{massima decrescita} è $-\nabla f(x_0,y_0)$
+    \item Il \textbf{tasso di massima crescita} è $|\nabla f(x_0,y_0)|$
+\end{itemize}
+\end{info}
+
+\begin{esempio}
+Dalle esercitazioni: per $f(x,y) = x^3 + 4xy^2 - 4x$ nel punto $P_0 = (1,-2)$:
+
+\begin{enumerate}
+    \item $\nabla f = (3x^2 + 4y^2 - 4, 8xy)$
+    \item In $P_0$: $\nabla f(1,-2) = (3 + 16 - 4, 8 \cdot 1 \cdot (-2)) = (15, -16)$
+    \item Direzione di massima crescita: $(15, -16)$
+    \item Verso unitario: $\frac{(15,-16)}{\sqrt{15^2 + 16^2}} = \frac{(15,-16)}{\sqrt{481}}$
+\end{enumerate}
+\end{esempio}
+
+\subsection{Teorema della Funzione Implicita (Dini) - Aspetti Avanzati}
+Data $F(x,y)=0$ e un punto $P_0(x_0,y_0)$ tale che $F(P_0)=0$. 
+
+\subsubsection{Tecnica Standard}
+\begin{enumerate}
+    \item \textbf{Verifica Ipotesi:} Per poter definire una funzione $y=g(x)$ in un intorno di $x_0$:
+    \begin{itemize}
+        \item $F(x_0, y_0) = 0$ (il punto appartiene al luogo di zeri). 
+        \item $F_y(x_0,y_0) \neq 0$ (derivata parziale rispetto alla variabile da esplicitare diversa da zero). 
+    \end{itemize}
+    \item \textbf{Calcolo Derivata Prima:}
+    \[ g'(x_0) = -\frac{F_x(x_0,y_0)}{F_y(x_0,y_0)} \]
+    \item \textbf{Polinomi di Taylor per Funzioni Implicite:} Deriva ripetutamente l'equazione $F(x,g(x)) = 0$.
+\end{enumerate}
+
+\begin{esempio}
+Dalle esercitazioni: $y + y^6 + x^2 = 0$ nell'intorno di $(0,0)$.
+
+\begin{enumerate}
+    \item \(F(x,y) = y + y^6 + x^2\), \(F(0,0) = 0\) \(\checkmark\)
+    \item \(F_y = 1 + 6y^5\), \(F_y(0,0) = 1 \neq 0\) \(\checkmark\)
+    \item $g(0) = 0$ (dalla condizione $F(0,g(0)) = 0$)
+    \item $g'(0) = -\frac{F_x(0,0)}{F_y(0,0)} = -\frac{0}{1} = 0$
+    \item Derivando $F(x,g(x)) = 0$: $F_x + F_y g' = 0$
+    \item Derivando ancora: $F_{xx} + 2F_{xy}g' + F_{yy}(g')^2 + F_y g'' = 0$
+    \item In $(0,0)$: $2 + 0 + 0 + 1 \cdot g''(0) = 0 \Rightarrow g''(0) = -2$
+    \item Taylor: $g(x) = 0 + 0 \cdot x + \frac{-2}{2}x^2 + o(x^2) = -x^2 + o(x^2)$
+\end{enumerate}
+\end{esempio}
+
+\subsection{Curve Parametriche e Regolarità (dalle Esercitazioni)}
+
+\begin{info}
+Una curva parametrica $\gamma(t) = (x(t), y(t))$ è \textbf{regolare} se:
+\begin{enumerate}
+    \item Le componenti $x(t)$ e $y(t)$ sono derivabili
+    \item $\gamma'(t) = (x'(t), y'(t)) \neq (0,0)$ per ogni $t$
+\end{enumerate}
+
+\textbf{Velocità scalare:} $v(t) = |\gamma'(t)| = \sqrt{(x'(t))^2 + (y'(t))^2}$
+
+\textbf{Retta tangente nel punto $\gamma(t_0)$:}
+\[ \frac{x - x(t_0)}{x'(t_0)} = \frac{y - y(t_0)}{y'(t_0)} \]
+\end{info}
+
+\begin{esempio}
+Dalle esercitazioni: $\gamma(t) = (t, f(t,t) + 1) = (t, (2t)^2 + 1) = (t, 4t^2 + 1)$:
+
+\begin{enumerate}
+    \item $\gamma'(t) = (1, 8t)$
+    \item $|\gamma'(t)| = \sqrt{1 + 64t^2}$
+    \item La curva è regolare su tutto $\mathbb{R}$ (il vettore tangente non si annulla mai)
+    \item Nel punto $\gamma(-2) = (-2, 17)$: $\gamma'(-2) = (1, -16)$
+    \item Retta tangente: $\frac{x+2}{1} = \frac{y-17}{-16}$, cioè $y = -16x - 15$
+\end{enumerate}
+\end{esempio}

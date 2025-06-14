@@ -1,0 +1,171 @@
+\section{Esercizio 2: Polinomi di Taylor/MacLaurin e Serie di Fourier}
+
+\subsection{Polinomi di Taylor / MacLaurin - Tecniche Avanzate}
+\begin{strategia}
+Non calcolare \textbf{mai} le derivate una per una, a meno che non sia esplicitamente richiesto o la funzione sia banalissima. La strada maestra è usare gli \textbf{sviluppi notevoli} (vedi formulario) e combinarli algebricamente (somma, prodotto, composizione).
+\end{strategia}
+
+\subsubsection{Tecniche Standard}
+\begin{itemize}
+    \item \textbf{Come operare:} Sostituisci, somma, moltiplica e componi gli sviluppi notevoli. Ricorda di fermarti all'ordine richiesto e di usare il simbolo di o-piccolo $o((x-x_0)^n)$. Gestisci con cura le potenze e gli ordini degli o-piccoli.
+    \item \textbf{Calcolo di $f^{(n)}(0)$:} Dalla teoria, il coefficiente $c_n$ del termine $x^n$ nello sviluppo di MacLaurin è $c_n = \frac{f^{(n)}(0)}{n!}$. La formula inversa è potentissima per calcolare derivate in zero senza fatica: 
+    \[ f^{(n)}(0) = n! \cdot c_n \]
+    \item \textbf{Resto di Lagrange e Stima dell'Errore:} Il resto di Lagrange di ordine $n$ è:
+    \[ R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1} \]
+    dove $\xi$ è un punto compreso tra $x_0$ e $x$. Per stimare l'errore:
+    \begin{enumerate}
+        \item Calcola la derivata $(n+1)$-esima di $f$.
+        \item Trova il massimo di $|f^{(n+1)}(\xi)|$ nell'intervallo di interesse.
+        \item Applica la formula: $|R_n(x)| \le \frac{M}{(n+1)!}|x-x_0|^{n+1}$ dove $M = \max |f^{(n+1)}(\xi)|$.
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{Tecniche Avanzate dalle Esercitazioni}
+
+\begin{info}
+\textbf{Calcolo di Derivate di Ordine Elevato:}
+Per calcolare $f^{(n)}(0)$ con $n$ molto grande (es. $f^{(99)}(0)$), analizza la struttura della serie di Taylor:
+\begin{itemize}
+    \item Se la funzione ha uno sviluppo polinomiale di grado finito, le derivate di ordine superiore sono nulle.
+    \item Per funzioni trigonometriche, sfrutta la periodicità delle derivate.
+    \item Per funzioni esponenziali composte, usa la regola della derivazione a catena ripetuta.
+\end{itemize}
+\end{info}
+
+\begin{esempio}
+Calcolare $f^{(99)}(0)$ per $f(x) = x^2 + 2x + e^x - x\sin(3x)$.
+
+Analizziamo termine per termine:
+\begin{itemize}
+    \item $x^2 + 2x$: polinomio di grado 2, quindi $\frac{d^{99}}{dx^{99}}(x^2 + 2x) = 0$
+    \item $e^x$: ha $\frac{d^{99}}{dx^{99}}e^x = e^x$, quindi contribuisce 1 in $x=0$
+    \item $x\sin(3x)$: sviluppando $\sin(3x) = 3x - \frac{(3x)^3}{3!} + \frac{(3x)^5}{5!} - \cdots$, otteniamo $x\sin(3x) = 3x^2 - \frac{3^3x^4}{3!} + \cdots$. Il termine di grado 99 è nullo.
+\end{itemize}
+Quindi $f^{(99)}(0) = 99! \cdot 0 + 1 + 0 = 1$.
+\end{esempio}
+
+\begin{esempio}
+Dalle esercitazioni: $f(x) = (e^{3x}-1)\cos(2x) - x$
+
+Per il polinomio di Taylor di ordine 4:
+\begin{enumerate}
+    \item $e^{3x} - 1 = 3x + \frac{(3x)^2}{2!} + \frac{(3x)^3}{3!} + \frac{(3x)^4}{4!} + o(x^4)$
+    \item $\cos(2x) = 1 - \frac{(2x)^2}{2!} + \frac{(2x)^4}{4!} + o(x^4)$
+    \item Moltiplicando e raccogliendo fino al quarto ordine:
+    \[ f(x) = 2x^2 + \frac{7x^3}{3} - \frac{5x^4}{3} + o(x^4) \]
+\end{enumerate}
+\end{esempio}
+
+\subsubsection{Stime di Precisione Numerica}
+
+\begin{strategia}
+Per stimare valori numerici (es. $\log(4/3)$ a meno di $10^{-5}$):
+\begin{enumerate}
+    \item Trova una funzione opportuna da sviluppare (es. $f(x) = \log(\cos x)$ per $x = \arccos(3/4)$).
+    \item Sviluppa la funzione fino all'ordine necessario per raggiungere la precisione richiesta.
+    \item Usa la stima del resto per verificare che l'errore sia inferiore alla soglia.
+\end{enumerate}
+\end{strategia}
+
+\begin{esempio}
+Dalle esercitazioni: stimare $\log(4/3)$ usando $f(x) = \log(\cos x)$.
+
+Osserviamo che $\cos(\arccos(3/4)) = 3/4$, quindi $4/3 = 1/\cos(\arccos(3/4))$.
+Tuttavia, è più semplice usare $\log(4/3) = \log(4) - \log(3)$ e sviluppi noti.
+\end{esempio}
+
+\subsection{Serie di Fourier - Tecniche Avanzate}
+\begin{strategia}
+\begin{enumerate}
+    \item \textbf{Disegna la funzione!} Un grafico del prolungamento periodico ti aiuta a vedere subito simmetrie e punti di discontinuità. 
+    \item \textbf{Simmetrie:} Se $f$ è \textbf{pari} ($f(-x)=f(x)$), allora tutti i $b_n=0$. Se $f$ è \textbf{dispari} ($f(-x)=-f(x)$), allora $a_0=0$ e tutti gli $a_n=0$. Questo ti dimezza il lavoro! 
+    \item \textbf{Calcolo Coefficienti:} Usa le formule, prestando attenzione agli estremi di integrazione (di solito $[-\pi, \pi]$ o $[-T/2, T/2]$). L'integrazione per parti è quasi sempre necessaria. 
+    \item \textbf{Convergenza Puntuale (Teorema di Dirichlet):}
+        \begin{itemize}
+            \item Dove $f$ è continua, la serie converge a $f(x)$. 
+            \item Nei punti di discontinuità a salto $x_d$, la serie converge al valore medio del salto: $\frac{f(x_d^+) + f(x_d^-)}{2}$. 
+        \end{itemize}
+    \item \textbf{Identità di Parseval:} Utile per calcolare la somma di serie numeriche. $\frac{1}{T} \int_{-T/2}^{T/2} |f(x)|^2 dx = \frac{a_0^2}{4} + \frac{1}{2} \sum_{n=1}^\infty (a_n^2 + b_n^2)$. 
+\end{enumerate}
+\end{strategia}
+
+\subsubsection{Tecniche Avanzate dalle Esercitazioni}
+
+\begin{info}
+\textbf{Serie di Fourier di Funzioni Traslate:}
+Se $g(x) = f(x-a)$, allora i coefficienti di Fourier di $g$ sono:
+\[ \hat{g}_n = e^{-ina\frac{2\pi}{T}} \hat{f}_n \]
+Questo è utile per evitare di ricalcolare integrali complessi.
+\end{info}
+
+\begin{esempio}
+Dalle esercitazioni: $g(x) = f(x-1)$ dove $f$ ha coefficienti $\hat{f}_n$.
+Per $T = 2\pi$: $\hat{g}_2 = e^{-i \cdot 2 \cdot 1} \hat{f}_2 = e^{-2i} \hat{f}_2$
+\end{esempio}
+
+\begin{info}
+\textbf{Prolungamento Pari/Dispari:}
+Per estendere una funzione definita su $[0,L]$ a tutto l'asse:
+\begin{itemize}
+    \item \textbf{Prolungamento pari:} $f(-x) = f(x)$ produce solo termini in coseno
+    \item \textbf{Prolungamento dispari:} $f(-x) = -f(x)$ produce solo termini in seno
+\end{itemize}
+Questa tecnica può semplificare notevolmente i calcoli.
+\end{info}
+
+\begin{esempio}
+Funzione con parametro $\alpha$ dalle esercitazioni: 
+\[ g_{\alpha}(x)=\begin{cases}x^{2},&x\in[0,\pi]\\ \alpha x,&x\in(\pi,2\pi).\end{cases} \]
+
+Per studiare la convergenza al variare di $\alpha$:
+\begin{enumerate}
+    \item Calcola i coefficienti di Fourier in funzione di $\alpha$
+    \item Analizza la convergenza puntuale nei punti di discontinuità ($x = \pi$)
+    \item Nel punto $x = \pi$: la serie converge a $\frac{g(\pi^-) + g(\pi^+)}{2} = \frac{\pi^2 + \alpha\pi}{2}$
+\end{enumerate}
+\end{esempio}
+
+\subsubsection{Convergenza Totale per Serie di Fourier}
+
+\begin{info}
+\textbf{Convergenza Totale:}
+Una serie di Fourier converge totalmente su $\mathbb{R}$ se $\sum_{n=1}^{\infty} (|a_n| + |b_n|) < \infty$.
+
+\textbf{Estensione di Funzioni per Convergenza Totale:}
+Come suggerito nelle esercitazioni, per ottenere convergenza totale si può:
+\begin{enumerate}
+    \item Estendere la funzione a una funzione pari su un intervallo più ampio
+    \item Cambiare la scala temporale (dilatazione/contrazione)
+    \item Usare prolungamenti regolari che riducono le discontinuità
+\end{enumerate}
+\end{info}
+
+\begin{esempio}
+Dalle esercitazioni: per $g_\pi(x)$ definita su $[0,2\pi]$, estenderla a una funzione pari su $[-2\pi,2\pi]$ per ottenere convergenza totale della serie
+\[ \sum_{n=-\infty}^{+\infty} c_n e^{-i\frac{nx}{2}} \]
+\end{esempio}
+
+\subsubsection{Casi Speciali delle Esercitazioni}
+
+\begin{info}
+\textbf{Funzioni con Discontinuità Multiple:}
+Per funzioni come:
+\[ f(x) = \begin{cases} -1 & x \in [-\pi,-\pi/2) \cup (\pi/2,\pi) \\ 1 & x \in (-\pi/2,\pi/2) \\ 0 & x = \pm\pi/2 \end{cases} \]
+
+La convergenza della serie di Fourier:
+\begin{itemize}
+    \item Nei punti di continuità: converge a $f(x)$
+    \item Nei punti di discontinuità: converge al valore medio
+    \item Nei punti assegnati esplicitamente: converge al valore assegnato se coincide con il valore medio
+\end{itemize}
+\end{info}
+
+\begin{strategia}
+\textbf{Per Funzioni Definite a Tratti:}
+\begin{enumerate}
+    \item Identifica tutti i punti di discontinuità
+    \item Calcola i limiti destro e sinistro in ogni punto
+    \item Applica il teorema di Dirichlet per determinare la convergenza
+    \item Fai particolare attenzione ai punti agli estremi dell'intervallo di definizione
+\end{enumerate}
+\end{strategia}

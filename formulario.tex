@@ -1,0 +1,233 @@
+\section{Formulario Essenziale e Sviluppi Notevoli}
+
+\subsection{Sviluppi di MacLaurin Fondamentali}
+
+\begin{info}
+\textbf{Serie Elementari (da memorizzare):}
+\begin{align}
+e^x &= 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots = \sum_{n=0}^{\infty} \frac{x^n}{n!} \\
+\sin x &= x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \cdots = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n+1}}{(2n+1)!} \\
+\cos x &= 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \cdots = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n}}{(2n)!} \\
+\ln(1+x) &= x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \cdots = \sum_{n=1}^{\infty} \frac{(-1)^{n+1} x^n}{n} \\
+\frac{1}{1-x} &= 1 + x + x^2 + x^3 + \cdots = \sum_{n=0}^{\infty} x^n \quad (|x| < 1) \\
+\frac{1}{1+x} &= 1 - x + x^2 - x^3 + \cdots = \sum_{n=0}^{\infty} (-1)^n x^n \quad (|x| < 1) \\
+\arctan x &= x - \frac{x^3}{3} + \frac{x^5}{5} - \frac{x^7}{7} + \cdots = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n+1}}{2n+1} \\
+(1+x)^\alpha &= 1 + \alpha x + \frac{\alpha(\alpha-1)}{2!}x^2 + \cdots \quad (|x| < 1)
+\end{align}
+\end{info}
+
+\subsection{Sviluppi Speciali dalle Esercitazioni}
+
+\begin{info}
+\textbf{Sviluppi Composti Utili:}
+\begin{align}
+\sinh x &= \frac{e^x - e^{-x}}{2} = x + \frac{x^3}{3!} + \frac{x^5}{5!} + \cdots \\
+\cosh x &= \frac{e^x + e^{-x}}{2} = 1 + \frac{x^2}{2!} + \frac{x^4}{4!} + \cdots \\
+\tanh x &= x - \frac{x^3}{3} + \frac{2x^5}{15} + \cdots \\
+\arcsin x &= x + \frac{x^3}{6} + \frac{3x^5}{40} + \cdots \\
+\log(\cos x) &= -\frac{x^2}{2} - \frac{x^4}{12} - \frac{x^6}{45} + \cdots \\
+\frac{x^2}{1+e^x} &= \frac{x^2}{2} - \frac{x^3}{4} + \frac{x^4}{8} - \frac{x^5}{8} + \cdots
+\end{align}
+\end{info}
+
+\subsection{Equivalenze Asintotiche per $x \to 0$}
+
+\begin{info}
+\textbf{Equivalenze Fondamentali:}
+\begin{align}
+\sin x &\sim x \\
+\tan x &\sim x \\
+\arcsin x &\sim x \\
+\arctan x &\sim x \\
+\ln(1+x) &\sim x \\
+e^x - 1 &\sim x \\
+1 - \cos x &\sim \frac{x^2}{2} \\
+(1+x)^\alpha - 1 &\sim \alpha x \\
+\sinh x &\sim x \\
+\tanh x &\sim x
+\end{align}
+\end{info}
+
+\subsection{Equivalenze Avanzate dalle Esercitazioni}
+
+\begin{info}
+\textbf{Equivalenze per Serie Speciali:}
+\begin{align}
+\sin(1/n^3) &\sim \frac{1}{n^3} \quad \text{per } n \to \infty \\
+\ln\left(1 + \frac{1}{\sqrt{n}}\right) &\sim \frac{1}{\sqrt{n}} \quad \text{per } n \to \infty \\
+e^{1/n^2} - 1 &\sim \frac{1}{n^2} \quad \text{per } n \to \infty \\
+1 - \cos(1/n) &\sim \frac{1}{2n^2} \quad \text{per } n \to \infty \\
+\arctan(n) &\sim \frac{\pi}{2} - \frac{1}{n} \quad \text{per } n \to \infty \\
+\log(n+1) - \log n &= \log\left(1 + \frac{1}{n}\right) \sim \frac{1}{n} \quad \text{per } n \to \infty
+\end{align}
+\end{info}
+
+\subsection{Criteri di Convergenza per Serie}
+
+\begin{info}
+\textbf{Criteri Principali:}
+\begin{enumerate}
+    \item \textbf{Confronto Asintotico:} Se $a_n \sim b_n$ per $n \to \infty$, allora $\sum a_n$ e $\sum b_n$ hanno lo stesso carattere
+    \item \textbf{Criterio del Rapporto:} $L = \lim_{n \to \infty} \left|\frac{a_{n+1}}{a_n}\right|$
+        \begin{itemize}
+            \item $L < 1$: converge assolutamente
+            \item $L > 1$: diverge
+            \item $L = 1$: inconclusivo
+        \end{itemize}
+    \item \textbf{Criterio della Radice:} $L = \lim_{n \to \infty} \sqrt[n]{|a_n|}$ (stesse conclusioni del rapporto)
+    \item \textbf{Criterio di Leibniz:} Per $\sum (-1)^n b_n$ con $b_n \geq 0$:
+        \begin{itemize}
+            \item $b_n \to 0$
+            \item $b_n$ definitivamente decrescente
+        \end{itemize}
+        Allora la serie converge semplicemente
+\end{enumerate}
+\end{info}
+
+\subsection{Criteri Speciali dalle Esercitazioni}
+
+\begin{info}
+\textbf{Formula di Stirling:} $n! \sim \sqrt{2\pi n}\left(\frac{n}{e}\right)^n$ per $n \to \infty$
+
+\textbf{Coefficienti Binomiali:}
+\begin{itemize}
+    \item $\binom{2n}{n} \sim \frac{4^n}{\sqrt{\pi n}}$ per $n \to \infty$
+    \item $\binom{an}{bn} \sim \frac{a^{an}}{b^{bn}(a-b)^{(a-b)n}} \cdot \frac{1}{\sqrt{2\pi n}}$ (approssimazione)
+    \item $\frac{1}{\binom{4n}{3n}} \sim \frac{\sqrt{3\pi n}}{4^n}$ per $n \to \infty$
+\end{itemize}
+
+\textbf{Comportamento di $n^n/e^n$:}
+\[ \frac{n^n}{e^n} = \left(\frac{n}{e}\right)^n \sim \sqrt{2\pi n} \text{ per } n \to \infty \]
+\end{info}
+
+\subsection{Formule per le Serie di Fourier}
+
+\begin{info}
+\textbf{Coefficienti di Fourier (periodo $2\pi$):}
+\begin{align}
+a_0 &= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) dx \\
+a_n &= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos(nx) dx \quad (n \geq 1) \\
+b_n &= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin(nx) dx \quad (n \geq 1)
+\end{align}
+
+\textbf{Coefficienti per periodo $T$:}
+\begin{align}
+a_0 &= \frac{2}{T} \int_{-T/2}^{T/2} f(x) dx \\
+a_n &= \frac{2}{T} \int_{-T/2}^{T/2} f(x) \cos\left(\frac{2\pi nx}{T}\right) dx \\
+b_n &= \frac{2}{T} \int_{-T/2}^{T/2} f(x) \sin\left(\frac{2\pi nx}{T}\right) dx
+\end{align}
+
+\textbf{Serie di Fourier:}
+\[ f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left(a_n \cos\left(\frac{2\pi nx}{T}\right) + b_n \sin\left(\frac{2\pi nx}{T}\right)\right) \]
+
+\textbf{Forma esponenziale (periodo $2\pi$):}
+\[ f(x) = \sum_{n=-\infty}^{\infty} c_n e^{inx} \]
+dove $c_n = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x) e^{-inx} dx$
+
+\textbf{Relazione tra le forme:}
+\[ c_0 = \frac{a_0}{2}, \quad c_n = \frac{a_n - ib_n}{2}, \quad c_{-n} = \frac{a_n + ib_n}{2} \]
+\end{info}
+
+\subsection{Proprietà delle Serie di Fourier}
+
+\begin{info}
+\textbf{Simmetrie:}
+\begin{itemize}
+    \item \textbf{Funzione pari:} $f(-x) = f(x) \Rightarrow b_n = 0$ per ogni $n$
+    \item \textbf{Funzione dispari:} $f(-x) = -f(x) \Rightarrow a_0 = a_n = 0$ per ogni $n$
+\end{itemize}
+
+\textbf{Convergenza (Teorema di Dirichlet):}
+\begin{itemize}
+    \item Nei punti di continuità: la serie converge a $f(x)$
+    \item Nei punti di discontinuità a salto: converge a $\frac{f(x^+) + f(x^-)}{2}$
+\end{itemize}
+
+\textbf{Identità di Parseval:}
+\[ \frac{1}{\pi} \int_{-\pi}^{\pi} |f(x)|^2 dx = \frac{a_0^2}{2} + \sum_{n=1}^{\infty} (a_n^2 + b_n^2) \]
+
+\textbf{Convergenza Totale:}
+La serie di Fourier converge totalmente se $\sum_{n=1}^{\infty} (|a_n| + |b_n|) < \infty$.
+\end{info}
+
+\subsection{Operatori Differenziali}
+
+\begin{info}
+\textbf{Gradiente:} $\nabla f = \left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}\right)$
+
+\textbf{Divergenza:} $\nabla \cdot \mathbf{F} = \frac{\partial F_1}{\partial x} + \frac{\partial F_2}{\partial y}$
+
+\textbf{Rotore (2D):} $\nabla \times \mathbf{F} = \frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y}$
+
+\textbf{Laplaciano:} $\Delta f = \nabla^2 f = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2}$
+
+\textbf{Matrice Hessiana:}
+\[ H_f = \begin{pmatrix} 
+f_{xx} & f_{xy} \\ 
+f_{yx} & f_{yy} 
+\end{pmatrix} \]
+
+\textbf{Determinante Hessiano:} $D = f_{xx}f_{yy} - (f_{xy})^2$
+\end{info}
+
+\subsection{Formule di Ottimizzazione}
+
+\begin{info}
+\textbf{Test della Derivata Seconda:}
+Per un punto critico $(x_0, y_0)$ con $\nabla f(x_0, y_0) = 0$:
+\begin{itemize}
+    \item $D > 0$ e $f_{xx} > 0$: minimo locale
+    \item $D > 0$ e $f_{xx} < 0$: massimo locale  
+    \item $D < 0$: punto di sella
+    \item $D = 0$: test inconclusivo
+\end{itemize}
+
+\textbf{Moltiplicatori di Lagrange:}
+Per ottimizzare $f(x,y)$ soggetta a $g(x,y) = 0$:
+\[ \nabla f = \lambda \nabla g \quad \text{e} \quad g(x,y) = 0 \]
+
+\textbf{Teorema della Funzione Implicita:}
+Se $F(x_0, y_0) = 0$ e $F_y(x_0, y_0) \neq 0$, allora:
+\[ \frac{dy}{dx}\bigg|_{x_0} = -\frac{F_x(x_0, y_0)}{F_y(x_0, y_0)} \]
+\end{info}
+
+\subsection{Integrali Utili per Fourier}
+
+\begin{info}
+\textbf{Integrali Standard:}
+\begin{align}
+\int_{-\pi}^{\pi} \sin(nx) dx &= 0 \quad \forall n \neq 0 \\
+\int_{-\pi}^{\pi} \cos(nx) dx &= \begin{cases} 2\pi & n = 0 \\ 0 & n \neq 0 \end{cases} \\
+\int_{-\pi}^{\pi} \sin(mx)\cos(nx) dx &= 0 \quad \forall m,n \\
+\int_{-\pi}^{\pi} \sin(mx)\sin(nx) dx &= \begin{cases} \pi & m = n \neq 0 \\ 0 & m \neq n \end{cases} \\
+\int_{-\pi}^{\pi} \cos(mx)\cos(nx) dx &= \begin{cases} \pi & m = n \neq 0 \\ 0 & m \neq n \end{cases}
+\end{align}
+
+\textbf{Integrazione per Parti:}
+\[ \int u dv = uv - \int v du \]
+Molto utile per integrali con $x \sin(nx)$, $x \cos(nx)$, etc.
+\end{info}
+
+\subsection{Costanti e Valori Notevoli}
+
+\begin{info}
+\textbf{Costanti Matematiche:}
+\begin{align}
+e &\approx 2.718281828 \\
+\pi &\approx 3.141592654 \\
+\ln 2 &\approx 0.693147181 \\
+\ln 10 &\approx 2.302585093 \\
+\sqrt{2} &\approx 1.414213562 \\
+\sqrt{3} &\approx 1.732050808
+\end{align}
+
+\textbf{Valori Trigonometrici:}
+\begin{align}
+\sin(\pi/6) = \cos(\pi/3) &= 1/2 \\
+\sin(\pi/4) = \cos(\pi/4) &= \sqrt{2}/2 \\
+\sin(\pi/3) = \cos(\pi/6) &= \sqrt{3}/2 \\
+\tan(\pi/6) &= 1/\sqrt{3} \\
+\tan(\pi/4) &= 1 \\
+\tan(\pi/3) &= \sqrt{3}
+\end{align}
+\end{info}

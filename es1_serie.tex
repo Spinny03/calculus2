@@ -1,0 +1,117 @@
+\section{Esercizio 1: Serie Numeriche e di Potenze}
+Questo è spesso il primo scoglio. L'obiettivo è capire il "carattere" di una serie. La chiave è la sistematicità.
+
+\subsection{Studio della Convergenza di Serie Numeriche}
+\begin{strategia}
+\textbf{Flowchart mentale:}
+\begin{enumerate}
+    \item \textbf{Condizione Necessaria:} Il termine $a_n \to 0$? Se NO $\implies$ DIVERGE. Se SÌ, procedi. 
+    \item \textbf{Segno:} La serie è a termini positivi? (o definitivamente positivi). Se SÌ, usa i criteri per serie positive (confronto asintotico è il più potente). Se NO, vai al punto 3. 
+    \item \textbf{Convergenza Assoluta:} Studia $\sum |a_n|$ (che è a termini positivi). Se converge, hai finito: la serie converge ASSOLUTAMENTE (e quindi anche semplicemente). Se diverge, non puoi concludere nulla sulla convergenza semplice, vai al punto 4. 
+    \item \textbf{Convergenza Semplice (Criterio di Leibniz):} La serie è a \textbf{segni alterni}, della forma $\sum (-1)^n b_n$ con $b_n>0$? Se SÌ, verifica le due condizioni di Leibniz ($b_n \to 0$ e $b_n$ decrescente). Se valgono, la serie converge SEMPLICEMENTE. 
+\end{enumerate}
+\end{strategia}
+
+\subsubsection{Analisi Dettagliata dei Criteri}
+\begin{enumerate}
+    \item \textbf{Condizione Necessaria:} $\lim_{n \to \infty} a_n = 0$. 
+    \begin{errore}
+    Se il limite è 0, \textbf{non puoi concludere nulla}! La condizione è solo necessaria, non sufficiente. Dire "siccome $a_n \to 0$ la serie converge" è un errore grave che invalida l'esercizio. 
+    \end{errore}
+
+    \item \textbf{Convergenza Assoluta (Studio di $\sum |a_n|$):} 
+    \begin{itemize}
+        \item \textbf{Confronto Asintotico (il più potente):} Semplifica $|a_n|$ per $n \to \infty$ usando gli sviluppi di MacLaurin o le equivalenze asintotiche notevoli (es. $\sin(x) \sim x$, $\ln(1+x) \sim x$, $e^x-1 \sim x$ per $x \to 0$). Confrontala con la serie armonica generalizzata $\sum \frac{1}{n^\alpha}$ (converge se $\alpha > 1$) o la serie geometrica $\sum q^n$ (converge se $|q| < 1$). 
+        \item \textbf{Criterio del Rapporto:} Utile con fattoriali ($n!$) o termini esponenziali ($k^n$). Calcola $L = \lim_{n \to \infty} \frac{|a_{n+1}|}{|a_n|}$. Se $L<1$ converge assolutamente, se $L>1$ diverge, se $L=1$ è inconclusivo. 
+        \item \textbf{Criterio della Radice:} Utile con potenze $n$-esime. Calcola $L = \lim_{n \to \infty} \sqrt[n]{|a_n|}$. Le conclusioni sono le stesse del criterio del rapporto. 
+    \end{itemize}
+    
+    \begin{esempio}
+    Studiare la convergenza di $\sum_{n=1}^{+\infty} 2^n \sin\left(\frac{1}{5^n}\right)$.
+    La serie è a termini positivi. Per $n \to \infty$, l'argomento del seno $1/5^n \to 0$. Usiamo il confronto asintotico: $\sin(1/5^n) \sim 1/5^n$. 
+    Quindi, la nostra serie ha lo stesso carattere di:
+    \[ \sum_{n=1}^{+\infty} 2^n \cdot \frac{1}{5^n} = \sum_{n=1}^{+\infty} \left(\frac{2}{5}\right)^n \]
+    Questa è una serie geometrica di ragione $q=2/5$.  Poiché $|q|<1$, la serie converge. 
+    \end{esempio}
+
+    \item \textbf{Convergenza Semplice (se non c'è conv. assoluta):}
+    \begin{itemize}
+        \item \textbf{Criterio di Leibniz:} Per una serie a segno alterno $\sum (-1)^n b_n$ con $b_n \ge 0$, verifica \textbf{entrambe} le condizioni: 
+        \begin{enumerate}
+            \item $\lim_{n \to \infty} b_n = 0$ (la condizione necessaria!). 
+            \item $b_n$ è \textbf{definitivamente decrescente}. Per provarlo, puoi studiare il segno della derivata della funzione associata $f(x)$ (se $f'(x) < 0$) o verificare che $b_{n+1} \le b_n$. 
+        \end{enumerate}
+        \item \textbf{Stima dell'errore (Leibniz):} Se una serie a termini alterni converge a $S$, l'errore commesso troncando la serie alla somma parziale $S_N$ è minore in valore assoluto del primo termine trascurato: $|S - S_N| \le b_{N+1}$. 
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection{Tecniche Avanzate per Serie Speciali (dalle Esercitazioni)}
+
+\begin{info}
+\textbf{Serie con Fattoriali e Coefficienti Binomiali:}
+\begin{itemize}
+    \item Per serie del tipo $\sum \frac{(n!)^2}{(2n)!}$, usa la formula di Stirling: $n! \sim \sqrt{2\pi n}\left(\frac{n}{e}\right)^n$ per $n \to \infty$.
+    \item Per coefficienti binomiali $\binom{an}{bn}$, ricorda che $\binom{2n}{n} \sim \frac{4^n}{\sqrt{\pi n}}$.
+    \item Per serie con $\frac{n^n}{e^n}$, usa il fatto che $\frac{n^n}{e^n} = \left(\frac{n}{e}\right)^n$ e confronta con una serie geometrica.
+\end{itemize}
+\end{info}
+
+\begin{esempio}
+Serie dalle esercitazioni: $\sum_{n=1}^{+\infty}\frac{(2n)!}{(3n)!}\frac{n^n}{e^n}$
+
+Analizziamo separatamente i due fattori:
+\begin{itemize}
+    \item $\frac{(2n)!}{(3n)!} = \frac{1}{(2n+1)(2n+2)\cdots(3n)} \sim \frac{1}{n^n}$ (per confronto asintotico)
+    \item $\frac{n^n}{e^n} = \left(\frac{n}{e}\right)^n$
+\end{itemize}
+Quindi $a_n \sim \frac{1}{n^n} \cdot \left(\frac{n}{e}\right)^n = \frac{1}{e^n}$, e la serie converge come una serie geometrica.
+\end{esempio}
+
+\begin{info}
+\textbf{Serie con Logaritmi nelle Esercitazioni:}
+Per serie del tipo $\sum (-1)^n \ln\left(1+\frac{1}{\sqrt{n}}\right)$:
+\begin{itemize}
+    \item Usa l'equivalenza $\ln(1+x) \sim x$ per $x \to 0$
+    \item Quindi $\ln\left(1+\frac{1}{\sqrt{n}}\right) \sim \frac{1}{\sqrt{n}}$
+    \item La serie diventa $\sum \frac{(-1)^n}{\sqrt{n}}$, che converge per Leibniz
+\end{itemize}
+\end{info}
+
+\subsection{Serie di Potenze $\sum c_n (x-x_0)^n$}
+\begin{enumerate}
+    \item \textbf{Raggio di Convergenza $\rho$:} Si calcola \textbf{sempre} con il criterio del rapporto o della radice applicato al valore assoluto dei coefficienti, $|c_n|$. 
+    \[ L = \lim_{n \to \infty} \left|\frac{c_{n+1}}{c_n}\right| \quad \text{oppure} \quad L = \lim_{n \to \infty} \sqrt[n]{|c_n|} \]
+    Il raggio di convergenza è $\rho = \frac{1}{L}$. (Se $L=0 \implies \rho=+\infty$. Se $L=+\infty \implies \rho=0$). 
+    \item \textbf{Intervallo di Convergenza:} La serie converge assolutamente (e quindi semplicemente) nell'intervallo aperto $(x_0 - \rho, x_0 + \rho)$. 
+    \item \textbf{Studio agli Estremi:} Sostituisci $x = x_0 - \rho$ e $x = x_0 + \rho$ nell'espressione della serie. Ottieni due serie \textbf{numeriche} da studiare con i metodi del punto precedente. 
+    \begin{errore}
+    Dimenticarsi di studiare il comportamento agli estremi è uno degli errori più frequenti e costa punti preziosi. L'insieme di convergenza non è completo senza questa analisi. 
+    \end{errore}
+    \item \textbf{Insieme di Convergenza:} È l'unione dell'intervallo aperto e degli eventuali estremi in cui la serie converge. Può essere $(a,b)$, $[a,b)$, $(a,b]$ o $[a,b]$. 
+    \item \textbf{Serie Derivata:} Se $\sum_{n=0}^{\infty} c_n x^n$ ha raggio di convergenza $\rho$, allora la serie derivata $\sum_{n=1}^{\infty} n c_n x^{n-1}$ ha lo stesso raggio di convergenza $\rho$. La funzione somma della serie derivata è la derivata della funzione somma originale nell'intervallo di convergenza.
+    \item \textbf{Funzione Somma:} Se riconosci una serie di potenze come sviluppo di una funzione nota (es. geometrica, esponenziale), puoi calcolare direttamente la somma. Esempi:
+    \begin{itemize}
+        \item $\sum_{n=0}^{\infty} x^n = \frac{1}{1-x}$ per $|x| < 1$
+        \item $\sum_{n=0}^{\infty} \frac{x^n}{n!} = e^x$ per ogni $x \in \mathbb{R}$
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection{Tecniche Speciali per Serie dalle Esercitazioni}
+\begin{itemize}
+    \item \textbf{Serie con Coefficienti Complessi:} Per serie del tipo $\sum \frac{2^n + 3^{-n}}{n^2} x^n$, il raggio è determinato dal termine dominante: $\rho = \frac{1}{2}$.
+    \item \textbf{Ridotte e Stima dell'Errore:} Per una serie convergente $\sum a_n = S$, la ridotta $s_N = \sum_{n=1}^N a_n$ approssima $S$. Per serie a termini alterni che soddisfano Leibniz, l'errore è $|S - s_N| \leq |a_{N+1}|$.
+    \item \textbf{Convergenza Totale:} Una serie di funzioni $\sum f_n(x)$ converge totalmente su un insieme $A$ se $\sum \|f_n\|_A < \infty$ dove $\|f_n\|_A = \sup_{x \in A} |f_n(x)|$.
+\end{itemize}
+
+\begin{esempio}
+Serie dalle esercitazioni: $\sum_{n=1}^{+\infty} \frac{n+1}{n+2} \frac{x^{3n}}{3^n}$
+
+Per trovare il raggio:
+\begin{enumerate}
+    \item Riscriviamo: $\sum_{n=1}^{+\infty} \frac{n+1}{n+2} \left(\frac{x^3}{3}\right)^n$
+    \item Il coefficiente è $c_n = \frac{n+1}{n+2} \to 1$ per $n \to \infty$
+    \item Applichiamo il criterio del rapporto alla serie in $y = x^3$: $\rho_y = 3$
+    \item Quindi $|x^3| < 3 \Rightarrow |x| < \sqrt[3]{3}$
+    \item Il raggio di convergenza è $\rho = \sqrt[3]{3}$
+\end{enumerate}
+\end{esempio}
