@@ -4,6 +4,8 @@
 ![Latest Release](https://img.shields.io/github/v/release/Spinny03/calculus2?label=Latest%20PDF)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Spinny03/calculus2)
 
+[![Download PDF](https://img.shields.io/badge/Download-PDF%20📄-blue?style=for-the-badge&logo=adobe-acrobat-reader)](https://github.com/Spinny03/calculus2/releases/latest/download/Guida-Strategica-Calcolo2.pdf)
+
 Una guida completa e strategica per superare l'esame di Calcolo 2, con tecniche avanzate, esempi pratici e formulario essenziale.
 
 ## 🎯 Contenuti
@@ -35,6 +37,8 @@ Dove:
 ## 📥 Download
 
 ### Ultima Versione
+
+[![Scarica PDF](https://img.shields.io/badge/Scarica-PDF%20Ultima%20Versione-green?style=for-the-badge&logo=download)](https://github.com/Spinny03/calculus2/releases/latest/download/Guida-Strategica-Calcolo2.pdf)
 
 Scarica sempre l'ultima versione dalla sezione [Releases](../../releases/latest).
 
