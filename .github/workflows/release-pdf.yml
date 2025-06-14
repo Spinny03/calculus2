@@ -16,25 +16,23 @@ jobs:
         with:
           fetch-depth: 0 # Necessario per ottenere tutti i tag
 
-      - name: Setup TeX Live
+      - name: Compile LaTeX document
         uses: xu-cheng/texlive-action@v2
         with:
           scheme: full
+          run: |
+            # Compila il documento principale
+            pdflatex -synctex=1 -interaction=nonstopmode -file-line-error main.tex
+            pdflatex -synctex=1 -interaction=nonstopmode -file-line-error main.tex  # Seconda passata per TOC
 
-      - name: Compile LaTeX document
-        run: |
-          # Compila il documento principale
-          pdflatex -synctex=1 -interaction=nonstopmode -file-line-error main.tex
-          pdflatex -synctex=1 -interaction=nonstopmode -file-line-error main.tex  # Seconda passata per TOC
+            # Verifica che il PDF sia stato generato
+            if [ ! -f main.pdf ]; then
+              echo "Errore: main.pdf non è stato generato"
+              exit 1
+            fi
 
-          # Verifica che il PDF sia stato generato
-          if [ ! -f main.pdf ]; then
-            echo "Errore: main.pdf non è stato generato"
-            exit 1
-          fi
-
-          # Rinomina il PDF con un nome più descrittivo
-          cp main.pdf "Guida-Strategica-Calcolo2.pdf"
+            # Rinomina il PDF con un nome più descrittivo
+            cp main.pdf "Guida-Strategica-Calcolo2.pdf"
 
       - name: Get current date and calculate version
         id: version
