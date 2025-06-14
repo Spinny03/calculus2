@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus 2 - Guida Esame</title>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; background-color: #333; display: flex; justify-content: center; }
+        #pdf-container { width: 95%; max-width: 900px; margin-top: 20px; margin-bottom: 20px; }
+        #pdf-canvas { width: 100%; height: auto; display: block; border-radius: 5px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); direction: ltr; }
+    </style>
+</head>
+<body>
+    <div id="pdf-container"><canvas id="pdf-canvas"></canvas></div>
+
+    <script type="module">
+        import * as pdfjsLib from 'https://cdn.jsdelivr.net/npm/pdfjs-dist@5.3.31/+esm';
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@5.3.31/build/pdf.worker.min.mjs';
+        const superSamplingFactor = 5;
+        const url = 'https://github.com/Spinny03/calculus2/releases/latest/download/Guida-Strategica-Calcolo2.pdf';
+        const canvas = document.getElementById('pdf-canvas');
+        const container = document.getElementById('pdf-container');
+        let pdfDoc = null;
+        let pageNum = 1;
+
+        async function renderPage(num) {
+            if (!pdfDoc) return;
+            try {
+                const page = await pdfDoc.getPage(num);
+
+                const dpi = (window.devicePixelRatio || 1) * superSamplingFactor;
+
+                const unscaledViewport = page.getViewport({ scale: 1 });
+                const scale = container.clientWidth / unscaledViewport.width;
+                const viewport = page.getViewport({ scale: scale });
+                const context = canvas.getContext('2d');
+
+                canvas.height = Math.floor(viewport.height * dpi);
+                canvas.width = Math.floor(viewport.width * dpi);
+
+                const outputScale = {
+                    transform: [dpi, 0, 0, dpi, 0, 0],
+                };
+                
+                await page.render({
+                    canvasContext: context,
+                    viewport: viewport,
+                    transform: outputScale.transform,
+                }).promise;
+
+            } catch (error) {
+                console.error(`Errore nel renderizzare la pagina ${num}`, error);
+            }
+        }
+
+        function debounce(func, delay) {
+            let timeout;
+            return function(...args) { clearTimeout(timeout); timeout = setTimeout(() => func.apply(this, args), delay); };
+        }
+
+        const debouncedRender = debounce(() => renderPage(pageNum), 250); // Aumentato leggermente il delay
+        window.addEventListener('resize', debouncedRender);
+
+        async function loadPdf() {
+            try {
+                pdfDoc = await pdfjsLib.getDocument(url).promise;
+                await renderPage(pageNum);
+                console.log(`🎉 Pagina renderizzata con fattore di qualità ${superSamplingFactor}.`);
+            } catch (error) {
+                console.error("❌ Errore durante il caricamento del PDF:", error);
+            }
+        }
+
+        loadPdf();
+    </script>
+</body>
+</html>
