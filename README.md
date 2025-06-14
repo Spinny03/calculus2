@@ -5,7 +5,7 @@ Una guida completa e strategica per superare l'esame di Calcolo 2, con tecniche 
 ## 🎯 Contenuti
 
 - **Esercizio 1**: Serie Numeriche e di Potenze
-- **Esercizio 2**: Polinomi di Taylor/MacLaurin e Serie di Fourier  
+- **Esercizio 2**: Polinomi di Taylor/MacLaurin e Serie di Fourier
 - **Esercizi 3-4**: Funzioni di Due Variabili - Ottimizzazione libera e vincolata
 - **Formulario**: Sviluppi notevoli, equivalenze asintotiche e formule essenziali
 
@@ -18,10 +18,12 @@ YYYY.MM.DD.N
 ```
 
 Dove:
+
 - `YYYY.MM.DD` = Data del commit (anno.mese.giorno)
 - `N` = Numero incrementale della versione (inizia da 1 ogni giorno)
 
 ### Esempi:
+
 - `2025.06.14.1` - Prima versione del 14 giugno 2025
 - `2025.06.14.2` - Seconda versione dello stesso giorno
 - `2025.06.15.1` - Prima versione del 15 giugno 2025
@@ -29,9 +31,11 @@ Dove:
 ## 📥 Download
 
 ### Ultima Versione
+
 Scarica sempre l'ultima versione dalla sezione [Releases](../../releases/latest).
 
 ### Versioni Precedenti
+
 Tutte le versioni precedenti sono disponibili nella [lista completa dei rilasci](../../releases).
 
 ## 🛠️ Compilazione Locale
@@ -49,6 +53,7 @@ pdflatex -synctex=1 -interaction=nonstopmode main.tex
 ```
 
 ### Requisiti
+
 - TeX Live o MiKTeX
 - Pacchetti LaTeX: `amsmath`, `amssymb`, `tcolorbox`, `hyperref`, etc.
 
@@ -103,8 +108,8 @@ Questo progetto è rilasciato sotto licenza [MIT](LICENSE).
 ## 👨‍🎓 Autore
 
 **Filippo Spinella**  
-*Versione ampliata con strategie avanzate e formulario completo*
+_Versione ampliata con strategie avanzate e formulario completo_
 
 ---
 
-*Ultima versione generata automaticamente: ![Latest Release](https://img.shields.io/github/v/release/username/calculus2?label=PDF%20Version)*
+_Ultima versione generata automaticamente: ![Latest Release](https://img.shields.io/github/v/release/username/calculus2?label=PDF%20Version)_
