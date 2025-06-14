@@ -1,0 +1,72 @@
+# File ausiliari di LaTeX
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.brf
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.ist
+*.loa
+*.nav
+*.snm
+*.vrb
+
+# File di cache di biblatex
+*.auxlock
+
+# File temporanei di latexmk
+*.figlist
+*.makefile
+*.mw
+
+# File di backup
+*~
+*.backup
+*.bak
+
+# File temporanei dell'editor
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Cartelle di output
+build/
+dist/
+
+# File di configurazione specifici dell'IDE
+.vscode/launch.json
+.vscode/tasks.json
+*.code-workspace
+
+# Mantieni solo settings.json essenziali
+!.vscode/settings.json
+
+# File PDF generati (opzionale - rimuovi questa riga se vuoi versionare i PDF)
+*.pdf
+
+# File specifici di Windows
+Thumbs.db
+ehthumbs.db
+
+# File specifici di macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# File temporanei di Office
+~$*

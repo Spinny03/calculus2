@@ -1,0 +1,447 @@
+\documentclass[a4paper, 12pt]{article}
+
+% --- PACHETTI ESSENZIALI ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+
+% --- MATEMATICA ---
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{amsthm} % Per ambienti teorema
+
+% --- LAYOUT E GRAFICA ---
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm, headheight=14.5pt}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{booktabs} % Per tabelle più belle
+\usepackage{xcolor}
+\usepackage{tcolorbox} % Per creare box colorati
+\usepackage{hyperref}
+\usepackage{amsmath} % Caricato di nuovo per sicurezza, essenziale per la matematica
+
+% --- IMPOSTAZIONI HYPERREF ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!60!black,
+    filecolor=magenta,      
+    urlcolor=cyan!70!black,
+    pdftitle={Guida Strategica per l'Esame di Calcolo 2},
+    pdfauthor={Filippo Spinella (Versione Ampliata da AI)},
+    bookmarksopen=true,
+    pdfstartview={FitH}
+}
+
+% --- COMANDI PERSONALIZZATI ---
+\newcommand{\R}{\mathbb{R}}
+\tcbuselibrary{skins} % Per personalizzare i tcolorbox
+
+\newtcolorbox{strategia}{
+    colback=blue!5!white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    title=Strategia Vincente,
+    enhanced,
+    attach boxed title to top left={yshift=-2mm, xshift=3mm},
+    boxed title style={colback=blue!75!black}
+}
+
+\newtcolorbox{errore}{
+    colback=red!5!white,
+    colframe=red!75!black,
+    fonttitle=\bfseries,
+    title=Errore Comune da Evitare,
+    enhanced,
+    attach boxed title to top left={yshift=-2mm, xshift=3mm},
+    boxed title style={colback=red!75!black}
+}
+
+\newtcolorbox{esempio}{
+    colback=green!5!white,
+    colframe=green!60!black,
+    fonttitle=\bfseries,
+    title=Esempio Pratico (dagli esami),
+    enhanced,
+    attach boxed title to top left={yshift=-2mm, xshift=3mm},
+    boxed title style={colback=green!60!black}
+}
+
+\newtcolorbox{info}{
+    colback=gray!10!white,
+    colframe=gray!70!black,
+    fonttitle=\bfseries,
+    title=Nota Teorica,
+    enhanced,
+    attach boxed title to top left={yshift=-2mm, xshift=3mm},
+    boxed title style={colback=gray!70!black}
+}
+
+
+% --- IMPOSTAZIONI PAGINA ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\textit{Guida Strategica all'Esame di Calcolo 2}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% --- TEOREMI ---
+\newtheorem{teorema}{Teorema}
+
+% --- TITOLO ---
+\title{
+    \Huge Guida Strategica per l'Esame di Calcolo 2 \\
+    \large \textit{Versione ampliata con strategie, esempi pratici e formulario avanzato}
+}
+\author{Filippo Spinella}
+\date{12 giugno 2025}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\begin{abstract}
+\noindent Questa guida nasce con l'obiettivo di fornire un supporto pratico e schematico per affrontare con successo l'esame di Calcolo 2. Non si limita a un elenco di formule, ma propone un \textbf{metodo di ragionamento} e una serie di \textbf{strategie operative} per ogni tipologia di esercizio, arricchite con esempi tratti da prove d'esame reali. Leggila attentamente, mettila in pratica e usala per costruire la tua sicurezza. In bocca al lupo!
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{Esercizio 1: Serie Numeriche e di Potenze}
+Questo è spesso il primo scoglio. L'obiettivo è capire il "carattere" di una serie. La chiave è la sistematicità.
+
+\subsection{Studio della Convergenza di Serie Numeriche}
+\begin{strategia}
+\textbf{Flowchart mentale:}
+\begin{enumerate}
+    \item \textbf{Condizione Necessaria:} Il termine $a_n \to 0$? Se NO $\implies$ DIVERGE. Se SÌ, procedi. 
+    \item \textbf{Segno:} La serie è a termini positivi? (o definitivamente positivi). Se SÌ, usa i criteri per serie positive (confronto asintotico è il più potente). Se NO, vai al punto 3. 
+    \item \textbf{Convergenza Assoluta:} Studia $\sum |a_n|$ (che è a termini positivi). Se converge, hai finito: la serie converge ASSOLUTAMENTE (e quindi anche semplicemente). Se diverge, non puoi concludere nulla sulla convergenza semplice, vai al punto 4. 
+    \item \textbf{Convergenza Semplice (Criterio di Leibniz):} La serie è a \textbf{segni alterni}, della forma $\sum (-1)^n b_n$ con $b_n>0$? Se SÌ, verifica le due condizioni di Leibniz ($b_n \to 0$ e $b_n$ decrescente). Se valgono, la serie converge SEMPLICEMENTE. 
+\end{enumerate}
+\end{strategia}
+
+\subsubsection{Analisi Dettagliata dei Criteri}
+\begin{enumerate}
+    \item \textbf{Condizione Necessaria:} $\lim_{n \to \infty} a_n = 0$. 
+    \begin{errore}
+    Se il limite è 0, \textbf{non puoi concludere nulla}! La condizione è solo necessaria, non sufficiente. Dire "siccome $a_n \to 0$ la serie converge" è un errore grave che invalida l'esercizio. 
+    \end{errore}
+
+    \item \textbf{Convergenza Assoluta (Studio di \texorpdfstring{$\sum |a_n|$}{|an|}):} 
+    \begin{itemize}
+        \item \textbf{Confronto Asintotico (il più potente):} Semplifica $|a_n|$ per $n \to \infty$ usando gli sviluppi di MacLaurin o le equivalenze asintotiche notevoli (es. $\sin(x) \sim x$, $\ln(1+x) \sim x$, $e^x-1 \sim x$ per $x \to 0$). Confrontala con la serie armonica generalizzata $\sum \frac{1}{n^\alpha}$ (converge se $\alpha > 1$) o la serie geometrica $\sum q^n$ (converge se $|q| < 1$). 
+        \item \textbf{Criterio del Rapporto:} Utile con fattoriali ($n!$) o termini esponenziali ($k^n$). Calcola $L = \lim_{n \to \infty} \frac{|a_{n+1}|}{|a_n|}$. Se $L<1$ converge assolutamente, se $L>1$ diverge, se $L=1$ è inconclusivo. 
+        \item \textbf{Criterio della Radice:} Utile con potenze $n$-esime. Calcola $L = \lim_{n \to \infty} \sqrt[n]{|a_n|}$. Le conclusioni sono le stesse del criterio del rapporto. 
+    \end{itemize}
+    
+    \begin{esempio}
+    Studiare la convergenza di $\sum_{n=1}^{+\infty} 2^n \sin\left(\frac{1}{5^n}\right)$.
+    La serie è a termini positivi. Per $n \to \infty$, l'argomento del seno $1/5^n \to 0$. Usiamo il confronto asintotico: $\sin(1/5^n) \sim 1/5^n$. 
+    Quindi, la nostra serie ha lo stesso carattere di:
+    \[ \sum_{n=1}^{+\infty} 2^n \cdot \frac{1}{5^n} = \sum_{n=1}^{+\infty} \left(\frac{2}{5}\right)^n \]
+    Questa è una serie geometrica di ragione $q=2/5$.  Poiché $|q|<1$, la serie converge. 
+    \end{esempio}
+
+
+    \item \textbf{Convergenza Semplice (se non c'è conv. assoluta):}
+    \begin{itemize}
+        \item \textbf{Criterio di Leibniz:} Per una serie a segno alterno $\sum (-1)^n b_n$ con $b_n \ge 0$, verifica \textbf{entrambe} le condizioni: 
+        \begin{enumerate}
+            \item $\lim_{n \to \infty} b_n = 0$ (la condizione necessaria!). 
+            \item $b_n$ è \textbf{definitivamente decrescente}. Per provarlo, puoi studiare il segno della derivata della funzione associata $f(x)$ (se $f'(x) < 0$) o verificare che $b_{n+1} \le b_n$. 
+        \end{enumerate}
+        \item \textbf{Stima dell'errore (Leibniz):} Se una serie a termini alterni converge a $S$, l'errore commesso troncando la serie alla somma parziale $S_N$ è minore in valore assoluto del primo termine trascurato: $|S - S_N| \le b_{N+1}$. 
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Serie di Potenze \texorpdfstring{$\sum c_n (x-x_0)^n$}{Serie di Potenze}}
+\begin{enumerate}
+    \item \textbf{Raggio di Convergenza $\rho$:} Si calcola \textbf{sempre} con il criterio del rapporto o della radice applicato al valore assoluto dei coefficienti, $|c_n|$. 
+    \[ L = \lim_{n \to \infty} \left|\frac{c_{n+1}}{c_n}\right| \quad \text{oppure} \quad L = \lim_{n \to \infty} \sqrt[n]{|c_n|} \]
+    Il raggio di convergenza è $\rho = \frac{1}{L}$. (Se $L=0 \implies \rho=+\infty$. Se $L=+\infty \implies \rho=0$). 
+    \item \textbf{Intervallo di Convergenza:} La serie converge assolutamente (e quindi semplicemente) nell'intervallo aperto $(x_0 - \rho, x_0 + \rho)$. 
+    \item \textbf{Studio agli Estremi:} Sostituisci $x = x_0 - \rho$ e $x = x_0 + \rho$ nell'espressione della serie. Ottieni due serie \textbf{numeriche} da studiare con i metodi del punto precedente. 
+    \begin{errore}
+    Dimenticarsi di studiare il comportamento agli estremi è uno degli errori più frequenti e costa punti preziosi. L'insieme di convergenza non è completo senza questa analisi. 
+    \end{errore}
+    \item \textbf{Insieme di Convergenza:} È l'unione dell'intervallo aperto e degli eventuali estremi in cui la serie converge. Può essere $(a,b)$, $[a,b)$, $(a,b]$ o $[a,b]$. 
+\end{enumerate}
+
+\section{Esercizio 2: Taylor, Fourier e Dini}
+
+\subsection{Polinomi di Taylor / MacLaurin}
+\begin{strategia}
+Non calcolare \textbf{mai} le derivate una per una, a meno che non sia esplicitamente richiesto o la funzione sia banalissima. La strada maestra è usare gli \textbf{sviluppi notevoli} (vedi formulario) e combinarli algebricamente (somma, prodotto, composizione).
+\end{strategia}
+\begin{itemize}
+    \item \textbf{Come operare:} Sostituisci, somma, moltiplica e componi gli sviluppi notevoli. Ricorda di fermarti all'ordine richiesto e di usare il simbolo di o-piccolo $o((x-x_0)^n)$. Gestisci con cura le potenze e gli ordini degli o-piccoli.
+    \item \textbf{Calcolo di \texorpdfstring{$f^{(n)}(0)$}{f\^(n)(0)}:} Dalla teoria, il coefficiente $c_n$ del termine $x^n$ nello sviluppo di MacLaurin è $c_n = \frac{f^{(n)}(0)}{n!}$. La formula inversa è potentissima per calcolare derivate in zero senza fatica: 
+    \[ f^{(n)}(0) = n! \cdot c_n \]
+\end{itemize}
+
+\subsection{Serie di Fourier}
+\begin{strategia}
+\begin{enumerate}
+    \item \textbf{Disegna la funzione!} Un grafico del prolungamento periodico ti aiuta a vedere subito simmetrie e punti di discontinuità. 
+    \item \textbf{Simmetrie:} Se $f$ è \textbf{pari} ($f(-x)=f(x)$), allora tutti i $b_n=0$. Se $f$ è \textbf{dispari} ($f(-x)=-f(x)$), allora $a_0=0$ e tutti gli $a_n=0$. Questo ti dimezza il lavoro! 
+    \item \textbf{Calcolo Coefficienti:} Usa le formule, prestando attenzione agli estremi di integrazione (di solito $[-\pi, \pi]$ o $[-T/2, T/2]$). L'integrazione per parti è quasi sempre necessaria. 
+    \item \textbf{Convergenza Puntuale (Teorema di Dirichlet):}
+        \begin{itemize}
+            \item Dove $f$ è continua, la serie converge a $f(x)$. 
+            \item Nei punti di discontinuità a salto $x_d$, la serie converge al valore medio del salto: $\frac{f(x_d^+) + f(x_d^-)}{2}$. 
+        \end{itemize}
+    \item \textbf{Identità di Parseval:} Utile per calcolare la somma di serie numeriche. $\frac{1}{T} \int_{-T/2}^{T/2} |f(x)|^2 dx = \frac{a_0^2}{4} + \frac{1}{2} \sum_{n=1}^\infty (a_n^2 + b_n^2)$. 
+\end{enumerate}
+\end{strategia}
+
+\subsection{Teorema della Funzione Implicita (Dini)}
+Data $F(x,y)=0$ e un punto $P_0(x_0,y_0)$ tale che $F(P_0)=0$. 
+\begin{enumerate}
+    \item \textbf{Verifica Ipotesi:} Per poter definire una funzione $y=g(x)$ in un intorno di $x_0$, devi verificare due condizioni fondamentali: 
+    \begin{itemize}
+        \item $F(x_0, y_0) = 0$ (il punto appartiene al luogo di zeri). 
+        \item La derivata parziale di $F$ rispetto alla variabile da \textit{esplicitare} ($y$) è \textbf{diversa da zero} nel punto: $F_y(x_0,y_0) \neq 0$. 
+    \end{itemize}
+    \item \textbf{Calcolo Derivata Prima:} La formula è un "must know": 
+    \[ g'(x) = -\frac{F_x(x,y)}{F_y(x,y)} \implies g'(x_0) = -\frac{F_x(x_0,y_0)}{F_y(x_0,y_0)} \]
+    \item \textbf{Calcolo Derivata Seconda (se richiesta):} Deriva l'espressione di $g'(x)$ usando la regola del quoziente e \textbf{ricordando che $y=g(x)$}, quindi la sua derivata rispetto a $x$ è $g'(x)$. 
+    \[ g''(x) = -\frac{(F_{xx} + F_{xy}g'(x))F_y - F_x(F_{yx} + F_{yy}g'(x))}{(F_y)^2} \]
+    Questa formula è complessa. All'esame, di solito si calcola nel punto $x_0$, dove il valore di $g'(x_0)$ è già noto dal passo precedente, semplificando il calcolo. 
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% INIZIO MODIFICHE E AMPLIAMENTO SIGNIFICATIVO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Esercizi 3 e 4: Funzioni di Due Variabili}
+Questi esercizi testano la capacità di analizzare una funzione $f(x,y)$ in un'area del piano. La procedura è standardizzata, ma richiede attenzione ai dettagli. Distinguiamo due scenari principali: l'analisi in un insieme aperto (ottimizzazione libera) e l'ottimizzazione su un insieme compatto (vincolata).
+
+\subsection{Analisi di Base: Dominio e Derivate}
+
+\subsubsection{Dominio e Proprietà Topologiche}
+\begin{itemize}
+    \item \textbf{Determinazione del Dominio:} 
+    \begin{itemize}
+        \item Argomenti di logaritmi: $> 0$. 
+        \item Denominatori: $\neq 0$. 
+        \item Radici con indice pari: argomento $\ge 0$. 
+    \end{itemize}
+    \textbf{Disegnalo sempre!} Un disegno aiuta a capire la geometria del problema.
+    \item \textbf{Proprietà del Dominio:} Specifica sempre se è \textbf{aperto} (non contiene la sua frontiera, es. $x^2+y^2 < 1$), \textbf{chiuso} (contiene la sua frontiera, es. $x^2+y^2 \le 1$), \textbf{limitato} (può essere racchiuso in un cerchio di raggio finito), \textbf{connesso} (è un pezzo unico). 
+\end{itemize}
+
+% NUOVA SEZIONE AGGIUNTA
+\subsubsection{Calcolo delle Derivate Parziali e del Gradiente}
+Il calcolo delle derivate parziali è il primo passo per quasi ogni analisi di funzioni di più variabili.
+\begin{itemize}
+    \item \textbf{Derivata Parziale rispetto a $x$ ($f_x$ o $\frac{\partial f}{\partial x}$):} Si calcola trattando la variabile $y$ come se fosse una costante. Si applicano poi le normali regole di derivazione per la sola variabile $x$. 
+    \item \textbf{Derivata Parziale rispetto a $y$ ($f_y$ o $\frac{\partial f}{\partial y}$):} Si calcola trattando la variabile $x$ come se fosse una costante e derivando rispetto a $y$. 
+    \item \textbf{Gradiente ($\nabla f$):} È semplicemente il vettore che raccoglie le derivate parziali: 
+    \[ \nabla f(x,y) = \left( \frac{\partial f}{\partial x}(x,y), \frac{\partial f}{\partial y}(x,y) \right) = (f_x, f_y) \]
+\end{itemize}
+
+\begin{esempio}
+Data $f(x,y) = x^2e^y + e^y$. 
+\begin{itemize}
+    \item Per calcolare $f_x$, trattiamo $e^y$ come una costante (es. $k$). La derivata di $kx^2+k$ rispetto a $x$ è $2kx$. Quindi:
+    \[ f_x(x,y) = 2xe^y \]
+    \item Per calcolare $f_y$, trattiamo $x^2$ come una costante (es. $c$). La derivata di $ce^y+e^y$ rispetto a $y$ è $ce^y+e^y$. Quindi:
+    \[ f_y(x,y) = x^2e^y + e^y = (x^2+1)e^y \]
+    \item Il gradiente è: $\nabla f(x,y) = (2xe^y, (x^2+1)e^y)$.
+\end{itemize}
+\end{esempio}
+
+% FINE NUOVA SEZIONE
+
+\subsubsection{Differenziabilità, Derivata Direzionale e Piano Tangente}
+\begin{itemize}
+    \item \textbf{Differenziabilità (Teorema del Differenziale Totale):} Il modo più rapido per provarla è calcolare le derivate parziali $f_x$ e $f_y$. Se queste sono \textbf{continue} in un intorno di un punto $P_0$, allora la funzione è differenziabile in $P_0$.  Poiché la maggior parte delle funzioni elementari e loro composizioni ha derivate parziali continue nel loro dominio, spesso la differenziabilità è garantita. 
+    
+    % NUOVA SEZIONE AGGIUNTA
+    \item \textbf{Derivata Direzionale:} Rappresenta la pendenza della funzione lungo una certa direzione $\vec{v}$. Se $f$ è differenziabile, si calcola con la formula del gradiente: 
+    \[ D_{\vec{v}}f(P_0) = \nabla f(P_0) \cdot \vec{v} \]
+    Questa formula è un prodotto scalare tra il gradiente calcolato nel punto $P_0$ e il vettore direzione $\vec{v}$. 
+    \begin{strategia}
+    Per calcolare $D_{\vec{v}}f(P_0)$:
+    \begin{enumerate}
+        \item Calcola il gradiente $\nabla f(x,y) = (f_x, f_y)$.
+        \item Valuta il gradiente nel punto $P_0(x_0, y_0)$ per ottenere il vettore numerico $\nabla f(P_0)$.
+        \item Controlla la norma del vettore direzione $\vec{v}$. Se $||\vec{v}|| \neq 1$, devi normalizzarlo per trovare il versore $\hat{v} = \frac{\vec{v}}{||\vec{v}||}$. 
+        \item Calcola il prodotto scalare: $D_{\hat{v}}f(P_0) = \nabla f(P_0) \cdot \hat{v}$.
+    \end{enumerate}
+    \end{strategia}
+    \begin{errore}
+    Usare un vettore $\vec{v}$ non normalizzato (cioè, con norma diversa da 1) nella formula del prodotto scalare è un errore concettuale. La derivata direzionale è definita rispetto a un \textbf{versore} (un vettore di norma 1). 
+    \end{errore}
+    
+    \begin{esempio}
+    Calcolare la derivata di $f(x,y) = 4xy+4x$ nel punto $P(1,-1)$ lungo il vettore $v=(3,2)$. 
+    \begin{enumerate}
+        \item \textbf{Gradiente:} $\nabla f(x,y) = (4y+4, 4x)$.
+        \item \textbf{Gradiente nel punto:} $\nabla f(1,-1) = (4(-1)+4, 4(1)) = (0,4)$.
+        \item \textbf{Normalizzazione del vettore:} Il vettore è $v=(3,2)$. La sua norma è $||v|| = \sqrt{3^2+2^2} = \sqrt{13}$. Non è un versore.
+        Il versore corrispondente è $\hat{v} = \frac{v}{||v||} = \left(\frac{3}{\sqrt{13}}, \frac{2}{\sqrt{13}}\right)$.
+        \item \textbf{Prodotto scalare:}
+        \[ D_{\hat{v}}f(1,-1) = \nabla f(1,-1) \cdot \hat{v} = (0,4) \cdot \left(\frac{3}{\sqrt{13}}, \frac{2}{\sqrt{13}}\right) = 0 \cdot \frac{3}{\sqrt{13}} + 4 \cdot \frac{2}{\sqrt{13}} = \frac{8}{\sqrt{13}} \]
+    \end{enumerate}
+    \end{esempio}
+    % FINE NUOVA SEZIONE
+
+    \item \textbf{Piano Tangente:} È l'approssimazione di Taylor al primo ordine e la sua equazione è fondamentale: 
+    \[ z = f(P_0) + f_x(P_0)(x - x_0) + f_y(P_0)(y - y_0) \]
+\end{itemize}
+
+\subsection{Ottimizzazione Libera e Vincolata}
+
+\subsubsection{Ottimizzazione Libera (Ricerca di Massimi, Minimi e Selle)}
+\begin{enumerate}
+    \item \textbf{Trova Punti Critici:} Sono i punti interni al dominio dove il piano tangente è orizzontale. Si trovano annullando il gradiente, cioè risolvendo il sistema: 
+    \[ \nabla f(x,y) = \vec{0} \iff \begin{cases} f_x(x,y) = 0 \\ f_y(x,y) = 0 \end{cases} \]
+    \item \textbf{Classificazione con Matrice Hessiana:} Calcola le derivate seconde e costruisci la matrice Hessiana in un generico punto $(x,y)$:
+     $H(x,y) = \begin{pmatrix} f_{xx} & f_{xy} \\ f_{yx} & f_{yy} \end{pmatrix}$. 
+     Per ogni punto critico $P_0$ trovato, calcola l'Hessiano $H(P_0)$ e il suo determinante $\det(H(P_0))$.
+    \begin{itemize}
+        \item Se $\det(H(P_0)) > 0$ e $f_{xx}(P_0) > 0 \implies P_0$ è un \textbf{punto di minimo locale}. 
+        \item Se $\det(H(P_0)) > 0$ e $f_{xx}(P_0) < 0 \implies P_0$ è un \textbf{punto di massimo locale}. 
+        \item Se $\det(H(P_0)) < 0 \implies P_0$ è un \textbf{punto di sella}. 
+        \item Se $\det(H(P_0)) = 0 \implies$ il test è inconcludente.  Bisogna studiare il segno di $\Delta f(P) = f(P) - f(P_0)$ in un intorno di $P_0$, un'analisi più complessa che di solito non è richiesta in un esame standard. 
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection{Ottimizzazione Vincolata su un Insieme Compatto \texorpdfstring{$C$}{C}}
+Questa è una delle tipologie di esercizio più complete e richiede una procedura rigorosa per non perdere punti. L'obiettivo è trovare il massimo e il minimo \textbf{assoluti} di $f(x,y)$ su un insieme chiuso e limitato $C$.
+
+\begin{info}
+\textbf{Teorema di Weierstrass:} Se $f$ è una funzione continua e $C$ è un insieme \textbf{chiuso e limitato} (compatto), allora l'esistenza del massimo e minimo assoluti di $f$ su $C$ è \textbf{garantita}.  La tua unica responsabilità è trovarli.
+\end{info}
+
+
+\begin{enumerate}
+    \item \textbf{Punti Critici Interni a \texorpdfstring{$C$}{C}:}
+    Risolvi $\nabla f(x,y) = (0,0)$ come nell'ottimizzazione libera.  Prendi in considerazione \textbf{solo le soluzioni che cadono all'interno} del vincolo $C$ (cioè, non sulla sua frontiera).  Metti questi punti in una lista di "candidati".
+
+    \item \textbf{Studio sulla Frontiera \texorpdfstring{$\partial C$}{}:} Questo è il cuore del problema. 
+    
+    \textbf{Caso A: La frontiera è una curva parametrizzabile (es. circonferenza, ellisse)}
+    \begin{itemize}
+        \item \textbf{Parametrizzazione:} Scrivi l'equazione della frontiera in forma parametrica. Esempi comuni: 
+        \begin{itemize}
+            \item Circonferenza $x^2+y^2=R^2 \implies x=R\cos t, y=R\sin t$, con $t \in [0, 2\pi]$.
+            \item Ellisse $x^2/a^2+y^2/b^2=1 \implies x=a\cos t, y=b\sin t$, con $t \in [0, 2\pi]$.
+        \end{itemize}
+        \item \textbf{Restrizione:} Sostituisci la parametrizzazione in $f(x,y)$ per ottenere una funzione di una sola variabile, $g(t) = f(x(t), y(t))$. 
+        \item \textbf{Ottimizzazione in 1D:} Studia massimi e minimi di $g(t)$ nell'intervallo del parametro $t$. I candidati sono i punti dove $g'(t)=0$ e gli estremi dell'intervallo di $t$.  Aggiungi questi nuovi punti $(x(t), y(t))$ alla lista dei candidati.
+    \end{itemize}
+
+    \textbf{Caso B: La frontiera è un poligono (es. quadrato, triangolo)}
+    \begin{itemize}
+        \item \textbf{Analisi dei Lati:} La frontiera è composta da più segmenti. Devi analizzare ogni lato separatamente, parametrizzandolo. Ad esempio, il lato di un quadrato da $(0,0)$ a $(1,0)$ si parametrizza come $x=t, y=0$ con $t \in [0,1]$. Riduci $f$ a una funzione della sola variabile $t$ e cerchi i suoi massimi e minimi su quel segmento.
+        \item \textbf{I Vertici:} I vertici del poligono sono \textbf{sempre} punti candidati. Spesso i massimi o minimi assoluti si nascondono proprio lì.
+        \begin{errore}
+        Dimenticare di includere i vertici di un dominio poligonale nella lista dei candidati è un errore gravissimo e molto comune. Aggiungili sempre alla lista! 
+        \end{errore}
+    \end{itemize}
+    
+    \textbf{Metodo Alternativo: Moltiplicatori di Lagrange}
+    Utile se il vincolo $g(x,y)=k$ è complesso da parametrizzare.  Risolvi il sistema di 3 equazioni in 3 incognite ($x, y, \lambda$): 
+    \[ \begin{cases} \nabla f(x,y) = \lambda \nabla g(x,y) \\ g(x,y) = k \end{cases} \iff \begin{cases} f_x = \lambda g_x \\ f_y = \lambda g_y \\ g(x,y)=k \end{cases} \]
+    Le soluzioni $(x,y)$ sono i punti candidati sulla frontiera.  Aggiungili alla lista.
+
+    \item \textbf{Tabella di Confronto Finale:}
+    Crea una tabella con \textbf{tutti i punti candidati} trovati: 
+    \begin{itemize}
+        \item Critici interni a $C$. 
+        \item Candidati sulla frontiera (da parametrizzazione, Lagrange, o vertici). 
+    \end{itemize}
+    Calcola il valore di $f$ in ogni candidato.  Il valore più alto è il \textbf{massimo assoluto}, il più basso è il \textbf{minimo assoluto}. 
+\end{enumerate}
+
+
+\begin{esempio}
+Trovare max/min assoluti di $f(x,y) = x^2e^y+e^y$ su $C=\{(x,y) \in \R^2 | x^2+y^2=2\}$. 
+\begin{enumerate}
+    \item \textbf{Weierstrass:} $f$ è continua. $C$ (una circonferenza) è un insieme chiuso e limitato.  Quindi max e min assoluti esistono. 
+    \item \textbf{Punti interni:} Non ci sono punti interni, il dominio è solo la frontiera.
+    \item \textbf{Frontiera con Lagrange:} Il vincolo è $g(x,y) = x^2+y^2-2=0$. 
+    $\nabla f = (2xe^y, x^2e^y+e^y)$, $\nabla g = (2x, 2y)$. 
+    Il sistema dei moltiplicatori è: 
+    \[ \begin{cases} 2xe^y = \lambda (2x) \\ (x^2+1)e^y = \lambda (2y) \\ x^2+y^2=2 \end{cases} \]
+    Dalla prima equazione: $2x(e^y - \lambda) = 0$. Questo dà due casi:
+    \begin{itemize}
+        \item \textbf{Caso 1: $x=0$}. Sostituendo nella terza eq: $y^2=2 \implies y=\pm\sqrt{2}$. Otteniamo i punti $P_1(0, \sqrt{2})$ e $P_2(0, -\sqrt{2})$.
+        \item \textbf{Caso 2: $\lambda = e^y$}. Sostituendo nella seconda eq: $(x^2+1)e^y = e^y(2y) \implies x^2+1=2y$.
+        Sostituiamo $x^2 = 2y-1$ nella terza eq: $(2y-1)+y^2=2 \implies y^2+2y-3=0 \implies (y+3)(y-1)=0$.
+        Se $y=1$, allora $x^2=2(1)-1=1 \implies x=\pm 1$. Otteniamo i punti $P_3(1,1)$ e $P_4(-1,1)$.
+        Se $y=-3$, allora $x^2=2(-3)-1=-7$, che non ha soluzioni reali.
+    \end{itemize}
+    I nostri candidati sono $P_1, P_2, P_3, P_4$.
+    \item \textbf{Confronto:} 
+    \begin{itemize}
+        \item $f(0, \sqrt{2}) = (0^2+1)e^{\sqrt{2}} = e^{\sqrt{2}} \approx 4.11$
+        \item $f(0, -\sqrt{2}) = (0^2+1)e^{-\sqrt{2}} = e^{-\sqrt{2}} \approx 0.24$ \textbf{(Minimo Assoluto)}
+        \item $f(1, 1) = (1^2+1)e^1 = 2e \approx 5.43$ \textbf{(Massimo Assoluto)}
+        \item $f(-1, 1) = ((-1)^2+1)e^1 = 2e \approx 5.43$ \textbf{(Massimo Assoluto)}
+    \end{itemize}
+\end{enumerate}
+\end{esempio}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FINE MODIFICHE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\appendix
+\section{Formulario Avanzato}
+
+\subsection{Sviluppi di MacLaurin Fondamentali (\texorpdfstring{$x \to 0$}{per x che tende a 0})}
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Funzione} & \textbf{Sviluppo} \\
+\midrule
+$e^x$ & $1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \dots + \frac{x^n}{n!} + o(x^n)$ \\ [1ex]
+$\sin(x)$ & $x - \frac{x^3}{3!} + \frac{x^5}{5!} - \dots + (-1)^n \frac{x^{2n+1}}{(2n+1)!} + o(x^{2n+2})$ \\ [1ex]
+$\cos(x)$ & $1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \dots + (-1)^n \frac{x^{2n}}{(2n)!} + o(x^{2n+1})$ \\ [1ex]
+$\ln(1+x)$ & $x - \frac{x^2}{2} + \frac{x^3}{3} - \dots + (-1)^{n-1} \frac{x^n}{n} + o(x^n)$ \\ [1ex]
+$(1+x)^\alpha$ & $1 + \alpha x + \frac{\alpha(\alpha-1)}{2}x^2 + \dots + \binom{\alpha}{n}x^n + o(x^n)$ \\ [1ex]
+$\frac{1}{1-x}$ & $1 + x + x^2 + x^3 + \dots + x^n + o(x^n)$ \\ [1ex]
+$\arctan(x)$ & $x - \frac{x^3}{3} + \frac{x^5}{5} - \dots + (-1)^n \frac{x^{2n+1}}{2n+1} + o(x^{2n+2})$ \\ [1ex]
+$\tan(x)$ & $x + \frac{x^3}{3} + \frac{2x^5}{15} + o(x^6)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{1em}
+\textit{Fonte: Tabella riassuntiva basata su.}
+
+
+\subsection{Formule per Serie di Fourier (Periodo \texorpdfstring{$T$}{T})}
+\[ S(x) = \frac{a_0}{2} + \sum_{n=1}^\infty \left( a_n \cos\left(\frac{2\pi n x}{T}\right) + b_n \sin\left(\frac{2\pi n x}{T}\right) \right) \]
+\begin{itemize}
+    \item $a_0 = \frac{2}{T} \int_{-T/2}^{T/2} f(x) \, dx$
+    \item $a_n = \frac{2}{T} \int_{-T/2}^{T/2} f(x) \cos\left(\frac{2\pi n x}{T}\right) \, dx$
+    \item $b_n = \frac{2}{T} \int_{-T/2}^{T/2} f(x) \sin\left(\frac{2\pi n x}{T}\right) \, dx$
+\end{itemize}
+\vspace{1em}
+\textit{Fonte: Formule standard per serie di Fourier.}
+
+\subsection{Trigonometria Utile per Integrali di Fourier}
+\begin{itemize}
+    \item \textbf{Formule di Werner:}
+    \begin{align*}
+        \sin \alpha \cos \beta &= \frac{1}{2}[\sin(\alpha+\beta) + \sin(\alpha-\beta)] \\
+        \cos \alpha \cos \beta &= \frac{1}{2}[\cos(\alpha+\beta) + \cos(\alpha-\beta)] \\
+        \sin \alpha \sin \beta &= \frac{1}{2}[\cos(\alpha-\beta) - \cos(\alpha+\beta)]
+    \end{align*}
+    \item \textbf{Angoli notevoli:}
+    \begin{align*}
+        \sin(n\pi) &= 0, \quad \cos(n\pi) = (-1)^n \\
+        \sin\left(\frac{\pi}{2}+n\pi\right) &= (-1)^n, \quad \cos\left(\frac{\pi}{2}+n\pi\right) = 0
+    \end{align*}
+\end{itemize}
+
+\vfill
+
+\end{document}
