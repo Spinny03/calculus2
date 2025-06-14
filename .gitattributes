@@ -1,0 +1,33 @@
+# Git attributes per progetto LaTeX
+
+# File di testo LaTeX
+*.tex text eol=lf
+*.cls text eol=lf
+*.sty text eol=lf
+*.bib text eol=lf
+
+# File di configurazione
+*.yml text eol=lf
+*.yaml text eol=lf
+*.md text eol=lf
+*.sh text eol=lf
+
+# File binari LaTeX
+*.pdf binary
+*.aux binary
+*.log binary
+*.synctex.gz binary
+*.toc binary
+*.out binary
+
+# File di immagine
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.svg text
+
+# Statistiche linguaggi GitHub (per riconoscere il progetto come LaTeX)
+*.tex linguist-language=TeX
+*.cls linguist-language=TeX
+*.sty linguist-language=TeX
