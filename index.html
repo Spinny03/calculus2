@@ -5,23 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculus 2 - Guida Esame</title>
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; background-color: #333; display: flex; justify-content: center; }
+        body, html { margin: 0; padding: 0; width: 100%; background-color: #333; display: flex; flex-direction: column; align-items: center; }
         #pdf-container { width: 95%; max-width: 900px; margin-top: 20px; margin-bottom: 20px; }
         #pdf-canvas { width: 100%; height: auto; display: block; border-radius: 5px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); direction: ltr; }
+        .page-info { 
+            color: white; 
+            text-align: center; 
+            margin: 20px 0; 
+            font-family: Arial, sans-serif; 
+            background: rgba(0,0,0,0.7); 
+            padding: 15px; 
+            border-radius: 5px; 
+            max-width: 900px; 
+            width: 95%; 
+        }
+        .page-info a { 
+            color: #4CAF50; 
+            text-decoration: none; 
+            font-weight: bold; 
+        }
+        .page-info a:hover { 
+            text-decoration: underline; 
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            color: white;
+            font-family: Arial, sans-serif;
+            background: rgba(0,0,0,0.7);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            max-width: 900px;
+            width: 95%;
+        }
+        .controls button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .controls button:hover {
+            background: #45a049;
+        }
+        .controls button:disabled {
+            background: #666;
+            cursor: not-allowed;
+        }
+        .page-input {
+            background: #555;
+            color: white;
+            border: 1px solid #777;
+            padding: 8px;
+            border-radius: 3px;
+            width: 60px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+    
+    <div class="controls">
+        <button id="prev-page">◀ Precedente</button>
+        <span>Pagina</span>
+        <input type="number" id="page-input" class="page-input" min="1" value="1">
+        <span id="total-pages">di --</span>
+        <button id="next-page">Successiva ▶</button>
+    </div>
+    
     <div id="pdf-container"><canvas id="pdf-canvas"></canvas></div>
 
     <script type="module">
         import * as pdfjsLib from 'https://cdn.jsdelivr.net/npm/pdfjs-dist@5.3.31/+esm';
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@5.3.31/build/pdf.worker.min.mjs';
         const superSamplingFactor = 5;
-        const url = 'https://github.com/Spinny03/calculus2/releases/latest/download/Guida-Strategica-Calcolo2.pdf';
+        // Utilizzo di un proxy CORS per evitare problemi di CORS
+        const originalUrl = 'https://github.com/Spinny03/calculus2/releases/latest/download/Guida-Strategica-Calcolo2.pdf';
+        const url = `https://corsproxy.io/?${encodeURIComponent(originalUrl)}`;
         const canvas = document.getElementById('pdf-canvas');
         const container = document.getElementById('pdf-container');
         let pdfDoc = null;
-        let pageNum = 1;
+        let pageNum = 1; // Pagina corrente
+        let totalPages = 0;
 
         async function renderPage(num) {
             if (!pdfDoc) return;
@@ -53,21 +124,117 @@
             }
         }
 
+        function updatePageInfo() {
+            document.getElementById('total-pages').textContent = `di ${totalPages}`;
+            document.getElementById('page-input').value = pageNum;
+            
+            // Aggiorna stato dei pulsanti
+            document.getElementById('prev-page').disabled = pageNum <= 1;
+            document.getElementById('next-page').disabled = pageNum >= totalPages;
+        }
+
+        function goToPage(num) {
+            if (num >= 1 && num <= totalPages && num !== pageNum) {
+                pageNum = num;
+                renderPage(pageNum);
+                updatePageInfo();
+            }
+        }
+
         function debounce(func, delay) {
             let timeout;
             return function(...args) { clearTimeout(timeout); timeout = setTimeout(() => func.apply(this, args), delay); };
         }
 
-        const debouncedRender = debounce(() => renderPage(pageNum), 250); // Aumentato leggermente il delay
+        // Event listeners per i controlli
+        document.getElementById('prev-page').addEventListener('click', () => {
+            if (pageNum > 1) goToPage(pageNum - 1);
+        });
+
+        document.getElementById('next-page').addEventListener('click', () => {
+            if (pageNum < totalPages) goToPage(pageNum + 1);
+        });
+
+        document.getElementById('page-input').addEventListener('change', (e) => {
+            const newPage = parseInt(e.target.value);
+            if (newPage && newPage >= 1 && newPage <= totalPages) {
+                goToPage(newPage);
+            } else {
+                e.target.value = pageNum; // Reset al valore corrente se non valido
+            }
+        });
+
+        // Navigazione con tastiera
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' && pageNum > 1) {
+                goToPage(pageNum - 1);
+            } else if (e.key === 'ArrowRight' && pageNum < totalPages) {
+                goToPage(pageNum + 1);
+            }
+        });
+
+        // Ridimensiona la pagina corrente quando cambia la finestra
+        const debouncedRender = debounce(() => renderPage(pageNum), 250);
         window.addEventListener('resize', debouncedRender);
 
         async function loadPdf() {
+            // Disabilita i controlli durante il caricamento
+            document.getElementById('prev-page').disabled = true;
+            document.getElementById('next-page').disabled = true;
+            document.getElementById('page-input').disabled = true;
+            
             try {
-                pdfDoc = await pdfjsLib.getDocument(url).promise;
+                console.log("🔄 Caricamento PDF in corso...");
+                pdfDoc = await pdfjsLib.getDocument({
+                    url: url,
+                    cMapUrl: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@5.3.31/cmaps/',
+                    cMapPacked: true,
+                }).promise;
+                
+                totalPages = pdfDoc.numPages;
+                console.log(`📊 PDF caricato: ${totalPages} pagine totali`);
+                
                 await renderPage(pageNum);
-                console.log(`🎉 Pagina renderizzata con fattore di qualità ${superSamplingFactor}.`);
+                updatePageInfo();
+                
+                // Riabilita i controlli
+                document.getElementById('page-input').disabled = false;
+                console.log(`🎉 Pagina ${pageNum} renderizzata con fattore di qualità ${superSamplingFactor}.`);
+                
             } catch (error) {
                 console.error("❌ Errore durante il caricamento del PDF:", error);
+                
+                // Gestione specifica per errori CORS
+                if (error.name === 'UnexpectedResponseException' || error.message.includes('cors')) {
+                    console.log("🔄 Tentativo con URL diretto...");
+                    try {
+                        // Fallback: prova con l'URL originale
+                        pdfDoc = await pdfjsLib.getDocument(originalUrl).promise;
+                        totalPages = pdfDoc.numPages;
+                        await renderPage(pageNum);
+                        updatePageInfo();
+                        
+                        // Riabilita i controlli
+                        document.getElementById('page-input').disabled = false;
+                        console.log("✅ Caricamento riuscito con URL diretto");
+                        
+                    } catch (fallbackError) {
+                        console.error("❌ Anche il fallback è fallito:", fallbackError);
+                        // Mostra un messaggio di errore all'utente
+                        const container = document.getElementById('pdf-container');
+                        container.innerHTML = `
+                            <div style="color: white; text-align: center; padding: 50px;">
+                                <h2>❌ Errore di caricamento</h2>
+                                <p>Non è possibile caricare il PDF a causa di restrizioni CORS.</p>
+                                <p>Prova ad aprire il file direttamente: 
+                                    <a href="${originalUrl}" target="_blank" style="color: #4CAF50;">
+                                        Apri PDF
+                                    </a>
+                                </p>
+                            </div>
+                        `;
+                    }
+                }
             }
         }
 
