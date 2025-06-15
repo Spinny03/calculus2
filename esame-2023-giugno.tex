@@ -1,0 +1,266 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage[italian]{babel}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\newcounter{examcounter}
+\newcommand{\examtitle}[2]{%
+    \stepcounter{examcounter}%
+    \clearpage
+    \begin{center}
+        \large\bfseries
+        Calcolo differenziale ed integrale 2 / Calculus 2 --- Prova scritta \\
+        #1
+    \end{center}
+    \vspace{1em}
+    \setcounter{exercisecounter}{0}
+}
+
+\newcounter{exercisecounter}[examcounter]
+\newenvironment{exercise}{%
+    \stepcounter{exercisecounter}%
+    \par\noindent\textbf{Esercizio \theexercisecounter.}\medskip\par
+    \normalfont
+}{\par\bigskip}
+
+\newenvironment{solution}{%
+    \par\noindent\textbf{Soluzione.}\medskip\par
+    \normalfont
+}{\par\bigskip}
+
+\begin{document}
+
+\examtitle{20 Giugno 2023}
+
+\begin{exercise}
+Stabilire se le seguenti serie sono a termini positivi e convergono semplicemente e/o assolutamente.
+\begin{enumerate}
+    \item[a)] $\displaystyle\sum_{n=1}^{+\infty} (-1)^{n+1} \sin\left(\frac{1001}{\sqrt{n}}\right)$
+    \item[b)] $\displaystyle\sum_{n=1}^{+\infty} \frac{n(3-(\cos n)^{2})}{n^{3}+2n+1}$
+    \item[c)] Data la serie di potenze $\displaystyle\sum_{n=1}^{+\infty} \frac{2^{n}+3^{-n}}{n^{2}}x^{n}$, determinarne il raggio di convergenza $\rho$ e l'insieme di convergenza puntuale I.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+    \item[a)] La serie è $\displaystyle\sum_{n=1}^{+\infty} (-1)^{n+1} \sin\left(\frac{1001}{\sqrt{n}}\right)$.
+    Si tratta di una serie a segni alterni. Poniamo $a_n = \sin\left(\frac{1001}{\sqrt{n}}\right)$.
+    Verifichiamo le condizioni del criterio di Leibniz:
+    \begin{itemize}
+        \item $\lim_{n\to+\infty} a_n = \lim_{n\to+\infty} \sin\left(\frac{1001}{\sqrt{n}}\right) = \sin(0) = 0$.
+        \item $a_n$ è decrescente: la funzione $\sin x$ è crescente per $x \in [0, \pi/2]$. Poiché $\frac{1001}{\sqrt{n}} \to 0$ ed è positivo, per $n$ sufficientemente grande $\frac{1001}{\sqrt{n}}$ è in un intervallo dove $\sin x$ è crescente. Essendo $\frac{1001}{\sqrt{n}}$ decrescente, anche $\sin\left(\frac{1001}{\sqrt{n}}\right)$ è decrescente.
+    \end{itemize}
+    Quindi, per il criterio di Leibniz, la serie converge semplicemente.
+    Per la convergenza assoluta, consideriamo la serie $\displaystyle\sum_{n=1}^{+\infty} \left|(-1)^{n+1} \sin\left(\frac{1001}{\sqrt{n}}\right)\right| = \sum_{n=1}^{+\infty} \sin\left(\frac{1001}{\sqrt{n}}\right)$.
+    Poiché $\sin x \sim x$ per $x \to 0$, abbiamo $\sin\left(\frac{1001}{\sqrt{n}}\right) \sim \frac{1001}{\sqrt{n}}$ per $n \to +\infty$.
+    La serie $\displaystyle\sum_{n=1}^{+\infty} \frac{1001}{\sqrt{n}} = 1001 \sum_{n=1}^{+\infty} \frac{1}{n^{1/2}}$ è una serie armonica generalizzata con $p=1/2 \le 1$, quindi diverge.
+    Per il criterio del confronto asintotico, la serie dei valori assoluti diverge.
+    Conclusione: la serie converge semplicemente ma non assolutamente.
+
+    \item[b)] La serie è $\displaystyle\sum_{n=1}^{+\infty} \frac{n(3-(\cos n)^{2})}{n^{3}+2n+1}$.
+    Osserviamo che $0 \le (\cos n)^2 \le 1$, quindi $2 \le 3-(\cos n)^2 \le 3$.
+    Il numeratore $n(3-(\cos n)^2)$ è positivo per $n \ge 1$. Il denominatore $n^3+2n+1$ è positivo per $n \ge 1$.
+    Quindi la serie è a termini positivi.
+    Utilizziamo il criterio del confronto asintotico. Sia $a_n = \frac{n(3-(\cos n)^{2})}{n^{3}+2n+1}$.
+    Per $n \to +\infty$, $a_n \sim \frac{n \cdot C}{n^3} = \frac{C}{n^2}$, dove $C$ è una costante compresa tra 2 e 3.
+    La serie $\displaystyle\sum_{n=1}^{+\infty} \frac{C}{n^2} = C \sum_{n=1}^{+\infty} \frac{1}{n^2}$ è una serie armonica generalizzata con $p=2 > 1$, quindi converge.
+    Per il criterio del confronto asintotico, la serie data converge.
+    Essendo una serie a termini positivi convergente, converge anche assolutamente.
+
+    \item[c)] Data la serie di potenze $\displaystyle\sum_{n=1}^{+\infty} \frac{2^{n}+3^{-n}}{n^{2}}x^{n}$.
+    Sia $c_n = \frac{2^{n}+3^{-n}}{n^{2}}$. Calcoliamo il raggio di convergenza $\rho$ usando il criterio del rapporto (o della radice) su $c_n$.
+    $L = \lim_{n\to+\infty} \left|\frac{c_{n+1}}{c_n}\right| = \lim_{n\to+\infty} \frac{2^{n+1}+3^{-(n+1)}}{(n+1)^2} \cdot \frac{n^2}{2^n+3^{-n}}$
+    $= \lim_{n\to+\infty} \frac{2^{n+1}(1+3^{-(n+1)}/2^{n+1})}{2^n(1+3^{-n}/2^n)} \cdot \frac{n^2}{(n+1)^2}$
+    $= \lim_{n\to+\infty} 2 \cdot \frac{1+(1/3)(1/6)^{n+1}}{1+(1/6)^n} \cdot \left(\frac{n}{n+1}\right)^2 = 2 \cdot 1 \cdot 1 = 2$.
+    Il raggio di convergenza è $\rho = 1/L = 1/2$.
+    La serie converge per $|x| < 1/2$, cioè $x \in (-1/2, 1/2)$.
+    Analizziamo gli estremi:
+    \begin{itemize}
+        \item Per $x = 1/2$: $\displaystyle\sum_{n=1}^{+\infty} \frac{2^{n}+3^{-n}}{n^{2}} \left(\frac{1}{2}\right)^n = \sum_{n=1}^{+\infty} \frac{1+(1/6)^n}{n^2}$.
+        Questo termine è asintotico a $\frac{1}{n^2}$. Poiché $\sum \frac{1}{n^2}$ converge, la serie converge per $x=1/2$.
+        \item Per $x = -1/2$: $\displaystyle\sum_{n=1}^{+\infty} \frac{2^{n}+3^{-n}}{n^{2}} \left(-\frac{1}{2}\right)^n = \sum_{n=1}^{+\infty} (-1)^n \frac{1+(1/6)^n}{n^2}$.
+        Consideriamo la convergenza assoluta: $\sum_{n=1}^{+\infty} \left|(-1)^n \frac{1+(1/6)^n}{n^2}\right| = \sum_{n=1}^{+\infty} \frac{1+(1/6)^n}{n^2}$, che converge (come visto sopra).
+        Quindi la serie converge assolutamente per $x=-1/2$, e dunque converge.
+    \end{itemize}
+    L'insieme di convergenza puntuale è $I = [-1/2, 1/2]$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}
+\begin{enumerate}
+    \item[a)] Data la funzione $f(x) = x(e^{x}-1) + \ln(1+x^{2}) + \sin(2x)$, calcolarne il polinomio di Me Laurin di ordine 4.
+    \item[b)] Scrivere il resto di Lagrange $R_{1}(x)$ di ordine 1 (con centro in 0) della funzione $g(x) = \cos(x^{2}) + \sin(3x)$ e determinarne una stima per $x \in (0, 1/4]$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+    \item[a)] Data la funzione $f(x) = x(e^{x}-1) + \ln(1+x^{2}) + \sin(2x)$. Calcoliamo gli sviluppi di MacLaurin delle singole funzioni fino all'ordine necessario:
+    \begin{itemize}
+        \item $e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + o(x^3)$
+        \item $e^x - 1 = x + \frac{x^2}{2} + \frac{x^3}{6} + o(x^3)$
+        \item $x(e^x - 1) = x^2 + \frac{x^3}{2} + \frac{x^4}{6} + o(x^4)$
+        \item $\ln(1+t) = t - \frac{t^2}{2} + o(t^2)$. Posto $t=x^2$, $\ln(1+x^2) = x^2 - \frac{(x^2)^2}{2} + o((x^2)^2) = x^2 - \frac{x^4}{2} + o(x^4)$.
+        \item $\sin(u) = u - \frac{u^3}{3!} + o(u^4)$. Posto $u=2x$, $\sin(2x) = 2x - \frac{(2x)^3}{6} + o((2x)^4) = 2x - \frac{8x^3}{6} + o(x^4) = 2x - \frac{4x^3}{3} + o(x^4)$.
+    \end{itemize}
+    Sommando i termini:
+    $f(x) = \left(x^2 + \frac{x^3}{2} + \frac{x^4}{6}\right) + \left(x^2 - \frac{x^4}{2}\right) + \left(2x - \frac{4x^3}{3}\right) + o(x^4)$
+    $f(x) = 2x + (1+1)x^2 + \left(\frac{1}{2} - \frac{4}{3}\right)x^3 + \left(\frac{1}{6} - \frac{1}{2}\right)x^4 + o(x^4)$
+    $f(x) = 2x + 2x^2 + \left(\frac{3-8}{6}\right)x^3 + \left(\frac{1-3}{6}\right)x^4 + o(x^4)$
+    $f(x) = 2x + 2x^2 - \frac{5}{6}x^3 - \frac{1}{3}x^4 + o(x^4)$.
+    Il polinomio di MacLaurin di ordine 4 è $P_4(x) = 2x + 2x^2 - \frac{5}{6}x^3 - \frac{1}{3}x^4$.
+
+    \item[b)] Data $g(x) = \cos(x^2) + \sin(3x)$. Vogliamo il resto di Lagrange $R_1(x)$ di ordine 1.
+    Il polinomio di MacLaurin di ordine 1 è $P_1(x) = g(0) + g'(0)x$.
+    $g(0) = \cos(0) + \sin(0) = 1+0 = 1$.
+    $g'(x) = -\sin(x^2)(2x) + \cos(3x)(3) = -2x\sin(x^2) + 3\cos(3x)$.
+    $g'(0) = -2(0)\sin(0) + 3\cos(0) = 0 + 3(1) = 3$.
+    Quindi $P_1(x) = 1 + 3x$.
+    Il resto di Lagrange di ordine 1 è $R_1(x) = \frac{g''(\xi)}{2!}x^2$, con $\xi$ compreso tra $0$ e $x$.
+    Calcoliamo $g''(x)$:
+    $g''(x) = \frac{d}{dx}(-2x\sin(x^2) + 3\cos(3x))$
+    $g''(x) = -2\sin(x^2) -2x\cos(x^2)(2x) -3\sin(3x)(3)$
+    $g''(x) = -2\sin(x^2) -4x^2\cos(x^2) -9\sin(3x)$.
+    Quindi $R_1(x) = \frac{-2\sin(\xi^2) -4\xi^2\cos(\xi^2) -9\sin(3\xi)}{2}x^2$.
+    Vogliamo una stima per $x \in (0, 1/4]$. In questo intervallo, $\xi \in (0, x) \subseteq (0, 1/4]$.
+    Poiché $\xi^2 \in (0, 1/16]$ e $3\xi \in (0, 3/4]$, tutti gli argomenti delle funzioni trigonometriche sono positivi e minori di $\pi/2$. Quindi $\sin(\xi^2)>0, \cos(\xi^2)>0, \sin(3\xi)>0$.
+    Pertanto, il numeratore $N(\xi) = -2\sin(\xi^2) -4\xi^2\cos(\xi^2) -9\sin(3\xi)$ è negativo.
+    $|R_1(x)| = \left|\frac{N(\xi)}{2}\right|x^2 = \frac{2\sin(\xi^2) + 4\xi^2\cos(\xi^2) + 9\sin(3\xi)}{2}x^2$.
+    Usiamo le maggiorazioni $\sin u \le u$ per $u \ge 0$, e $\cos u \le 1$.
+    $2\sin(\xi^2) + 4\xi^2\cos(\xi^2) + 9\sin(3\xi) \le 2\xi^2 + 4\xi^2(1) + 9(3\xi) = 6\xi^2 + 27\xi$.
+    Poiché $\xi \in (0, x]$, si ha $\xi \le x$. Quindi $6\xi^2 + 27\xi \le 6x^2 + 27x$.
+    Dunque, $|R_1(x)| \le \frac{6x^2 + 27x}{2}x^2$.
+    Per $x \in (0, 1/4]$: $6x^2 + 27x \le 6(1/4)^2 + 27(1/4) = 6/16 + 27/4 = 3/8 + 54/8 = 57/8$.
+    Una stima per $x \in (0, 1/4]$ è quindi $|R_1(x)| \le \frac{57/8}{2}x^2 = \frac{57}{16}x^2$.
+    Poiché $x^2 \le (1/4)^2 = 1/16$ nell'intervallo, si ha anche la stima (meno precisa ma costante) $|R_1(x)| \le \frac{57}{16} \cdot \frac{1}{16} = \frac{57}{256}$.
+\end{enumerate}
+\end{solution}
+\begin{exercise}[Serie di Fourier]
+Sia $f$ la funzione ottenuta estendendo per periodicità a tutto $\mathbb{R}$ la funzione
+\[ g(x) = \begin{cases} 2\pi+x & x \in [-\pi,0) \\ 2\pi-x & x \in [0,\pi) \end{cases} \]
+Si chiede di:
+\begin{enumerate}
+    \item Calcolare il coefficiente di Fourier $\hat{f}_{0}$.
+    \item Calcolare il coefficiente di Fourier $\hat{f}_{k}$ per $k \ne 0$.
+    \item Calcolare il valore della serie di Fourier di f sull'intervallo $[-\pi, \pi)$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+    \item[a)] Il coefficiente $\hat{f}_0$ (corrispondente a $a_0/2$ nella notazione reale) è il valore medio della funzione su un periodo $T=2\pi$.
+    $\hat{f}_0 = \frac{1}{2\pi} \int_{-\pi}^{\pi} g(x) dx$.
+    La funzione $g(x)$ è pari, poiché $g(-x) = 2\pi + (-x)$ se $-x \in [-\pi, 0)$ (cioè $x \in (0, \pi]$) che diventa $2\pi-x$, e $g(-x) = 2\pi - (-x)$ se $-x \in [0, \pi)$ (cioè $x \in (-\pi, 0]$) che diventa $2\pi+x$. Quindi $g(-x)=g(x)$.
+    Pertanto, $\int_{-\pi}^{\pi} g(x) dx = 2 \int_{0}^{\pi} g(x) dx$.
+    $\hat{f}_0 = \frac{1}{2\pi} \cdot 2 \int_{0}^{\pi} (2\pi-x) dx = \frac{1}{\pi} \left[ 2\pi x - \frac{x^2}{2} \right]_0^{\pi}$
+    $\hat{f}_0 = \frac{1}{\pi} \left( (2\pi^2 - \frac{\pi^2}{2}) - 0 \right) = \frac{1}{\pi} \left( \frac{4\pi^2 - \pi^2}{2} \right) = \frac{1}{\pi} \frac{3\pi^2}{2} = \frac{3\pi}{2}$.
+
+    \item[b)] Per $k \ne 0$, i coefficienti di Fourier complessi sono $\hat{f}_k = \frac{1}{2\pi} \int_{-\pi}^{\pi} g(x) e^{-ikx} dx$.
+    Utilizziamo i coefficienti della serie di Fourier in forma reale: $a_k = \frac{1}{\pi} \int_{-\pi}^{\pi} g(x) \cos(kx) dx$ e $b_k = \frac{1}{\pi} \int_{-\pi}^{\pi} g(x) \sin(kx) dx$.
+    Poiché $g(x)$ è una funzione pari, $g(x)\sin(kx)$ è una funzione dispari, quindi $b_k = 0$ per ogni $k$.
+    La funzione $g(x)\cos(kx)$ è pari, quindi $a_k = \frac{2}{\pi} \int_{0}^{\pi} g(x) \cos(kx) dx$.
+    $a_k = \frac{2}{\pi} \int_{0}^{\pi} (2\pi-x) \cos(kx) dx$.
+    Integriamo per parti: $\int u dv = uv - \int v du$.
+    Sia $u = 2\pi-x \implies du = -dx$.
+    Sia $dv = \cos(kx) dx \implies v = \frac{\sin(kx)}{k}$.
+    $a_k = \frac{2}{\pi} \left( \left[ (2\pi-x)\frac{\sin(kx)}{k} \right]_0^{\pi} - \int_{0}^{\pi} \frac{\sin(kx)}{k} (-dx) \right)$
+    $a_k = \frac{2}{\pi} \left( \left( (\pi)\frac{\sin(k\pi)}{k} - (2\pi)\frac{\sin(0)}{k} \right) + \frac{1}{k} \int_{0}^{\pi} \sin(kx) dx \right)$.
+    Poiché $\sin(k\pi)=0$ per $k$ intero e $\sin(0)=0$, il primo termine è nullo.
+    $a_k = \frac{2}{\pi k} \left[ -\frac{\cos(kx)}{k} \right]_0^{\pi} = \frac{2}{\pi k^2} [-\cos(kx)]_0^{\pi}$
+    $a_k = \frac{2}{\pi k^2} (-\cos(k\pi) - (-\cos(0))) = \frac{2}{\pi k^2} (1 - \cos(k\pi))$.
+    Sappiamo che $\cos(k\pi) = (-1)^k$.
+    Quindi $a_k = \frac{2(1-(-1)^k)}{\pi k^2}$.
+    Se $k$ è pari ($k=2m$ con $m \in \mathbb{Z}, m \ne 0$), $a_{2m} = \frac{2(1-1)}{\pi (2m)^2} = 0$.
+    Se $k$ è dispari ($k=2m-1$ con $m \in \mathbb{Z}$), $a_{2m-1} = \frac{2(1-(-1))}{\pi (2m-1)^2} = \frac{4}{\pi (2m-1)^2}$.
+    I coefficienti complessi sono $\hat{f}_k = \frac{a_k - i b_k}{2}$. Poiché $b_k=0$, $\hat{f}_k = \frac{a_k}{2}$.
+    Quindi, per $k \ne 0$: $\hat{f}_k = \frac{1-(-1)^k}{\pi k^2}$.
+    Se $k$ è pari e non nullo, $\hat{f}_k = 0$.
+    Se $k$ è dispari, $\hat{f}_k = \frac{2}{\pi k^2}$.
+
+    \item[c)] La serie di Fourier di $f(x)$ è data da $S_f(x) = \hat{f}_0 + \sum_{k \in \mathbb{Z}, k \ne 0} \hat{f}_k e^{ikx}$.
+    In forma reale: $S_f(x) = \frac{a_0}{2} + \sum_{k=1}^{\infty} (a_k \cos(kx) + b_k \sin(kx))$.
+    $S_f(x) = \frac{3\pi}{2} + \sum_{m=1}^{\infty} \frac{4}{\pi (2m-1)^2} \cos((2m-1)x)$.
+    La funzione $g(x)$ è definita come $g(x) = 2\pi - |x|$ per $x \in [-\pi, \pi)$.
+    Verifichiamo la continuità di $f(x)$, l'estensione periodica di $g(x)$.
+    $g(0) = 2\pi$.
+    $\lim_{x \to \pi^-} g(x) = \lim_{x \to \pi^-} (2\pi-x) = \pi$.
+    $\lim_{x \to -\pi^+} g(x) = \lim_{x \to -\pi^+} (2\pi+x) = \pi$.
+    Poiché $f(\pi) = f(-\pi)$ per periodicità, e $g(\pi^-) = g(-\pi^+) = \pi$, la funzione $f(x)$ è continua su tutto $\mathbb{R}$.
+    Per il teorema di convergenza puntuale di Dirichlet, se $f$ è continua in $x$, la serie di Fourier $S_f(x)$ converge a $f(x)$.
+    Dato che $f(x)$ è continua ovunque, $S_f(x) = f(x)$ per ogni $x \in \mathbb{R}$.
+    Sull'intervallo $[-\pi, \pi)$, il valore della serie di Fourier è quindi $f(x) = g(x)$.
+    $S_f(x) = \begin{cases} 2\pi+x & \text{se } x \in [-\pi,0) \\ 2\pi-x & \text{se } x \in [0,\pi) \end{cases}$.
+    Questo include $S_f(-\pi) = \pi$ (valore di $2\pi+x$ per $x=-\pi$) e la serie converge a $f(\pi) = \pi$. Per $x=0$, $S_f(0)=2\pi$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}
+Sia $f(x,y) = \frac{3}{2}x^{2} - 8x - 4xy + 4y^{2} + 12 \ln x$.
+\begin{enumerate}
+    \item Determinare il dominio di f e dire dove è differenziabile.
+    \item Calcolare il gradiente nel punto $(1,0)$, la derivata direzionale $\frac{\partial f(1,0)}{\partial v}$ per $v=(-\frac{4}{5},\frac{3}{5})$ e scrivere l'equazione del piano tangente al grafico di f in $(1,0,f(1,0))$.
+    \item Stabilire quali sono i punti critici di f sul suo dominio e classificarli.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+    \item[a)] Dominio naturale \(D_f\).\\
+    La funzione contiene un termine \(12 \ln x\). L'argomento del logaritmo deve essere strettamente positivo. Quindi \(x > 0\).\\
+    Il dominio è \(D_f = \{ (x,y) \in \mathbb{R}^2 : x > 0 \}\).\\
+    La funzione è somma e composizione di funzioni differenziabili nel loro dominio (polinomi, logaritmo), quindi è differenziabile in tutto \(D_f\).
+
+    \item[b)] Calcolo del gradiente e derivata direzionale.\\
+    Le derivate parziali di \(f(x,y) = \frac{3}{2}x^{2} - 8x - 4xy + 4y^{2} + 12 \ln x\) sono:
+    \begin{itemize}
+        \item \( \frac{\partial f}{\partial x} = 3x - 8 - 4y + \frac{12}{x} \)
+        \item \( \frac{\partial f}{\partial y} = -4x + 8y \)
+    \end{itemize}
+    Il gradiente nel punto \((1,0)\) è:
+    \( \nabla f(1,0) = \left( 3(1) - 8 - 4(0) + \frac{12}{1}, -4(1) + 8(0) \right) = (3 - 8 + 12, -4) = (7, -4) \).\\
+    La derivata direzionale nel punto \((1,0)\) lungo \(v=(-\frac{4}{5},\frac{3}{5})\) è:
+    \( \frac{\partial f(1,0)}{\partial v} = \nabla f(1,0) \cdot v = (7, -4) \cdot (-\frac{4}{5},\frac{3}{5}) = 7(-\frac{4}{5}) - 4(\frac{3}{5}) = -\frac{28}{5} - \frac{12}{5} = -\frac{40}{5} = -8 \).\\
+    Calcoliamo \(f(1,0) = \frac{3}{2}(1)^2 - 8(1) - 4(1)(0) + 4(0)^2 + 12 \ln(1) = \frac{3}{2} - 8 + 0 = \frac{3-16}{2} = -\frac{13}{2}\).\\
+    L'equazione del piano tangente al grafico di f in \((1,0,f(1,0))\) è data da:
+    \( z = f(1,0) + \frac{\partial f}{\partial x}(1,0)(x-1) + \frac{\partial f}{\partial y}(1,0)(y-0) \)
+    \( z = -\frac{13}{2} + 7(x-1) - 4y \)
+    \( z = -\frac{13}{2} + 7x - 7 - 4y \)
+    \( 7x - 4y - z - \frac{27}{2} = 0 \) oppure \( 14x - 8y - 2z - 27 = 0 \).
+
+    \item[c)] Punti critici.\\
+    Per trovare i punti critici, poniamo il gradiente uguale a zero:
+    \[ \begin{cases} 3x - 8 - 4y + \frac{12}{x} = 0 \\ -4x + 8y = 0 \end{cases} \]
+    Dalla seconda equazione, \(8y = 4x \Rightarrow y = \frac{1}{2}x\).
+    Sostituiamo nella prima equazione:
+    \( 3x - 8 - 4(\frac{1}{2}x) + \frac{12}{x} = 0 \)
+    \( 3x - 8 - 2x + \frac{12}{x} = 0 \)
+    \( x - 8 + \frac{12}{x} = 0 \)
+    Moltiplichiamo per \(x\) (ricordando che \(x>0\)):
+    \( x^2 - 8x + 12 = 0 \)
+    Risolviamo l'equazione quadratica: \( (x-2)(x-6) = 0 \).
+    Le soluzioni sono \(x_1 = 2\) e \(x_2 = 6\). Entrambe sono accettabili poiché \(x>0\).
+    Per \(x_1 = 2\), \(y_1 = \frac{1}{2}(2) = 1\). Punto critico \(P_1 = (2,1)\).
+    Per \(x_2 = 6\), \(y_2 = \frac{1}{2}(6) = 3\). Punto critico \(P_2 = (6,3)\).
+
+    Classificazione dei punti critici usando la matrice Hessiana.
+    Le derivate seconde sono:
+    \begin{itemize}
+        \item \( \frac{\partial^2 f}{\partial x^2} = 3 - \frac{12}{x^2} \)
+        \item \( \frac{\partial^2 f}{\partial y^2} = 8 \)
+        \item \( \frac{\partial^2 f}{\partial x \partial y} = -4 \)
+    \end{itemize}
+    La matrice Hessiana è \( H_f(x,y) = \begin{pmatrix} 3 - \frac{12}{x^2} & -4 \\ -4 & 8 \end{pmatrix} \).
+    Il determinante della Hessiana è \( \det(H_f) = 8(3 - \frac{12}{x^2}) - (-4)(-4) = 24 - \frac{96}{x^2} - 16 = 8 - \frac{96}{x^2} \).
+
+    Per \(P_1 = (2,1)\):
+    \( \frac{\partial^2 f}{\partial x^2}(2,1) = 3 - \frac{12}{2^2} = 3 - \frac{12}{4} = 3 - 3 = 0 \).
+    \( \det(H_f(2,1)) = 8 - \frac{96}{2^2} = 8 - \frac{96}{4} = 8 - 24 = -16 \).
+    Poiché \( \det(H_f(2,1)) < 0 \), il punto \(P_1 = (2,1)\) è un punto di sella.
+
+    Per \(P_2 = (6,3)\):
+    \( \frac{\partial^2 f}{\partial x^2}(6,3) = 3 - \frac{12}{6^2} = 3 - \frac{12}{36} = 3 - \frac{1}{3} = \frac{8}{3} \).
+    \( \det(H_f(6,3)) = 8 - \frac{96}{6^2} = 8 - \frac{96}{36} = 8 - \frac{8}{3} = \frac{24-8}{3} = \frac{16}{3} \).
+    Poiché \( \det(H_f(6,3)) > 0 \) e \( \frac{\partial^2 f}{\partial x^2}(6,3) = \frac{8}{3} > 0 \), il punto \(P_2 = (6,3)\) è un punto di minimo locale.
+\end{enumerate}
+\end{solution}
+
+\end{document}
