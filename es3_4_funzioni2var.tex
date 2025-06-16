@@ -22,17 +22,70 @@ Questi esercizi testano la capacità di analizzare una funzione $f(x,y)$ in un'a
     \item \textbf{Gradiente:} $\nabla f(x,y) = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y} \right)$
 \end{itemize}
 
-\subsubsection{Differenziabilità e Teoremi Fondamentali}
+\subsubsection{Differenziabilità: Teoria e Criteri Pratici}
 
 \begin{info}
-\textbf{Condizioni per la Differenziabilità:}
-Una funzione $f(x,y)$ è differenziabile in $(x_0, y_0)$ se:
-\begin{enumerate}
-    \item Le derivate parziali $f_x$ e $f_y$ esistono in un intorno del punto
-    \item Sono continue nel punto $(x_0, y_0)$
-\end{enumerate}
-Se $f \in C^1$ (derivate parziali continue), allora $f$ è differenziabile.
+\textbf{Definizione di Differenziabilità:}
+Una funzione $f(x,y)$ è differenziabile in $(x_0, y_0)$ se esistono le derivate parziali $f_x(x_0,y_0)$ e $f_y(x_0,y_0)$ e se
+\[
+\lim_{(h,k) \to (0,0)} \frac{f(x_0+h, y_0+k) - f(x_0,y_0) - f_x(x_0,y_0)h - f_y(x_0,y_0)k}{\sqrt{h^2+k^2}} = 0
+\]
 \end{info}
+
+\begin{strategia}
+\textbf{Criteri Pratici per Stabilire la Differenziabilità:}
+
+\textbf{1. Teorema Fondamentale (più usato):}
+Se $f_x$ e $f_y$ esistono e sono \textbf{continue} in un intorno di $(x_0,y_0)$, allora $f$ è differenziabile in $(x_0,y_0)$.
+
+\textbf{2. Funzioni Elementari:}
+\begin{itemize}
+    \item \textbf{Polinomi}: sempre differenziabili su tutto $\mathbb{R}^2$
+    \item \textbf{Funzioni esponenziali} ($e^{g(x,y)}$): differenziabili ovunque $g$ è differenziabile
+    \item \textbf{Logaritmi} ($\ln(g(x,y))$): differenziabili dove $g(x,y) > 0$ e $g$ è differenziabile
+    \item \textbf{Funzioni trigonometriche}: differenziabili ovunque sono definite
+    \item \textbf{Radici} ($\sqrt[n]{g(x,y)}$): differenziabili dove $g(x,y) > 0$ (per radici pari) e $g$ è differenziabile
+\end{itemize}
+
+\textbf{3. Operazioni con Funzioni Differenziabili:}
+Se $f$ e $g$ sono differenziabili in $(x_0,y_0)$, allora sono differenziabili anche:
+\begin{itemize}
+    \item $f + g$ (somma)
+    \item $f \cdot g$ (prodotto)
+    \item $\frac{f}{g}$ (quoziente, se $g(x_0,y_0) \neq 0$)
+    \item $h(f(x,y))$ (composizione, se $h$ è differenziabile in $f(x_0,y_0)$)
+\end{itemize}
+\end{strategia}
+
+\begin{errore}
+\textbf{Quando NON è Differenziabile:}
+\begin{enumerate}
+    \item \textbf{Punto fuori dal dominio}: Se $(x_0,y_0) \notin D_f$
+    \item \textbf{Discontinuità delle derivate parziali}: Anche se $f_x$ e $f_y$ esistono, se non sono continue
+    \item \textbf{Punti angolosi o cuspidi}: Come nei moduli $|x|$ in una variabile
+    \item \textbf{Funzioni definite a tratti}: Nei punti di "raccordo" tra diverse espressioni
+\end{enumerate}
+\end{errore}
+
+\begin{esempio}
+\textbf{Esempio dall'Esame 2023:} $f(x,y) = \frac{3}{2}x^{2} - 8x - 4xy + 4y^{2} + 12 \ln x$
+
+\textbf{Dominio:} $D_f = \{(x,y) \in \mathbb{R}^2 : x > 0\}$ (per l'esistenza di $\ln x$)
+
+\textbf{Differenziabilità:} La funzione è somma e composizione di:
+\begin{itemize}
+    \item \textbf{Polinomi}: $\frac{3}{2}x^{2} - 8x - 4xy + 4y^{2}$ (differenziabili ovunque)
+    \item \textbf{Logaritmo}: $12 \ln x$ (differenziabile per $x > 0$)
+\end{itemize}
+
+\textbf{Conclusione:} $f$ è differenziabile in tutto $D_f$ perché è combinazione di funzioni differenziabili nel loro dominio.
+\end{esempio}
+
+\begin{esempio}
+\textbf{Controesempio:} $f(x,y) = \begin{cases}\frac{xy(x+y)}{x^{2}+y^{2}} & (x,y)\ne(0,0)\\ 0 & (x,y)=(0,0)\end{cases}$
+
+In questo caso, anche se le derivate parziali esistono in $(0,0)$, la funzione \textbf{non è differenziabile} in $(0,0)$ perché le derivate parziali non sono continue in quel punto.
+\end{esempio}
 
 \subsubsection{Calcolo delle Derivate Direzionali}
 

@@ -19,6 +19,51 @@ Questo è spesso il primo scoglio. L'obiettivo è capire il "carattere" di una s
     Se il limite è 0, \textbf{non puoi concludere nulla}! La condizione è solo necessaria, non sufficiente. Dire "siccome $a_n \to 0$ la serie converge" è un errore grave che invalida l'esercizio. 
     \end{errore}
 
+    \begin{info}
+    \textbf{Come Scegliere la Serie di Confronto Giusta:}
+    \begin{itemize}
+        \item \textbf{Se $a_n$ contiene potenze di $n$:} usa la serie armonica generalizzata $\sum \frac{1}{n^\alpha}$
+        \item \textbf{Se $a_n$ contiene esponenziali:} usa la serie geometrica $\sum q^n$  
+        \item \textbf{Se $a_n$ contiene logaritmi:} spesso confronta con $\sum \frac{1}{n (\ln n)^\beta}$
+        \item \textbf{Se $a_n$ contiene fattoriali:} usa Stirling e confronta con serie esponenziali
+        \item \textbf{Regola d'oro:} semplifica $a_n$ fino al termine dominante per $n \to \infty$
+    \end{itemize}
+    \end{info}
+
+    \begin{strategia}
+    \textbf{Algoritmo Sistematico per il Confronto Asintotico:}
+    \begin{enumerate}
+        \item \textbf{Semplifica $a_n$:} Usa sviluppi di Taylor/MacLaurin e equivalenze asintotiche
+        \item \textbf{Identifica il termine dominante:} Quello che cresce/decresce più velocemente
+        \item \textbf{Scegli la serie di confronto $\sum b_n$:} Basata sul termine dominante
+        \item \textbf{Calcola $L = \lim_{n \to \infty} \frac{a_n}{b_n}$}
+        \item \textbf{Applica le regole del confronto asintotico}
+        \item \textbf{Se $L = 0$ o $L = +\infty$:} Potrebbe servire una serie di confronto diversa
+    \end{enumerate}
+    \end{strategia}
+
+    \begin{esempio}
+    \textbf{Caso Delicato - Quando il Primo Confronto Fallisce:}
+    
+    Studiare $\sum_{n=1}^{+\infty} \frac{\ln n}{n^{3/2}}$
+    
+    \textbf{Primo tentativo:} Confronto con $\sum \frac{1}{n}$ (serie armonica)
+    
+    $L = \lim_{n \to \infty} \frac{\ln n / n^{3/2}}{1/n} = \lim_{n \to \infty} \frac{\ln n}{n^{1/2}} = 0$
+    
+    Poiché $\sum \frac{1}{n}$ diverge e $L = 0$, NON possiamo concludere.
+    
+    \textbf{Secondo tentativo:} Confronto con $\sum \frac{1}{n^{3/2}}$ (converge perché $3/2 > 1$)
+    
+    $L = \lim_{n \to \infty} \frac{\ln n / n^{3/2}}{1/n^{3/2}} = \lim_{n \to \infty} \ln n = +\infty$
+    
+    Poiché $\sum \frac{1}{n^{3/2}}$ converge e $L = +\infty$, NON possiamo concludere.
+    
+    \textbf{Confronto giusto:} Serie $\sum \frac{1}{n^{3/2}} \cdot \frac{\ln n}{C}$ per $C$ costante appropriata
+    
+    Meglio usare il \textbf{criterio integrale}: $\int_2^{+\infty} \frac{\ln x}{x^{3/2}} dx$ converge $\Rightarrow$ la serie CONVERGE.
+    \end{esempio}
+
     \item \textbf{Convergenza Assoluta (Studio di $\sum |a_n|$):} 
     \begin{itemize}
         \item \textbf{Confronto Asintotico (il più potente):} Semplifica $|a_n|$ per $n \to \infty$ usando gli sviluppi di MacLaurin o le equivalenze asintotiche notevoli (es. $\sin(x) \sim x$, $\ln(1+x) \sim x$, $e^x-1 \sim x$ per $x \to 0$). Confrontala con la serie armonica generalizzata $\sum \frac{1}{n^\alpha}$ (converge se $\alpha > 1$) o la serie geometrica $\sum q^n$ (converge se $|q| < 1$). 
@@ -26,6 +71,179 @@ Questo è spesso il primo scoglio. L'obiettivo è capire il "carattere" di una s
         \item \textbf{Criterio della Radice:} Utile con potenze $n$-esime. Calcola $L = \lim_{n \to \infty} \sqrt[n]{|a_n|}$. Le conclusioni sono le stesse del criterio del rapporto. 
     \end{itemize}
     
+    \begin{info}
+    \textbf{Tabella Riassuntiva - Confronto Asintotico:}
+    
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{Valore di $L$} & \textbf{Se $\sum b_n$ converge} & \textbf{Se $\sum b_n$ diverge} & \textbf{Interpretazione} \\
+    \hline
+    $L = 0$ & $\sum a_n$ converge & Inconclusivo & $a_n \ll b_n$ \\
+    \hline
+    $0 < L < +\infty$ & $\sum a_n$ converge & $\sum a_n$ diverge & $a_n \sim L \cdot b_n$ \\
+    \hline
+    $L = +\infty$ & Inconclusivo & $\sum a_n$ diverge & $a_n \gg b_n$ \\
+    \hline
+    \end{tabular}
+    \end{center}
+    
+    \textbf{Serie di Confronto Standard:}
+    \begin{itemize}
+        \item $\sum \frac{1}{n^\alpha}$: converge se $\alpha > 1$, diverge se $\alpha \leq 1$
+        \item $\sum q^n$: converge se $|q| < 1$, diverge se $|q| \geq 1$  
+        \item $\sum \frac{1}{n (\ln n)^\beta}$: converge se $\beta > 1$, diverge se $\beta \leq 1$ (per $n \geq 2$)
+        \item $\sum \frac{1}{n (\ln n)(\ln \ln n)^\gamma}$: converge se $\gamma > 1$ (per $n \geq 3$)
+    \end{itemize}
+    \end{info}
+
+    \begin{info}
+    \textbf{Equivalenze Asintotiche Notevoli (per $x \to 0$):}
+    
+    \begin{center}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Funzione} & \textbf{Equivalenza asintotica} & \textbf{Dominio} \\
+    \hline
+    $\sin x$ & $x$ & $x \to 0$ \\
+    \hline
+    $\tan x$ & $x$ & $x \to 0$ \\
+    \hline
+    $\arcsin x$ & $x$ & $x \to 0$ \\
+    \hline
+    $\arctan x$ & $x$ & $x \to 0$ \\
+    \hline
+    $\ln(1+x)$ & $x$ & $x \to 0$ \\
+    \hline
+    $e^x - 1$ & $x$ & $x \to 0$ \\
+    \hline
+    $(1+x)^\alpha - 1$ & $\alpha x$ & $x \to 0, \alpha \neq 0$ \\
+    \hline
+    $\sqrt{1+x} - 1$ & $\frac{x}{2}$ & $x \to 0$ \\
+    \hline
+    $\cos x - 1$ & $-\frac{x^2}{2}$ & $x \to 0$ \\
+    \hline
+    $1 - \cos x$ & $\frac{x^2}{2}$ & $x \to 0$ \\
+    \hline
+    $\cosh x - 1$ & $\frac{x^2}{2}$ & $x \to 0$ \\
+    \hline
+    $\sinh x$ & $x$ & $x \to 0$ \\
+    \hline
+    $\tanh x$ & $x$ & $x \to 0$ \\
+    \hline
+    \end{tabular}
+    \end{center}
+
+    \textbf{Equivalenze per $n \to +\infty$:}
+    \begin{center}
+    \begin{tabular}{|c|c|}
+    \hline
+    \textbf{Funzione} & \textbf{Equivalenza asintotica} \\
+    \hline
+    $\sin\left(\frac{1}{n}\right)$ & $\frac{1}{n}$ \\
+    \hline
+    $\ln\left(1 + \frac{1}{n}\right)$ & $\frac{1}{n}$ \\
+    \hline
+    $e^{1/n} - 1$ & $\frac{1}{n}$ \\
+    \hline
+    $\left(1 + \frac{1}{n}\right)^n - e$ & $-\frac{e}{2n}$ \\
+    \hline
+    $\sqrt{n+1} - \sqrt{n}$ & $\frac{1}{2\sqrt{n}}$ \\
+    \hline
+    $\ln(n+1) - \ln n$ & $\frac{1}{n}$ \\
+    \hline
+    \end{tabular}
+    \end{center}
+
+    \textbf{Formule di Stirling:}
+    \begin{itemize}
+        \item $n! \sim \sqrt{2\pi n}\left(\frac{n}{e}\right)^n$ per $n \to +\infty$
+        \item $\binom{2n}{n} \sim \frac{4^n}{\sqrt{\pi n}}$ per $n \to +\infty$
+        \item $\frac{(n!)^2}{(2n)!} \sim \frac{1}{\sqrt{\pi n}}$ per $n \to +\infty$
+    \end{itemize}
+    \end{info}
+
+    \begin{esempio}
+    \textbf{Applicazione delle Equivalenze Asintotiche:}
+    
+    \textbf{1.} $\sum_{n=1}^{+\infty} \frac{\sin(1/n^2)}{n}$
+    
+    Usando $\sin(1/n^2) \sim 1/n^2$ per $n \to +\infty$:
+    \[ a_n = \frac{\sin(1/n^2)}{n} \sim \frac{1/n^2}{n} = \frac{1}{n^3} \]
+    Confronto con $\sum \frac{1}{n^3}$ (converge perché $3 > 1$) $\Rightarrow$ la serie CONVERGE.
+    
+    \textbf{2.} $\sum_{n=1}^{+\infty} \frac{\ln(1 + 1/\sqrt{n})}{n}$
+    
+    Usando $\ln(1 + 1/\sqrt{n}) \sim 1/\sqrt{n}$ per $n \to +\infty$:
+    \[ a_n = \frac{\ln(1 + 1/\sqrt{n})}{n} \sim \frac{1/\sqrt{n}}{n} = \frac{1}{n^{3/2}} \]
+    Confronto con $\sum \frac{1}{n^{3/2}}$ (converge perché $3/2 > 1$) $\Rightarrow$ la serie CONVERGE.
+    
+    \textbf{3.} $\sum_{n=1}^{+\infty} \frac{e^{1/n} - 1}{\sqrt{n}}$
+    
+    Usando $e^{1/n} - 1 \sim 1/n$ per $n \to +\infty$:
+    \[ a_n = \frac{e^{1/n} - 1}{\sqrt{n}} \sim \frac{1/n}{\sqrt{n}} = \frac{1}{n^{3/2}} \]
+    Confronto con $\sum \frac{1}{n^{3/2}}$ (converge perché $3/2 > 1$) $\Rightarrow$ la serie CONVERGE.
+    
+    \textbf{4.} $\sum_{n=1}^{+\infty} \frac{(1+1/n)^n - e}{n^2}$
+    
+    Usando $(1+1/n)^n - e \sim -\frac{e}{2n}$ per $n \to +\infty$:
+    \[ a_n = \frac{(1+1/n)^n - e}{n^2} \sim \frac{-e/(2n)}{n^2} = \frac{-e}{2n^3} \]
+    Confronto con $\sum \frac{1}{n^3}$ (converge perché $3 > 1$) $\Rightarrow$ la serie CONVERGE ASSOLUTAMENTE.
+    \end{esempio}
+    
+    \begin{strategia}
+    \textbf{Confronto Asintotico - Casistica Completa:}
+    
+    Sia $\sum a_n$ la serie da studiare e $\sum b_n$ una serie di confronto (es. armonica generalizzata $\sum \frac{1}{n^\alpha}$ o geometrica $\sum q^n$). Calcoliamo:
+    \[ L = \lim_{n \to \infty} \frac{a_n}{b_n} \]
+    
+    \textbf{Risultati e Conclusioni:}
+    \begin{itemize}
+        \item \textbf{Se $L = 0$:} $a_n$ va a zero più velocemente di $b_n$
+        \begin{itemize}
+            \item Se $\sum b_n$ CONVERGE $\Rightarrow$ $\sum a_n$ CONVERGE
+            \item Se $\sum b_n$ DIVERGE $\Rightarrow$ NESSUNA conclusione
+        \end{itemize}
+        
+        \item \textbf{Se $L = c > 0$ (finito):} $a_n$ e $b_n$ hanno lo stesso comportamento asintotico
+        \begin{itemize}
+            \item $\sum a_n$ e $\sum b_n$ hanno lo \textbf{stesso carattere}
+            \item Se $\sum b_n$ CONVERGE $\Rightarrow$ $\sum a_n$ CONVERGE
+            \item Se $\sum b_n$ DIVERGE $\Rightarrow$ $\sum a_n$ DIVERGE
+        \end{itemize}
+        
+        \item \textbf{Se $L = +\infty$:} $a_n$ va a zero più lentamente di $b_n$
+        \begin{itemize}
+            \item Se $\sum b_n$ DIVERGE $\Rightarrow$ $\sum a_n$ DIVERGE
+            \item Se $\sum b_n$ CONVERGE $\Rightarrow$ NESSUNA conclusione
+        \end{itemize}
+    \end{itemize}
+    \end{strategia}
+
+    \begin{esempio}
+    \textbf{Caso $L = 0$:} $\sum_{n=1}^{+\infty} \frac{1}{n^2 \ln n}$ vs $\sum \frac{1}{n^2}$
+    
+    $L = \lim_{n \to \infty} \frac{1/(n^2 \ln n)}{1/n^2} = \lim_{n \to \infty} \frac{1}{\ln n} = 0$
+    
+    Poiché $\sum \frac{1}{n^2}$ converge (serie armonica generalizzata con $\alpha = 2 > 1$) e $L = 0$, allora $\sum \frac{1}{n^2 \ln n}$ CONVERGE.
+    \end{esempio}
+
+    \begin{esempio}
+    \textbf{Caso $L = c > 0$:} $\sum_{n=1}^{+\infty} \frac{2n + 5}{3n^2 + n}$ vs $\sum \frac{1}{n}$
+    
+    $L = \lim_{n \to \infty} \frac{(2n + 5)/(3n^2 + n)}{1/n} = \lim_{n \to \infty} \frac{2n + 5}{3n + 1} = \frac{2}{3}$
+    
+    Poiché $\sum \frac{1}{n}$ diverge (serie armonica) e $L = \frac{2}{3} > 0$, allora $\sum \frac{2n + 5}{3n^2 + n}$ DIVERGE.
+    \end{esempio}
+
+    \begin{esempio}
+    \textbf{Caso $L = +\infty$:} $\sum_{n=1}^{+\infty} \frac{1}{\sqrt{n}}$ vs $\sum \frac{1}{n^2}$
+    
+    $L = \lim_{n \to \infty} \frac{1/\sqrt{n}}{1/n^2} = \lim_{n \to \infty} \frac{n^2}{\sqrt{n}} = \lim_{n \to \infty} n^{3/2} = +\infty$
+    
+    Poiché $\sum \frac{1}{n^2}$ converge ma $L = +\infty$, NON possiamo concludere nulla con questo confronto. Dobbiamo cambiare serie di confronto: confrontiamo con $\sum \frac{1}{\sqrt{n}} = \sum \frac{1}{n^{1/2}}$ (serie armonica generalizzata con $\alpha = 1/2 < 1$), che DIVERGE.
+    \end{esempio}
+
     \begin{esempio}
     Studiare la convergenza di $\sum_{n=1}^{+\infty} 2^n \sin\left(\frac{1}{5^n}\right)$.
     La serie è a termini positivi. Per $n \to \infty$, l'argomento del seno $1/5^n \to 0$. Usiamo il confronto asintotico: $\sin(1/5^n) \sim 1/5^n$. 
@@ -41,6 +259,73 @@ Questo è spesso il primo scoglio. L'obiettivo è capire il "carattere" di una s
             \item $\lim_{n \to \infty} b_n = 0$ (la condizione necessaria!). 
             \item $b_n$ è \textbf{definitivamente decrescente}. Per provarlo, puoi studiare il segno della derivata della funzione associata $f(x)$ (se $f'(x) < 0$) o verificare che $b_{n+1} \le b_n$. 
         \end{enumerate}
+
+    \begin{strategia}
+    \textbf{Metodi Rapidi per Verificare la Monotonia Decrescente:}
+    
+    Data una successione $b_n = f(n)$, per verificare che sia definitivamente decrescente:
+    
+    \textbf{Metodo 1 - Studio della Derivata (IL PIÙ VELOCE):}
+    \begin{enumerate}
+        \item Considera la funzione $f(x)$ dove $x$ è una variabile continua
+        \item Calcola $f'(x)$
+        \item Se $f'(x) < 0$ per $x \geq N$ (per qualche $N$ sufficientemente grande), allora $b_n$ è definitivamente decrescente
+    \end{enumerate}
+    
+    \textbf{Metodo 2 - Rapporto Consecutivo:}
+    \begin{enumerate}
+        \item Calcola $\frac{b_{n+1}}{b_n}$
+        \item Se $\frac{b_{n+1}}{b_n} < 1$ per $n \geq N$, allora $b_n$ è definitivamente decrescente
+        \item Questo metodo è utile quando $b_n$ contiene fattoriali o potenze
+    \end{enumerate}
+    
+    \textbf{Metodo 3 - Differenza Consecutiva:}
+    \begin{enumerate}
+        \item Calcola $b_{n+1} - b_n$
+        \item Se $b_{n+1} - b_n < 0$ per $n \geq N$, allora $b_n$ è definitivamente decrescente
+    \end{enumerate}
+    \end{strategia}
+
+    \begin{esempio}
+    \textbf{Esempi Pratici di Verifica della Monotonia:}
+    
+    \textbf{1.} $b_n = \frac{1}{\sqrt{n} + \ln n}$
+    
+    \textbf{Metodo 1:} $f(x) = \frac{1}{\sqrt{x} + \ln x}$
+    \[ f'(x) = -\frac{\frac{1}{2\sqrt{x}} + \frac{1}{x}}{(\sqrt{x} + \ln x)^2} = -\frac{\frac{x + 2\sqrt{x}}{2x\sqrt{x}}}{(\sqrt{x} + \ln x)^2} < 0 \]
+    per $x > 0$. Quindi $b_n$ è decrescente $\checkmark$
+    
+    \textbf{2.} $b_n = \frac{n!}{n^n}$
+    
+    \textbf{Metodo 2:} $\frac{b_{n+1}}{b_n} = \frac{(n+1)!/(n+1)^{n+1}}{n!/n^n} = \frac{(n+1) \cdot n!}{(n+1)^{n+1}} \cdot \frac{n^n}{n!} = \frac{n^n}{(n+1)^n} = \left(\frac{n}{n+1}\right)^n$
+    
+    Poiché $\frac{n}{n+1} < 1$, abbiamo $\left(\frac{n}{n+1}\right)^n < 1$. Quindi $b_n$ è decrescente $\checkmark$
+    
+    \textbf{3.} $b_n = \frac{\ln n}{n}$
+    
+    \textbf{Metodo 1:} $f(x) = \frac{\ln x}{x}$
+    \[ f'(x) = \frac{\frac{1}{x} \cdot x - \ln x \cdot 1}{x^2} = \frac{1 - \ln x}{x^2} \]
+    
+    $f'(x) < 0$ quando $1 - \ln x < 0$, cioè quando $\ln x > 1$, ossia $x > e$.
+    Quindi $b_n$ è decrescente per $n \geq 3$ $\checkmark$
+    
+    \textbf{4.} $b_n = \frac{1}{n^2 + n}$ 
+    
+    \textbf{Metodo 3:} $b_{n+1} - b_n = \frac{1}{(n+1)^2 + (n+1)} - \frac{1}{n^2 + n}$
+    \[ = \frac{1}{(n+1)(n+2)} - \frac{1}{n(n+1)} = \frac{n - (n+2)}{n(n+1)(n+2)} = \frac{-2}{n(n+1)(n+2)} < 0 \]
+    
+    Quindi $b_n$ è decrescente $\checkmark$
+    \end{esempio}
+
+    \begin{errore}
+    \textbf{Errori Comuni nella Verifica della Monotonia:}
+    \begin{itemize}
+        \item $\times$ \textit{Sbagliato:} Verificare solo che $b_n \to 0$ e concludere che la serie converge per Leibniz
+        \item $\times$ \textit{Sbagliato:} Calcolare $f'(0)$ invece di studiare il segno di $f'(x)$ per $x$ grande
+        \item $\times$ \textit{Sbagliato:} Non verificare che la monotonia vale "definitivamente" (cioè da un certo $n$ in poi)
+        \item $\checkmark$ \textit{Giusto:} Verificare ENTRAMBE le condizioni: $b_n \to 0$ E $b_n$ definitivamente decrescente
+    \end{itemize}
+    \end{errore}
         \item \textbf{Stima dell'errore (Leibniz):} Se una serie a termini alterni converge a $S$, l'errore commesso troncando la serie alla somma parziale $S_N$ è minore in valore assoluto del primo termine trascurato: $|S - S_N| \le b_{N+1}$. 
     \end{itemize}
 \end{enumerate}

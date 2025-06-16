@@ -58,9 +58,116 @@ e^x - 1 &\sim x \\
 e^{1/n^2} - 1 &\sim \frac{1}{n^2} \quad \text{per } n \to \infty \\
 1 - \cos(1/n) &\sim \frac{1}{2n^2} \quad \text{per } n \to \infty \\
 \arctan(n) &\sim \frac{\pi}{2} - \frac{1}{n} \quad \text{per } n \to \infty \\
-\log(n+1) - \log n &= \log\left(1 + \frac{1}{n}\right) \sim \frac{1}{n} \quad \text{per } n \to \infty
+\log(n+1) - \log n &= \log\left(1 + \frac{1}{n}\right) \\
+&\sim \frac{1}{n} \quad \text{per } n \to \infty
 \end{align}
 \end{info}
+
+\subsection{Risoluzione delle Forme Indeterminate nei Limiti}
+
+\begin{info}
+\textbf{Forme Indeterminate Principali e Metodi di Risoluzione:}
+
+\textbf{1. Forma $\frac{0}{0}$:}
+\begin{itemize}
+    \item \textbf{Metodo 1 - Regola di L'Hôpital:} Se $\lim f(x) = \lim g(x) = 0$, allora:
+    \[ \lim_{x \to a} \frac{f(x)}{g(x)} = \lim_{x \to a} \frac{f'(x)}{g'(x)} \]
+    (se quest'ultimo esiste)
+    
+    \item \textbf{Metodo 2 - Sviluppi di Taylor:} Sviluppa numeratore e denominatore:
+    \[ \lim_{x \to 0} \frac{\sin x - x}{x^3} = \lim_{x \to 0} \frac{x - \frac{x^3}{6} - x + O(x^5)}{x^3} = \lim_{x \to 0} \frac{-\frac{x^3}{6}}{x^3} = -\frac{1}{6} \]
+    
+    \item \textbf{Metodo 3 - Equivalenze asintotiche:} Sostituisci con le equivalenze:
+    \[ \lim_{x \to 0} \frac{\sin x}{\tan x} = \lim_{x \to 0} \frac{x}{x} = 1 \]
+\end{itemize}
+
+\textbf{2. Forma $\frac{\infty}{\infty}$:}
+\begin{itemize}
+    \item \textbf{Regola di L'Hôpital:} Se $\lim f(x) = \lim g(x) = \infty$:
+    \[ \lim_{x \to a} \frac{f(x)}{g(x)} = \lim_{x \to a} \frac{f'(x)}{g'(x)} \]
+    
+    \item \textbf{Confronto degli ordini di grandezza:}
+    \[ \lim_{x \to +\infty} \frac{x^2 + 3x}{2x^2 - 1} = \lim_{x \to +\infty} \frac{x^2(1 + \frac{3}{x})}{x^2(2 - \frac{1}{x^2})} = \frac{1}{2} \]
+\end{itemize}
+
+\textbf{3. Forma $0 \cdot \infty$:}
+\begin{itemize}
+    \item \textbf{Trasformazione in $\frac{0}{0}$ o $\frac{\infty}{\infty}$:}
+    \[ \lim_{x \to 0^+} x \ln x = \lim_{x \to 0^+} \frac{\ln x}{\frac{1}{x}} \stackrel{L'H}{=} \lim_{x \to 0^+} \frac{\frac{1}{x}}{-\frac{1}{x^2}} = \lim_{x \to 0^+} (-x) = 0 \]
+\end{itemize}
+\end{info}
+\begin{info}
+\textbf{4. Forme $\infty - \infty$:}
+\begin{itemize}
+    \item \textbf{Raccoglimento a fattor comune:}
+    \[
+    \begin{aligned}
+    \lim_{x \to +\infty} (\sqrt{x^2 + x} - x) 
+    &= \lim_{x \to +\infty} \frac{(\sqrt{x^2 + x} - x)(\sqrt{x^2 + x} + x)}{\sqrt{x^2 + x} + x} \\
+    &= \lim_{x \to +\infty} \frac{x}{\sqrt{x^2 + x} + x} \\
+    &= \frac{1}{2}
+    \end{aligned}
+    \]
+    
+    \item \textbf{Sviluppi asintotici:}
+    \[ \lim_{x \to +\infty} (\sqrt{x^2 + x} - x) = \lim_{x \to +\infty} x\left(\sqrt{1 + \frac{1}{x}} - 1\right) = \lim_{x \to +\infty} x \cdot \frac{1}{2x} = \frac{1}{2} \]
+\end{itemize}
+
+\textbf{5. Forme $1^{\infty}$, $0^0$, $\infty^0$:}
+\begin{itemize}
+    \item \textbf{Logaritmizzazione:} Poni $y = f(x)^{g(x)}$, allora $\ln y = g(x) \ln f(x)$
+    \[ \lim_{x \to 0^+} (1 + x)^{\frac{1}{x}} \Rightarrow \ln y = \frac{\ln(1 + x)}{x} \stackrel{x \to 0}{\sim} \frac{x}{x} = 1 \Rightarrow y = e^1 = e \]
+    
+    \item \textbf{Forma standard:} $\lim (1 + \alpha(x))^{\beta(x)} = e^{\lim \alpha(x) \beta(x)}$ quando $\alpha(x) \to 0$
+\end{itemize}
+\end{info}
+
+\begin{esempio}
+\textbf{Esempi Risolti di Forme Indeterminate:}
+
+\textbf{1.} $\lim_{x \to 0} \frac{e^x - 1 - x - \frac{x^2}{2}}{x^3}$ (forma $\frac{0}{0}$)
+
+\textbf{Sviluppo di Taylor:} $e^x = 1 + x + \frac{x^2}{2} + \frac{x^3}{6} + O(x^4)$
+\[ \lim_{x \to 0} \frac{1 + x + \frac{x^2}{2} + \frac{x^3}{6} - 1 - x - \frac{x^2}{2}}{x^3} = \lim_{x \to 0} \frac{\frac{x^3}{6}}{x^3} = \frac{1}{6} \]
+
+\textbf{2.} $\lim_{x \to +\infty} \left(\frac{x+1}{x-1}\right)^x$ (forma $1^{\infty}$)
+
+\textbf{Logaritmizzazione:} $\ln y = x \ln\left(\frac{x+1}{x-1}\right) = x \ln\left(1 + \frac{2}{x-1}\right)$
+
+Per $x$ grande: $\ln\left(1 + \frac{2}{x-1}\right) \sim \frac{2}{x-1} \sim \frac{2}{x}$
+
+Quindi: $\ln y \sim x \cdot \frac{2}{x} = 2 \Rightarrow y = e^2$
+
+\textbf{3.} $\lim_{x \to 0} \frac{x - \sin x}{x^3}$ (forma $\frac{0}{0}$)
+
+\textbf{Sviluppo:} $\sin x = x - \frac{x^3}{6} + O(x^5)$
+\[ \lim_{x \to 0} \frac{x - (x - \frac{x^3}{6})}{x^3} = \lim_{x \to 0} \frac{\frac{x^3}{6}}{x^3} = \frac{1}{6} \]
+
+\textbf{4.} $\lim_{x \to +\infty} x(\sqrt{x^2 + 1} - x)$ (forma $\infty \cdot 0$)
+
+\textbf{Razionalizzazione:}
+\[ x(\sqrt{x^2 + 1} - x) = x \cdot \frac{(\sqrt{x^2 + 1} - x)(\sqrt{x^2 + 1} + x)}{\sqrt{x^2 + 1} + x} = \frac{x}{sqrt{x^2 + 1} + x} \]
+
+Per $x \to +\infty$: $\sqrt{x^2 + 1} \sim x$, quindi:
+\[ \lim_{x \to +\infty} \frac{x}{x + x} = \frac{1}{2} \]
+\end{esempio}
+
+\begin{strategia}
+\textbf{Algoritmo per Risolvere Forme Indeterminate:}
+\begin{enumerate}
+    \item \textbf{Identifica la forma:} $\frac{0}{0}$, $\frac{\infty}{\infty}$, $0 \cdot \infty$, $\infty - \infty$, $1^{\infty}$, $0^0$, $\infty^0$
+    \item \textbf{Scegli il metodo appropriato:}
+    \begin{itemize}
+        \item \textbf{Sviluppi di Taylor:} per forme $\frac{0}{0}$ con funzioni "belle"
+        \item \textbf{L'Hôpital:} per forme $\frac{0}{0}$ e $\frac{\infty}{\infty}$ complesse
+        \item \textbf{Equivalenze:} per sostituzioni rapide
+        \item \textbf{Logaritmizzazione:} per forme esponenziali
+        \item \textbf{Manipolazioni algebriche:} per forme $\infty - \infty$
+    \end{itemize}
+    \item \textbf{Applica il metodo sistematicamente}
+    \item \textbf{Verifica il risultato} (se possibile con un metodo alternativo)
+\end{enumerate}
+\end{strategia}
 
 \subsection{Criteri di Convergenza per Serie}
 
